@@ -1,12 +1,15 @@
 FROM ubuntu:18.04
 
-LABEL org.opencontainers.image.authors="Nico Manosalva Perez"
+LABEL org.opencontainers.image.authors="Nicolas Manosalva Perez"
 
 ADD requirements.txt requirements.txt
 
 # Installing python 3.6 and pip3
 RUN apt-get update
 RUN apt-get install -y python3.6 python3-pip 
+RUN apt-get install -y bedtools=2.2.28
+RUN apt-get install -y bedops=2.4.37
+RUN apt-get install -y samtools=1.13
 RUN pip3 install --upgrade pip
 
 # Installing dependencies
