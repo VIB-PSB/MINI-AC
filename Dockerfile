@@ -3,11 +3,10 @@ FROM ubuntu:18.04
 LABEL org.opencontainers.image.authors="Nicolas MANOSALVA PEREZ"
 
 # Install base utilities
-RUN apt-get update && \
-    apt-get install -y build-essentials  && \
-    apt-get install -y wget &&
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y build-essentials wget
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
