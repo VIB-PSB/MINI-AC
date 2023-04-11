@@ -1,17 +1,15 @@
-FROM ubuntu:18.04
+FROM docker.io/mambaorg/micromamba@sha256:cc777a148e0de55b9a44677464d195c01a77e1a9ef0f047416b57f7b6d95029c
 
-LABEL org.opencontainers.image.authors="Nicolas MANOSALVA PEREZ"
+ADD conda_mini_ac.yml conda_mini_ac.yml
 
-# Install base utilities
-RUN apt-get update
-RUN apt-get install -y wget
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/*
+USER root
 
-# Install miniconda
-ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-     /bin/bash ~/miniconda.sh -b -p /opt/conda
+RUN apt-get --allow-releaseinfo-change update && apt-get install -y procps wget
+RUN apt-get install -y python3.6 
 
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
+# Installing dependencies
+RUN micromamba create -f conda_mini_ac.yml && \
+micromamba clean -a
+
+ENV PATH /opt/conda/envs/mini_ac/bin:$PATH
+

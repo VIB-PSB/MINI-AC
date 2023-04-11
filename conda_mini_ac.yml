@@ -1,0 +1,12 @@
+name: mini_ac
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - bedtools = 2.27.0
+  - bedops = 2.4.37
+  - samtools = 1.13
+  - numpy = 1.18.5
+  - pandas = 1.1.5
+  - statsmodels = 0.10.1
