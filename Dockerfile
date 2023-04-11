@@ -12,10 +12,12 @@ RUN apt-get install -y python3.6 python3-pip
 FROM biocontainers/biocontainers:v1.0.0_cv4
 
 RUN conda install bedtools=2.27.0
+RUN conda install bedops=2.4.37
+RUN conda install samtools=1.13
 
-#RUN apt-get install -y bedops=2.4.37 
-#RUN apt-get install -y samtools=1.13 
-#RUN pip3 install --upgrade pip
+# RUN apt-get install -y bedops=2.4.37 
+# RUN apt-get install -y samtools=1.13 
+RUN pip3 install --upgrade pip
 
 # Installing dependencies
 RUN pip3 install -r requirements.txt
