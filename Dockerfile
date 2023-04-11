@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="Nicolas MANOSALVA PEREZ"
 
 # Install base utilities
 RUN apt-get update
-RUN apt-get install -y build-essentials wget
+RUN apt-get install -y wget
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
