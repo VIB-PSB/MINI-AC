@@ -1,6 +1,6 @@
-LABEL org.opencontainers.image.authors="Nicolas Manosalva Perez"
-
 FROM biocontainers/biocontainers:v1.0.0_cv4
+
+LABEL org.opencontainers.image.authors="Nicolas Manosalva Perez"
 
 ADD requirements.txt requirements.txt
 
