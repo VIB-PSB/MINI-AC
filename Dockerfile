@@ -1,16 +1,11 @@
-FROM biocontainers/biocontainers:v1.0.0_cv4
+FROM ubuntu:18.04
 
-USER root
+LABEL org.opencontainers.image.authors="Nicolas MANOSALVA PEREZ"
 
-ADD requirements.txt requirements.txt
-
-# Installing python 3.6 and pip3
 RUN apt-get update
-RUN apt-get install -y python3.6 python3-pip
-RUN pip3 install --upgrade pip
-# Installing dependencies
-RUN pip3 install -r requirements.txt
-
-RUN conda install bedtools=2.27.0
-RUN conda install bedops=2.4.37
-RUN conda install samtools=1.13
+RUN apt-get install -y wget
+RUN wget https://github.com/arq5x/bedtools2/releases/download/v2.27.0/bedtools-2.27.0.tar.gz
+RUN tar -zxvf bedtools-2.27.0.tar.gz
+WORKDIR bedtools2
+RUN make
+RUN make install
