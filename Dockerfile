@@ -1,5 +1,7 @@
 FROM biocontainers/biocontainers:v1.0.0_cv4
 
+USER root
+
 ADD requirements.txt requirements.txt
 
 # Installing python 3.6 and pip3
