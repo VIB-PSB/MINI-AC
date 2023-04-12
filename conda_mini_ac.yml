@@ -10,3 +10,4 @@ dependencies:
   - numpy = 1.18.5
   - pandas = 1.1.5
   - statsmodels = 0.10.1
+  - openpyxl = 2.5.3
