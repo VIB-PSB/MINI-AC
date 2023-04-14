@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+###
+.nextflow*
+singularity_cache/
+.nextflow/
+*.sh.e*
+*.sh.o*
+*.sh.pe*
+*.sh.po*
+*.img
