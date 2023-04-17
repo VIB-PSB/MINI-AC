@@ -138,3 +138,5 @@ singularity_cache/
 *.sh.po*
 *.img
 *motif_mappings*.bed
+mini_ac_example.config
+test_miniac.sh
