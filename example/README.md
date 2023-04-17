@@ -1,6 +1,6 @@
 # **MINI-AC example**
 
-this README summarizes the format of the input and output files of MINI-AC overall, but more specifically the files of the example test to run MINI-AC
+this README summarizes the format of the input and output files of MINI-AC overall, but more specifically the files of the example test to run MINI-AC. WARNING: some output files where shortened to only the first 100 lines in order to upload them. To get the full output files, please run pipeline test.
 
 ## **MINI-AC INPUTS**
 
