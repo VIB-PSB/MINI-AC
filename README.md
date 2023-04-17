@@ -42,10 +42,10 @@ Requirements:
 * Download motif mapping files executing the following commands:
 
   ```shell
-  wget
-  wget
-  wget
-  wget
+  wget https://zenodo.org/record/7836392/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath
+  wget https://zenodo.org/record/7836392/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/ath
+  wget https://zenodo.org/record/7836392/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma
+  wget https://zenodo.org/record/7836392/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma
   ```
 
 
