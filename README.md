@@ -15,6 +15,10 @@ Reference: ?.
 
 It can be run for two different species, Arabidopsis and maize. Additionally, it can be run on two different modes depeding on the non-coding genomic space considered for motif mapping: genome-wide, where the whole non-coding genome is considered, and locus-based, where the neighboring sequences of each locus and introns are considered.
 
+
+A detailed overview on necessary input files and expected output files can be found [here](example).
+
+
 ## **Inputs**
 * **MINI-AC mode**: genome-wide or locus-based.
 * **Species**: Arabidopsis or maize.
@@ -31,10 +35,7 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 * **GO_enrichment folder** contains tab-separated files with GO enrichment of the previously generated GRN regulons. If filtering for expressed genes was specified, the GO enrichment is done on the filtered network
 * **integrative_outputs folder** contains 3 xlsx Excel files and 2 tab-separated txt network files that integrate and summarize all the analysis: (1) integrative analysis per TF, (2) integrative analysis per motif, (3) integrative analysis of GO enrichment, (4) functional network edge list file, (5) nodes attributes files of the functional network
 
-##   
-A detailed overview on necessary input files and expected output files can be found [here](example).
-## 
-Requirements:
+## Requirements:
 
 * [Nextflow version 21.10.6](https://www.nextflow.io/)
 * [Singularity version 3.8.7-1.el7](https://sylabs.io/guides/3.0/user-guide/index.html)
@@ -48,9 +49,7 @@ Requirements:
   wget https://zenodo.org/record/7836392/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma
   ```
 
-
-## 
-Example on how to run it:
+## How to run it
 
 * Define paths, and the parameters setting in the [config file](docs/configuration_pipeline.md).
 
