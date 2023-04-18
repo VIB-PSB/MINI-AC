@@ -366,7 +366,7 @@ workflow locus_based_miniac {
                                         }
     else {
         
-        int_input = stats_ch.combine(file('NO_FILE'))
+        int_input = stats_ch.combine(Channel.fromPath('NO_FILE'))
 
         net_tuple = getNetwork.out
                     .map { n -> [n.BaseName.split("_")[0..-2].join("_"), n]}
@@ -412,7 +412,7 @@ workflow locus_based_miniac {
             }
     else {
 
-        int_input = int_input.combine(file('NO_FILE'))
+        int_input = int_input.combine(Channel.fromPath('NO_FILE2'))
 
                                     }
 
