@@ -4,10 +4,10 @@
 
 MINI-AC has 4 main inputs that need to be given as paths or folder names, with two them being optional:
 
-* **ACR files**: Path of folder with BED files containing genomic coordinates corresponding to accessible chromatin regions (minimal format of 3 columns: chromosome, start, stop). This path should be given to the parameter ```ACR_dir```.
+* **ACR files**: Path of the folder with the BED files containing genomic coordinates corresponding to accessible chromatin regions (minimal format of 3 columns: chromosome, start, stop). This path should be given to the parameter ```ACR_dir```.
 * **Output folder**: Path where the results will be stored. This path should be given to the parameter ```OutDir```.
-* **(Optional) DEGs file**: Path of folder with tab-separated txt files with differential expression data associated with the input ACRs. First column must be gene ID. It can be one DEGs file per input ACR file, or paired DEGs file-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```DE_genes_dir```.
-* **(Optional) Expressed genes file**: Path of folder with one-column txt files with gene IDs for genes expressed in the biological context of the input ACRs, to filter the infered GRNs. It can be one Expression file per input ACR file, or paired Expression file-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```Set_genes_dir```.
+* **(Optional) DEGs file**: Path of folder with tab-separated txt files with differential expression data associated with the input ACRs. First column must be gene ID. It can be one DEGs file per input ACR file, or paired DEGs files-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```DE_genes_dir```.
+* **(Optional) Expressed genes file**: Path of folder with one-column txt files with gene IDs for genes expressed in the biological context of the input ACRs, to filter the infered GRNs. It can be one Expression file per input ACR file, or paired Expression files-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```Set_genes_dir```.
 
 ## Input parameters
 
@@ -15,15 +15,16 @@ MINI-AC has several optional parameters that affect the output and some aspects 
 
 ### DEGs and Expression files parameters
 
-* **Expression files parameters**: Since providing Expression files is optional, it needs to be specified if the path with the DEG files is available with the parameter ```DE_genes``` set to ```DE_genes = true``` or ```DE_genes = false```. Additionally, if there is only one DEG file for all the input ACRs, you need set the parameter ```One_DE_set``` to ```One_DE_set = true```, and to ```One_DE_set = false``` if otherwise.
+* **DEGs parameters**: Since providing DEGs files is optional, it needs to be specified if the path with the DEGs files is available with the parameter ```DE_genes``` set to ```DE_genes = true``` or ```DE_genes = false```. Additionally, if there is only one DEG file for all the input ACRs, you need set the parameter ```One_DE_set``` to ```One_DE_set = true```, and to ```One_DE_set = false``` if otherwise.
 
-* **DEGs parameters**: Since providing DEGs files is optional, it needs to be specified if the path with the DEG files is available with the parameter ```DE_genes``` set to ```Filter_set_genes = true``` or ```Filter_set_genes = false```. Additionally, if there is only one Expression file for all the input ACRs, you need set the parameter ```Filter_set_genes``` to ```Filter_set_genes = true```, and to ```Filter_set_genes = false``` if otherwise.
+
+* **Expression files parameters**: Since providing Expression files is optional, it needs to be specified if the path with the Expression files is available with the parameter ```Filter_set_genes``` set to ```Filter_set_genes = true``` or ```Filter_set_genes = false```. Additionally, if there is only one Expression file for all the input ACRs, you need set the parameter ```Filter_set_genes``` to ```Filter_set_genes = true```, and to ```Filter_set_genes = false``` if otherwise.
 
 ### GRN inference parameters
 
-* **Motif enrichment p-value cut-off**: This is the p-value cut-off that determines which motifs are enriched and used for GRN building. We do not recommend changing this parameter. It has been internally pre-defined, for each MINI-AC mode, based on  p-value cut-offs with a false disocvery rate of 0 (see publication). If wished, however, this p-value can be overwritten setting the parameter ```P_val``` to whatever value in the configuration file (see below) or in the command line options. For example: ```nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize --P_val 0.05```
+* **Motif enrichment p-value cut-off**: This is the p-value cut-off that determines which motifs are enriched and used for GRN building. We do not recommend changing this parameter. It has been internally pre-defined for each MINI-AC mode based on the p-value cut-offs with a false disocvery rate of 0 (see publication). If wished, however, this p-value can be overwritten in the configuration file by setting the parameter ```P_val``` to whatever value (see below) or in the command line options. For example: ```nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize --P_val 0.05```
 
-* **Overlap criteria parameter**: By default, MINI-AC computes motif enrichment counting the motif matches within ACRs. This, however, is difficult if the ACRs are shorter than or of similar size to motifs, which is the case of footprints. In this case, we observed that counting the absolute base-pair overlap is useful. Therefore, in case of using footprints or short ACRs (high resolution), we recommend setting the parameter ```Bps_intersect = true```. Otherwise it should be kept ```Bps_intersect = false```.
+* **Overlap criteria parameter**: By default, MINI-AC computes motif enrichment counting the motif matches within ACRs. This, however, is difficult if the ACRs are shorter than or of similar size to the motifs, which is the case of footprints. In this case, we observed that counting the absolute base-pair overlap is useful. Therefore, in case of using footprints or short ACRs (high resolution), we recommend setting the parameter ```Bps_intersect = true```. Otherwise it should be kept ```Bps_intersect = false```.
 
 * **Annotation of second closest gene in genome-wide mode**: The parameters ```Second_gene_annot``` and ```Second_gene_dist``` are only taken into account by the genome-wide mode. In the genome-wide mode the motif matches are annotated to the closest gene, but in genomes like maize, there are very distal regulatory elements that regulate non-neigboring genes. Although we showed in the original publication that this does not improve results, we give the possibility of annotating the second closest genes that are within a certain distance from the motif match. To activate this option the parameter ```Second_gene_annot``` should be set to ```Second_gene_annot = true```. If so, the parameter ```Second_gene_dist``` should be used to set the specific distance cut-off (in absolute base-pairs) at which the second-closest gene has to be from the motif match in order to be assigned as target gene.
 
@@ -32,7 +33,7 @@ The configuration or "config" file, is a file that Nextflow uses to manage and s
 
 ### Give parameters values to Configuration file
 
-To set the above-mentioned parameters of the pipeline in the Configuration file, here's a code snippet with default and recommended settings:
+To set the above-mentioned parameters of the pipeline in the Configuration file, here's a code snippet with the default and the recommended settings:
 
 ```nextflow
 params {
@@ -66,7 +67,7 @@ params {
 ```
 ### Setting Work directory of the pipeline
 	
-The Work directory is where tasks temporary files are created and where Nextflow stores the files for the different processes. By default this directory is created in the folder where the pipeline is executed, but we recommend to set it to a scratch or tmp folder. To set it in the Configuration file, the following should be done:
+The Work directory is where the temporary files are created and where Nextflow stores the files of the different processes. By default this directory is created in the folder where the pipeline is executed, but we recommend to set it to a scratch or tmp folder. To set it in the Configuration file, the following code line should be added and edited:
 
 ```nextflow
 workDir = '/absolute/path/to/work/dir'
@@ -95,7 +96,7 @@ singularity {
 ```
 ### Pipeline executor
 
-[The executor of the pipeline](https://www.nextflow.io/docs/latest/executor.html) is the system where the pipeline processes run and suprvises its execution. It can be a computer, a cluster resource manager, or the cloud. In the Configuration file it can be specified what is the executor of the pipeline. To execute it in a normal computer, aka locally, the code block below should be added the configuration file:
+[The executor of the pipeline](https://www.nextflow.io/docs/latest/executor.html) is the system where the pipeline processes run and supervises its execution. It can be a computer, a cluster resource manager, or the cloud. In the Configuration file it can be specified what is the executor of the pipeline. To execute it in a normal computer locally, the code below should be added the configuration file:
 
 ```nextflow
 executor {
