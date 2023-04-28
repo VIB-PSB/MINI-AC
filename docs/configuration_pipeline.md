@@ -83,7 +83,7 @@ singularity {
     autoMounts = true
 }
 ```
-Sometimes the temporary file used by Singularity is not in the same root path as in the pipeline, which can cause Singularity to struggle to find it. In this case, add the ```runOptions``` line below with the absolute path to the tmp folder:
+Sometimes the temporary file used by Singularity is not in the same root path as in the pipeline, which can cause Singularity to struggle to find it. In this case, add the ```runOptions``` line below with the absolute path to the tmp folder. To know the absolute path to the tmp folder in linux execute in the command line ```echo $TMPDIR```. Then add it as shown below.
 
 ```nextflow
 process.container = "vibpsb/mini-ac:latest"
