@@ -43,10 +43,10 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 * Motif mapping files. The need to be downloaded executing the following commands:
 
   ```
-  wget https://zenodo.org/record/7836392/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath
-  wget https://zenodo.org/record/7836392/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/ath
-  wget https://zenodo.org/record/7836392/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma
-  wget https://zenodo.org/record/7836392/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma
+  wget https://zenodo.org/record/7836392/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath/ath_genome_wide_motif_mappings.bed
+  wget https://zenodo.org/record/7836392/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
+  wget https://zenodo.org/record/7836392/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma/zma_genome_wide_motif_mappings.bed
+  wget https://zenodo.org/record/7836392/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed
   ```
 
 ## How to run it
