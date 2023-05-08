@@ -2,9 +2,7 @@
 
 MINI-AC stands for Motif-Informed Network Inference based on Accessible Chromatin, a method that combines accessible chromatin data from bulk or single-cell experiments with transcription factor binding site enrichment to learn gene regulatory networks (GRNs) in plants.
   
-MINI-AC uses a ? license.
-
-Reference: ?.
+MINI-AC uses an Open Source License.
 
 ## **Pipeline summary**
 1. Generation of background model for input accessible chromatin regions (ACRs).
