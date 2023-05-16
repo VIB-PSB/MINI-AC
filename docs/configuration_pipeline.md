@@ -17,6 +17,10 @@ MINI-AC has several optional parameters that affect the output and some aspects 
 
 ### DEGs and Expressed genes files parameters
 
+* **Species**: ```--species arabidopsis``` (command line) or ```species = "arabidopsis"``` (configuration file) for Arabidopsis, and ```--species maize``` (command line) or ```species = "maize"``` (configuration file) for maize.
+
+* **MINI-AC mode**: ```--mode genome_wide``` (command line) or ```mode = "genome_wide"``` (configuration file) for the genome-wide mode, and ```--mode locus_based``` (command line) or ```mode = "locus_based"``` (configuration file) for the locus-based mode.
+
 * **DEGs parameters**: Since providing DEGs files is optional, it needs to be specified if the path with the DEGs files is available with the parameter ```DE_genes``` set to ```DE_genes = true``` or ```DE_genes = false```. Additionally, if there is only one DEG file for all the input ACRs, you need set the parameter ```One_DE_set``` to ```One_DE_set = true```, and to ```One_DE_set = false``` if otherwise.
 
 
