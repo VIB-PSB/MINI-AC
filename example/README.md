@@ -151,7 +151,7 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 		bundle_sheath_marand_top10k_node_attributes.txt
 		mesophyll_marand_top10k_node_attributes.txt
 		```
-		- Node gene ID
+		- Node gene ID.
 		- Type of node: TF if transcription factor or TG if target gene.
 		- Motif ID of the motif with minimum rank associated to TF.
 		- Motif enrichment rank of the motif indicated in the 3rd column.
