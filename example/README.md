@@ -20,8 +20,10 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 
 ### Motif Enrichment
 - **enrichment_stats**: Contains one file per input ACR with the motif enrichment statistics. Per row it shows the enrichment statistics of every motif:
-	- **bundle_sheath_marand_top10k_allshuff_sorted_miniac_stats.txt**
-	- **mesophyll_marand_top10k_allshuff_sorted_miniac_stats.txt**
+	```
+	bundle_sheath_marand_top10k_allshuff_sorted_miniac_stats.txt
+	mesophyll_marand_top10k_allshuff_sorted_miniac_stats.txt
+	```
 	- dataset: dataset name (ACR file name).
 	- input_total_peaks: Total number of non-overlapping peaks in the dataset.
 	- motif: Motif ID from JASPAR 2020 or CisBP version 2.00.
@@ -32,16 +34,20 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 	- enr_fold: The motif enrichment fold indicates how much more frequently the motif matches occur within ACRs compared to what is expected by chance (division of real_int by suffled_int).
 ### GRN inference
 - **networks**: Contains one file per input ACR with the predicted GRN in an edge-list format. Each row is a transcription factor-target gene interaction. If a file with expressed genes is given, two files will be generated: one with the full network and one with the network filtered for the genes provided.
-	- **bundle_sheath_marand_top10k_network.txt**
-	- **bundle_sheath_marand_top10k_network_filtered.txt**
-	- **mesophyll_marand_top10k_network.txt**
-	- **mesophyll_marand_top10k_network_filtered.txt**
+	```
+	bundle_sheath_marand_top10k_network.txt
+	bundle_sheath_marand_top10k_network_filtered.txt
+	mesophyll_marand_top10k_network.txt
+	mesophyll_marand_top10k_network_filtered.txt
+	```
 	- TF: Gene ID of the transcription factor.
 	- TG: Gene ID of the target gene.
 ### Functional GRN analysis
 - **GO_enrichment**: Contains one file per input ACR with the functional enrichment analysis of the predicted GRNs. If a file with expressed genes is given, by default the functional analysis is done on the filtered network and not the original.
-	- **bundle_sheath_marand_top10k_GO_enrichment.txt**
-	- **mesophyll_marand_top10kGO_enrichment.txt**
+	```
+	bundle_sheath_marand_top10k_GO_enrichment.txt
+	mesophyll_marand_top10kGO_enrichment.txt
+	```
 	- column 1: Transcription factor gene ID.
 	- column 2: Gene ontology term ID.
 	- column 3: p-value of GO enrichment.
@@ -55,8 +61,10 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 ### Integrative results
 - **integrative_outputs**: Contains a group of files that, per input ACR file, integrate the motif enrichment, network and GO enrichment results with the expression data provided by the user.
 	- **TF centered output**: Enrichment information per TF. Since one TF can be associated with multiple motifs, the motif enrichment statistics are collapsed per TF. It integrates motif enrichment, network, GO enrichment and DE information, as well as metadata of each TF. The association of one TF with multiple motif can cause big jumps in motif rank. Below, the columns' content is explained in groups.
-		- **bundle_sheath_marand_top10k_TF_centric.xlsx**
-		- **mesophyll_marand_top10k_TF_centric.xlsx**
+		```
+		bundle_sheath_marand_top10k_TF_centric.xlsx
+		mesophyll_marand_top10k_TF_centric.xlsx
+		```
 		- TF and motif rank:
 			- Dataset name.
 			- Gene ID.
@@ -86,8 +94,10 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 			- q-values of the motifs associated with the TF.
 			- Motif enrichment ranks of the motifs associated with the TF (based on pi-value).
 	- **Motif-centered output**: Enrichment information per motif. Since one TF can be associated with multiple motifs, the TF information is collapsed per motif. It integrates motif enrichment, associated TFs and expression information. Allows to explore enrichment statistics more easily.
-		- **bundle_sheath_marand_top10k_motif_centric.xlsx**
-		- **mesophyll_marand_top10k_motif_centric.xlsx**
+		```
+		bundle_sheath_marand_top10k_motif_centric.xlsx
+		mesophyll_marand_top10k_motif_centric.xlsx
+		```
 		- Motif enrichment statistics:
 			- Dataset name.
 			- Motif ID.
@@ -108,8 +118,10 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 		- (Optional; if DE table provided) Differential expression information. The first column is the gene ID, and the rest of columns depend on the content of the user-provided table in input folder "de_files".
 
 	- **GO enrichment output**: GO enrichment output integrated with TFs metadata and DE information data.
-		- **bundle_sheath_marand_top10k_GO_enrichment.xlsx**
-		- **mesophyll_marand_top10k_GO_enrichment.xlsx**
+		```
+		bundle_sheath_marand_top10k_GO_enrichment.xlsx
+		mesophyll_marand_top10k_GO_enrichment.xlsx
+		```
 		- GO enrichment results:
 			- first 3 and last 7 are the same columns as in the raw GO enrichment output
 		- TFs metadata:
@@ -123,16 +135,20 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 		- (Optional; if expressed genes provided) True if the TF is present in the user-provided list of expressed genes, False otherwise.
 		- (Optional; if DE table provided) Differential expression information. The first column is the gene ID, and the rest of columns depend on the content of the user-provided table in input folder "de_files".
 	- **Functional GRN**: network formatted as an edge list with additional columns with functional enrichment data:
-		- **bundle_sheath_marand_top10k_functional_network.txt**
-		- **mesophyll_marand_top10k_functional_network.txt**
+		```
+		bundle_sheath_marand_top10k_functional_network.txt
+		mesophyll_marand_top10k_functional_network.txt
+		```
 		- TF: Gene ID of transcription factor.
 		- TG: Gene ID of target gene.
 		- GO term: if the interaction was present in a regulon that yielded GO enrichment, GO term associated to it.
 		- q-value: q-value of GO enrichment
 		- enrichment_fold: enrichment fold of GO enrichment
 	- **GRN nodes attributes**: tab-separated file with information and metadata about the network genes:
-		- **bundle_sheath_marand_top10k_node_attributes.txt**
-		- **mesophyll_marand_top10k_node_attributes.txt**
+		```
+		bundle_sheath_marand_top10k_node_attributes.txt
+		mesophyll_marand_top10k_node_attributes.txt
+		```
 		- Node gene ID
 		- Type of node: TF if transcription factor or TG if target gene.
 		- Motif ID of the motif with minimum rank associated to TF.
