@@ -1,6 +1,6 @@
 # MINI-AC
 
-MINI-AC stands for Motif-Informed Network Inference based on Accessible Chromatin, a method that combines accessible chromatin data from bulk or single-cell experiments with transcription factor binding site enrichment to learn gene regulatory networks (GRNs) in plants.
+MINI-AC stands for Motif-Informed Network Inference based on Accessible Chromatin, a method that combines accessible chromatin data from bulk or single-cell experiments with transcription factor binding site enrichment to learn gene regulatory networks (GRNs) in plants. The present README contains a tutorial of how to use MINI-AC, and how to modify its parameters to adapt it to user-desired settings.
   
 MINI-AC uses an Open Source License.
 
@@ -39,7 +39,7 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 
 * [Nextflow](https://www.nextflow.io/)
 * [Singularity](https://sylabs.io/guides/3.0/user-guide/index.html)
-* [Wget](https://www.gnu.org/software/wget/)
+* [wget](https://www.gnu.org/software/wget/)
 * Motif mapping files. They need to be downloaded by the executing the following commands on the **top-level directory of the repository**:
 
   ```
