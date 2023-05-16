@@ -143,3 +143,13 @@ process {
     }
     }
 ```
+
+## **Modification of the internal files of the pipeline**
+
+The MINI-AC Nextflow pipeline contains a set of pre-defined parameter files specified within the main pipeline script (mini_ac.nf). These files are there because they are fixed for each MINI-AC mode and specie's genome version. 
+
+## Priority of configuration sources
+
+## Modification of the motif mapping file for the locus-based mode
+
+## Providing custom gene-GO annotation file
