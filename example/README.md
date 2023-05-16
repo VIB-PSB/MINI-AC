@@ -1,6 +1,6 @@
 # **MINI-AC example**
 
-this README summarizes the format of the input and output files of MINI-AC overall, but more specifically the files of the example test to run MINI-AC. WARNING: some output files where shortened to only the first 100 lines to be able to upload them. To get the full output files, please run pipeline test in your machine.
+This README summarizes the format of the input and output files of MINI-AC overall, but more specifically the files of the example test to run MINI-AC. WARNING: some output files where shortened to only the first 100 lines to be able to upload them. To get the full output files, please run pipeline test in your machine.
 
 ## **MINI-AC INPUTS**
 
@@ -9,9 +9,9 @@ The [INPUTS folder](inputs/) contains three sub-folders:
 - **acr_files**: contains the BED files with the genomic coordinates of the ACRs in a minimal format of 3 columns: chromosome, start and stop
 	- **bundle_sheath_marand_top10k.bed**: cell-type specific ACRs of bundle sheath.
 	- **mesophyll_marand_top10k.bed**: cell-type specific ACRs of mesophyll.
-- **de_files**: contains tab-separated tables with differential expression analysis results. The only format requirements are that the first row has to be the header (column names), and the first column has to contain gene IDs. It can be one single file for all the input ACRs in which case the name of the files should end with "\*_degs_table.txt". They can also be paired ACR-DE files. In the case they are paired datasets, the name of the file needs to be the same as the corresponding ACR file with "\*_degs_table.txt" added. For this specific example, if there were paired ACR-DE files, they should be named: bundle_sheath_marand_top10k_degs_table.txt and mesophyll_marand_top10k_degs_table.txt
+- **de_files**: contains tab-separated tables with differential expression analysis results. The only format requirements are that the first row has to be the header (column names), and the first column has to contain gene IDs. There is no requirement for the number of columns or content, although it should contain statistics associated to a DE analysis. It can be one single file for all the input ACRs in which case the name of the file should end with "\*_degs_table.txt". They can also be paired ACR-DE files. In the case they are paired datasets, the names of the files need to be the same as the corresponding ACR files with "\*_degs_table.txt" added. For this specific example, if there were paired ACR-DE files, they should be named: bundle_sheath_marand_top10k_degs_table.txt and mesophyll_marand_top10k_degs_table.txt
 	- **maize_leaf_celltypes_degs_table.txt**: DE analysis table.
-- **exp_genes_files**: contains single-column txt files with gene IDs for which the functional networks should to be filtered for. For example, if we are interested in a specific tissue or cell-type, these can be genes expressed in that tissue or cell-type. It can also be a signle file for all the ACRs, or paired with the ACRs. In any case, the naming format is the same as the "de_files" mentioned above, except that the files have to end with "\*_expressed_genes.txt".
+- **exp_genes_files**: contains single-column txt files with gene IDs for which the functional networks should to be filtered for. For example, if we are interested in a specific tissue or cell-type, these can be genes expressed in that tissue or cell-type. It can also be a single file for all the ACRs, or paired with the ACRs. In any case, the naming format is the same as the "de_files" mentioned above, except that the files have to end with "\*_expressed_genes.txt".
 	- **maize_leaf_expressed_genes.txt**
 
 ## **MINI-AC OUTPUTS**
@@ -55,12 +55,12 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 	- column 5: Enrichment fold of gene ontology enrichment.
 	- column 6: Number of target genes in regulons with gene ontology annotation.
 	- column 7: Number of genes annotated to the gene ontology term indicated in column 2.
-	- column 8: Overlapp between column 6 and column 7, meaning number of target genes in the regulon annotated to the gene ontology term indicated in column 2.
+	- column 8: Overlap between column 6 and column 7, meaning number of target genes in the regulon annotated to the gene ontology term indicated in column 2.
 	- column 9: Gene IDs of the target genes indicated in column 8.
-	- column 10: Decription of the gene ontology term indicated in column 2.
+	- column 10: Description of the gene ontology term indicated in column 2.
 ### Integrative results
 - **integrative_outputs**: Contains a group of files that, per input ACR file, integrate the motif enrichment, network and GO enrichment results with the expression data provided by the user.
-	- **TF centered output**: Enrichment information per TF. Since one TF can be associated with multiple motifs, the motif enrichment statistics are collapsed per TF. It integrates motif enrichment, network, GO enrichment and DE information, as well as metadata of each TF. The association of one TF with multiple motif can cause big jumps in motif rank. Below, the columns' content is explained in groups.
+	- **TF centered output**: Enrichment information per TF. Since one TF can be associated with multiple motifs, the motif enrichment statistics are collapsed per TF. It integrates motif enrichment, network, GO enrichment and DE information, as well as metadata of each TF. The association of one TF with multiple motifs can cause big jumps in motif rank. Below, the columns' content is explained in groups.
 		```
 		bundle_sheath_marand_top10k_TF_centric.xlsx
 		mesophyll_marand_top10k_TF_centric.xlsx
@@ -76,7 +76,7 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 			- TF family.
 			- Gene name (according to [MaizeGDB](https://maizegdb.org/)).
 			- Gene description (according to [MaizeGDB](https://maizegdb.org/)).
-			- Arabidopsis ortholog gene ID (accoridng to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
+			- Arabidopsis ortholog gene ID (according to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
 			- Arabidopsis gene name (according to [TAIR](https://www.arabidopsis.org/)).
 			- Maize gene name and Arabidopsis ortholog gene name combined.
 		- (Optional; if expressed genes provided) True if the TF is present in the user-provided list of expressed genes, False otherwise.
@@ -111,7 +111,7 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 			- TF family.
 			- Gene name (according to [MaizeGDB](https://maizegdb.org/)).
 			- Gene description (according to [MaizeGDB](https://maizegdb.org/)).
-			- Arabidopsis ortholog gene ID (accoridng to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
+			- Arabidopsis ortholog gene ID (according to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
 			- Arabidopsis gene name (according to [TAIR](https://www.arabidopsis.org/)).
 			- Maize gene name and Arabidopsis ortholog gene name combined.
 		- (Optional; if expressed genes provided) True if any of the TFs associated with the motif is present in the user-provided list of expressed genes, False otherwise.
@@ -129,7 +129,7 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 			- Gene ID of the transcription factor.
 			- Gene name (according to [MaizeGDB](https://maizegdb.org/)).
 			- Gene description (according to [MaizeGDB](https://maizegdb.org/)).
-			- Arabidopsis ortholog gene ID (accoridng to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
+			- Arabidopsis ortholog gene ID (according to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
 			- Arabidopsis gene name (according to [TAIR](https://www.arabidopsis.org/)).
 			- Maize gene name and Arabidopsis ortholog gene name combined.
 		- (Optional; if expressed genes provided) True if the TF is present in the user-provided list of expressed genes, False otherwise.
@@ -158,7 +158,7 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 		- pi-value of motif enrichment for the motif in the 3rd column.
 		- Gene name (according to [MaizeGDB](https://maizegdb.org/)).
 		- Gene description (according to [MaizeGDB](https://maizegdb.org/)).
-		- Arabidopsis ortholog gene ID (accoridng to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
+		- Arabidopsis ortholog gene ID (according to [PLAZA monocots 4.5](https://bioinformatics.psb.ugent.be/plaza/versions/plaza_v4_5_monocots/)).
 		- Arabidopsis gene name (according to [TAIR](https://www.arabidopsis.org/)).
 		- Maize gene name and Arabidopsis ortholog gene name combined.
 		- (Optional; if expressed genes provided)  True if the TF is present in the user-provided list of expressed genes, False otherwise.
