@@ -24,7 +24,7 @@ A detailed overview of the necessary input files and expected output files can b
 * **Species**: Arabidopsis or maize.
 * **ACR files**: BED files containing genomic coordinates corresponding to accessible chromatin regions (minimal format of 3 columns: chromosome, start, stop). The ACR files' coordinates **must** correspond to the genome versions of Araport11 for Arabidopsis and AGPv4 for maize.
 * **Output folder**: Path where the results will be stored.
-* **(Optional) DEGs file**: Tab-separated txt file with differential expression data associated with the input ACRs. The only requirement is that the first column must be gene ID. There is no requirement for the number of columns or content, although it should contain statistics associated to a DE analysis.
+* **(Optional) DEGs file**: Tab-separated txt file with differential expression data associated with the input ACRs. The only format requirements are that the first row has to be the header (column names), and the first column has to contain gene IDs. There is no requirement for the number of columns or content, although it should contain statistics associated to a DE analysis.
 * **(Optional) Expressed genes file**: One-column txt file with gene IDs for genes expressed in the biological context of the input ACRs, to filter the inferred GRNs.
 
 The pipeline will run in parallel for multiple ACR BED input files. The two optional input files can be provided individually for all the input ACR datasets, meaning that one single "DEG file" and one "Expressed genes file" can be provided for all the ACRs, or there can be multiple files which need to be paired to each ACR file. This is done through the naming of the files. For further details consult [here](example).  
