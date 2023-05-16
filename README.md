@@ -11,7 +11,7 @@ MINI-AC uses an Open Source License.
 4. Generation of a functional GRN by gene ontology (GO) enrichment of the regulons.
 5. Integration of data to generate informative, user-friendly output files.
 
-Currently, two species are supported by MINI-AC: *Arabidopsis thaliana* and maize. Additionally, it can be run on two different modes depeding on the non-coding genomic space considered for motif mapping:
+Currently, two species are supported by MINI-AC: *Arabidopsis thaliana* and maize. Additionally, it can be run on two different modes depending on the non-coding genomic space considered for motif mapping:
 * **genome-wide**: strategy where the whole non-coding genome is considered for motif mappings. It captures all the ACRs of the input dataset for the GRN prediction, which is adviced when working with species with long intergenic regions and distal regulatory elements, like maize for example.
 * **locus-based**: strategy where the neighboring sequences within a pre-defined window of each locus, and introns are considered for motif mapping. It only captures the proximal ACRs of the input dataset within the pre-defined window, which can lead to missing distal ACRs in species with long intergenic regions and distal regulatory elements. However, it has the advantage of having a denser signal of TFBS, which are mostly located close to the genes.
 
@@ -25,9 +25,9 @@ A detailed overview of the necessary input files and expected output files can b
 * **ACR files**: BED files containing genomic coordinates corresponding to accessible chromatin regions (minimal format of 3 columns: chromosome, start, stop). The ACR files' coordinates **must** correspond to the genome versions of Araport11 for Arabidopsis and AGPv4 for maize.
 * **Output folder**: Path where the results will be stored.
 * **(Optional) DEGs file**: Tab-separated txt file with differential expression data associated with the input ACRs. First column must be gene ID.
-* **(Optional) Expressed genes file**: One-column txt file with gene IDs for genes expressed in the biological context of the input ACRs, to filter the infered GRNs.
+* **(Optional) Expressed genes file**: One-column txt file with gene IDs for genes expressed in the biological context of the input ACRs, to filter the inferred GRNs.
 
-The pipeline will run in parallel for multiple ACR BED input files. The two optional input files can be provided individually for all the input ACR datasets, meaning that one single "DEG file" and one "Expressed genes file" can be provided for all the ACRs, or there can multiple and they need to be paired to each ACR file. This is done through the naming of the files. For further details consult [here](example).  
+The pipeline will run in parallel for multiple ACR BED input files. The two optional input files can be provided individually for all the input ACR datasets, meaning that one single "DEG file" and one "Expressed genes file" can be provided for all the ACRs, or there can be multiple files which need to be paired to each ACR file. This is done through the naming of the files. For further details consult [here](example).  
 
 ## **Outputs**
 * **enrichment_stats folder** contains tab-separated files with tables summarizing the motif enrichment statistics and numbers.
