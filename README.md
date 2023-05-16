@@ -40,7 +40,7 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 * [Nextflow](https://www.nextflow.io/)
 * [Singularity](https://sylabs.io/guides/3.0/user-guide/index.html)
 * [wget](https://www.gnu.org/software/wget/)
-* Motif mapping files. They need to be downloaded by the executing the following commands on the **top-level directory of the repository**:
+* Motif mapping files. They need to be downloaded by executing the following commands on the **top-level directory of the repository**:
 
   ```
   wget https://zenodo.org/record/7836392/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath/ath_genome_wide_motif_mappings.bed
