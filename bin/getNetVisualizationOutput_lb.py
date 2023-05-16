@@ -164,7 +164,7 @@ enr_stats["rank_pi_val"] = enr_stats.groupby("dataset")["pi_value"].rank("first"
 enr_stats = enr_stats.merge(mot_tf, how = 'right', left_on = 'motif', right_on = 'motif_id')
 enr_stats = enr_stats[enr_stats.adj_pval <= pval]
 enr_stats = enr_stats.groupby('gene_id').agg({'motif': 'first', 'rank_pi_val': min, 'adj_pval': min, 'enr_fold': max, 'pi_value': max}).sort_values(by = 'rank_pi_val').reset_index()
-enr_stats.columns = ['gene_id', 'motif_min_rank', 'min_motif_rank', 'min_q_val', 'min_enr_fold', 'min_pi_value']
+enr_stats.columns = ['gene_id', 'motif_id', 'min_motif_rank', 'min_q_val', 'min_enr_fold', 'min_pi_value']
 enr_stats = enr_stats.astype({'min_motif_rank':'int'})
 
 if enr_stats.empty:
