@@ -1,5 +1,7 @@
 # MINI-AC parameters setting and pipeline configuration
 
+This document contains an overview of the pipeline parameters. They should be defined using the Nextflow configuration file (see below for details). 
+
 ## Input paths
 
 MINI-AC has 4 main inputs that need to be given as paths or folder names, with two them being optional:
@@ -7,18 +9,18 @@ MINI-AC has 4 main inputs that need to be given as paths or folder names, with t
 * **ACR files**: Path of the folder with the BED files containing genomic coordinates corresponding to accessible chromatin regions (minimal format of 3 columns: chromosome, start, stop). This path should be given to the parameter ```ACR_dir```.
 * **Output folder**: Path where the results will be stored. This path should be given to the parameter ```OutDir```.
 * **(Optional) DEGs file**: Path of folder with tab-separated txt files with differential expression data associated with the input ACRs. First column must be gene ID. It can be one DEGs file per input ACR file, or paired DEGs files-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```DE_genes_dir```.
-* **(Optional) Expressed genes file**: Path of folder with one-column txt files with gene IDs for genes expressed in the biological context of the input ACRs, to filter the infered GRNs. It can be one Expression file per input ACR file, or paired Expression files-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```Set_genes_dir```.
+* **(Optional) Expressed genes file**: Path of folder with one-column txt files with gene IDs for genes expressed in the biological context of the input ACRs, to filter the infered GRNs. It can be one Expression file per input ACR file, or paired Expressed genes files-ACR files. For more details see [inputs format example](../example/). This path should be given to the parameter ```Set_genes_dir```.
 
 ## Input parameters
 
 MINI-AC has several optional parameters that affect the output and some aspects of the network inference process:
 
-### DEGs and Expression files parameters
+### DEGs and Expressed genes files parameters
 
 * **DEGs parameters**: Since providing DEGs files is optional, it needs to be specified if the path with the DEGs files is available with the parameter ```DE_genes``` set to ```DE_genes = true``` or ```DE_genes = false```. Additionally, if there is only one DEG file for all the input ACRs, you need set the parameter ```One_DE_set``` to ```One_DE_set = true```, and to ```One_DE_set = false``` if otherwise.
 
 
-* **Expression files parameters**: Since providing Expression files is optional, it needs to be specified if the path with the Expression files is available with the parameter ```Filter_set_genes``` set to ```Filter_set_genes = true``` or ```Filter_set_genes = false```. Additionally, if there is only one Expression file for all the input ACRs, you need set the parameter ```Filter_set_genes``` to ```Filter_set_genes = true```, and to ```Filter_set_genes = false``` if otherwise.
+* **Expressed genes files parameters**: Since providing Expressed genes files is optional, it needs to be specified if the path with the Expressed genes files is available with the parameter ```Filter_set_genes``` set to ```Filter_set_genes = true``` or ```Filter_set_genes = false```. Additionally, if there is only one Expression file for all the input ACRs, you need set the parameter ```Filter_set_genes``` to ```Filter_set_genes = true```, and to ```Filter_set_genes = false``` if otherwise.
 
 ### GRN inference parameters
 
@@ -104,7 +106,7 @@ executor {
 }
 ```
 
-MINI-AC was developed in an SGE computer cluster, for which we used the configuration below.
+MINI-AC was developed in an SGE computer cluster, for which we used the configuration below. This was used to run the genome-wide mode on maize using an input dataset of ~600,000 MOA-seq peaks. For smaller datasets, the memory values can be further reduced. Addionally, for Arabidopsis, a species with a smaller genome, less memory can also be used.
 
 ```nextflow
 executor {
