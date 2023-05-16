@@ -31,7 +31,7 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 
 ## **Outputs**
 * **enrichment_stats folder** contains tab-separated files with tables summarizing the motif enrichment statistics and numbers.
-* **networks folder** contains tab-separated files with the accessibility-based GRNs in an edge list format (minimal format of 2 columns with source node or transcription factor (TF) being column 1 and the target node or target gene (TG) being column 2). If specified in parameters setting, there will be, per ACR file, one extra GRN filtered for the expressed genes.
+* **networks folder** contains tab-separated files with the accessibility-based GRNs in an edge list format (minimal format of 2 columns with source node or transcription factor (TF) being column 1 and the target node or target gene (TG) being column 2). If specified in parameters setting, there will be, per ACR file, one extra GRN file filtered for the expressed genes.
 * **GO_enrichment folder** contains tab-separated files with GO enrichment results of the previously generated GRN regulons. If filtering for expressed genes was specified, the GO enrichment is done on the filtered network.
 * **integrative_outputs folder** contains three xlsx Excel files and two tab-separated txt network files that integrate and summarize all the analysis: (1) integrative analysis per TF, (2) integrative analysis per motif, (3) integrative analysis of GO enrichment, (4) functional network edge list file, (5) nodes attributes files of the functional network. The last two files are meant to be used for network visualization using [Cytoscape](https://cytoscape.org/download.html).
 
