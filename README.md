@@ -11,7 +11,9 @@ MINI-AC uses an Open Source License.
 4. Generation of a functional GRN by gene ontology (GO) enrichment of the regulons.
 5. Integration of data to generate informative, user-friendly output files.
 
-It can be run for two different species, *Arabidopsis thaliana* and maize. Additionally, it can be run on two different modes depeding on the non-coding genomic space considered for motif mapping: genome-wide, where the whole non-coding genome is considered, and locus-based, where the neighboring sequences within a pre-defined window of each locus, and introns are considered.
+Currently, two species are supported by MINI-AC: *Arabidopsis thaliana* and maize. Additionally, it can be run on two different modes depeding on the non-coding genomic space considered for motif mapping:
+* **genome-wide**: strategy where the whole non-coding genome is considered for motif mappings. It captures all the ACRs of the input dataset for the GRN prediction, which is adviced when working with species with long intergenic regions and distal regulatory elements, like maize for example.
+* **locus-based**: strategy where the neighboring sequences within a pre-defined window of each locus, and introns are considered for motif mapping. It only captures the proximal ACRs of the input dataset within the pre-defined window, which can lead to missing distal ACRs in species with long intergenic regions and distal regulatory elements. However, it has the advantage of having a denser signal of TFBS, which are mostly located close to the genes.
 
 
 A detailed overview of the necessary input files and expected output files can be found [here](example).
@@ -21,7 +23,7 @@ A detailed overview of the necessary input files and expected output files can b
 * **MINI-AC mode**: genome-wide or locus-based.
 * **Species**: Arabidopsis or maize.
 * **ACR files**: BED files containing genomic coordinates corresponding to accessible chromatin regions (minimal format of 3 columns: chromosome, start, stop). The ACR files' coordinates **must** correspond to the genome versions of Araport11 for Arabidopsis and AGPv4 for maize.
-* **Output folder**: Path where the results will be generated.
+* **Output folder**: Path where the results will be stored.
 * **(Optional) DEGs file**: Tab-separated txt file with differential expression data associated with the input ACRs. First column must be gene ID.
 * **(Optional) Expressed genes file**: One-column txt file with gene IDs for genes expressed in the biological context of the input ACRs, to filter the infered GRNs.
 
@@ -35,10 +37,10 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 
 ## Requirements:
 
-* [Nextflow version 21.10.6](https://www.nextflow.io/)
-* [Singularity version 3.8.7-1.el7](https://sylabs.io/guides/3.0/user-guide/index.html)
-* [Wget version 1.14](https://www.gnu.org/software/wget/)
-* Motif mapping files. The need to be downloaded executing the following commands:
+* [Nextflow](https://www.nextflow.io/)
+* [Singularity](https://sylabs.io/guides/3.0/user-guide/index.html)
+* [Wget](https://www.gnu.org/software/wget/)
+* Motif mapping files. They need to be downloaded by the executing the following commands on the **top-level directory of the repository**:
 
   ```
   wget https://zenodo.org/record/7836392/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath/ath_genome_wide_motif_mappings.bed
@@ -46,6 +48,8 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
   wget https://zenodo.org/record/7836392/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma/zma_genome_wide_motif_mappings.bed
   wget https://zenodo.org/record/7836392/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed
   ```
+ 
+NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10.6, Singularity version 3.8.7-1.el7 and in a Sun Grid Engine (SGE) computer cluster.
 
 ## How to run it
 
