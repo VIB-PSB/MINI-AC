@@ -283,7 +283,7 @@ workflow locus_based_miniac {
     Genes_metadata
 
     main:
-    ACR_files = Channel.fromPath("${ACR_dir}/*.bed")
+    ACR_files = Channel.fromPath("${ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${ACR_dir}" }
     
     get_ACR_shufflings(ACR_files, Faix_file, Promoter_file)    
 
