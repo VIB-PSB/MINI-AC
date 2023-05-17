@@ -148,7 +148,7 @@ process {
 
 ### Priority of configuration sources
 
-The MINI-AC Nextflow pipeline contains a set of pre-defined parameter files specified within the main pipeline script (mini_ac.nf). This is because they are fixed data files for each MINI-AC mode and specie's genome version. However, there are cases where some of this files might want to be changed by the user. However, Nextflow allows to easily change these parameter files, either through the command line options or in the configuration file, thanks to a hierarchical prioritization of the configuration sources:
+The MINI-AC Nextflow pipeline contains a set of pre-defined parameter files specified within the main pipeline script (mini_ac.nf). This is because they are fixed data files for each MINI-AC mode and specie's genome version. However, there are cases where some of this files might want to be changed by the user. Nextflow allows to easily change these parameter files, either through the command line options or in the configuration file, thanks to a hierarchical prioritization of the configuration sources:
 
 1. Parameters specified on the command line (--something value)
 3. Config file specified using the -C mini_ac.config option
@@ -162,7 +162,7 @@ There are mainly two cases in which the user might want to alter the internal MI
 
 ### Modification of the motif mapping file for the locus-based mode
 
-* By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds to, for each locus in the genome, the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, first they need to be downloaded, and then, the following parameters should be modified either in the command line or in the configuration file.
+By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, first they need to be downloaded, and then, the corresponding parameter should be modified either on the command line or in the configuration file.
 
 To download the "large" motif mapping file:
 
@@ -180,7 +180,7 @@ Then, change the parameter on the command line:
 ```
 nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed
 ```
-or add to the configuration file, along with the other parameters:
+or add it to the configuration file, along with the other parameters:
 
 ```nextflow
 params {
@@ -190,6 +190,21 @@ params {
 }
 ```
 
-### Providing custom gene-GO annotation file
+### Providing custom GO-gene annotation file
 
+To perform the functional network analysis, an internal gene-GO annotation file is used for each species. They were obtained as described in [here](../data/ath/README_MINI_ath_2021.1_motif_mappings.txt) for Arabidopsis and in [here](../data/zma/README_MINI_zma_2021.1_motifsMapping.txt) for maize. However, if the user wants to use a custom GO-gene file, the following parameters should be medified either on the command line or in the configuration file.
 
+```
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --Feature_file custom_go_gene.txt
+```
+
+```nextflow
+params {
+    /// [Other parameters...]
+    Feature_file = "custom_go_gene.txt"
+    /// [Other parameters...]
+}
+```
+It is important, however, to make sure that the format is correct. The GO terms should be extended for parental terms, and this file should contain two tab-separated columns (no header),  where the first column is the GO ID, and the second column is the gene ID, as shown [here](../data/zma/zma_go_gene_file.txt). It is vital that the gene IDs are either on Araport11 or AGPv4.
+
+This same principle can also be applied for other parameters that the user wants to change.
