@@ -162,16 +162,34 @@ There are mainly two cases in which the user might want to alter the internal MI
 
 ### Modification of the motif mapping file for the locus-based mode
 
-* By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds to, for each locus in the genome, the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, the following parameters should be modified either in the command line or in the configuration file.
+* By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds to, for each locus in the genome, the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, first they need to be downloaded, and then, the following parameters should be modified either in the command line or in the configuration file.
 
-command line:
+To download the "large" motif mapping file:
+
 ```
-nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed
+wget https://zenodo.org/record/7837202/files/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_15kbup_2.5kbdown.bed
 ```
 
-params.MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed"
+To download the "small" motif mapping file:
 
+```
+wget https://zenodo.org/record/7837202/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_1kbup_1kbdown.bed
+```
+Then, change the parameter on the command line:
 
+```
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed
+```
+or add to the configuration file, along with the other parameters:
 
+```nextflow
+params {
+    /// [Other parameters...]
+    MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed"
+    /// [Other parameters...]
+}
+```
 
 ### Providing custom gene-GO annotation file
+
+
