@@ -190,7 +190,7 @@ params {
 }
 ```
 
-### Providing custom GO-gene annotation file
+### Providing custom gene ontology (GO)-gene annotation file
 
 To perform the functional network analysis, an internal gene-GO annotation file is used for each species. They were obtained as described in [here](../data/ath/README_MINI_ath_2021.1_motif_mappings.txt) for Arabidopsis and in [here](../data/zma/README_MINI_zma_2021.1_motifsMapping.txt) for maize. However, if the user wants to use a custom GO-gene file, the following parameters should be medified either on the command line or in the configuration file.
 
@@ -207,4 +207,4 @@ params {
 ```
 It is important, however, to make sure that the format is correct. The GO terms should be extended for parental terms, and this file should contain two tab-separated columns (no header),  where the first column is the GO ID, and the second column is the gene ID, as shown [here](../data/zma/zma_go_gene_file.txt). It is vital that the gene IDs are either on Araport11 or AGPv4.
 
-This same principle can also be applied for other parameters that the user wants to change.
+This same principle can also be applied to other parameters that the user wants to change.
