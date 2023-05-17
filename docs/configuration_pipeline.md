@@ -146,10 +146,32 @@ process {
 
 ## **Modification of the internal files of the pipeline**
 
-The MINI-AC Nextflow pipeline contains a set of pre-defined parameter files specified within the main pipeline script (mini_ac.nf). These files are there because they are fixed for each MINI-AC mode and specie's genome version. 
+### Priority of configuration sources
 
-## Priority of configuration sources
+The MINI-AC Nextflow pipeline contains a set of pre-defined parameter files specified within the main pipeline script (mini_ac.nf). This is because they are fixed data files for each MINI-AC mode and specie's genome version. However, there are cases where some of this files might want to be changed by the user. However, Nextflow allows to easily change these parameter files, either through the command line options or in the configuration file, thanks to a hierarchical prioritization of the configuration sources:
 
-## Modification of the motif mapping file for the locus-based mode
+1. Parameters specified on the command line (--something value)
+3. Config file specified using the -C mini_ac.config option
+4. The config file named nextflow.config in the current directory
+5. The config file named nextflow.config in the workflow project directory
+7. Values defined within the pipeline script itself (e.g. main.nf)
 
-## Providing custom gene-GO annotation file
+Therefore, if the user wishes to change any of these parameters, it possible either through the command line options, or in the config file.
+
+There are mainly two cases in which the user might want to alter the internal MINI-AC files, which are explained below.
+
+### Modification of the motif mapping file for the locus-based mode
+
+* By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds to, for each locus in the genome, the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, the following parameters should be modified either in the command line or in the configuration file.
+
+command line:
+```
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed
+```
+
+params.MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed"
+
+
+
+
+### Providing custom gene-GO annotation file
