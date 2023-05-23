@@ -35,7 +35,7 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 * **GO_enrichment folder** contains tab-separated files with GO enrichment results of the previously generated GRN regulons. If filtering for expressed genes was specified, the GO enrichment is done on the filtered network.
 * **integrative_outputs folder** contains three xlsx Excel files and two tab-separated txt network files that integrate and summarize all the analysis: (1) integrative analysis per TF, (2) integrative analysis per motif, (3) integrative analysis of GO enrichment, (4) functional network edge list file, (5) nodes attributes files of the functional network. The last two files are meant to be used for network visualization using [Cytoscape](https://cytoscape.org/download.html).
 
-## Requirements:
+## Requirements
 
 * [Nextflow](https://www.nextflow.io/)
 * [Singularity](https://sylabs.io/guides/3.0/user-guide/index.html)
