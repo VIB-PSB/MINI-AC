@@ -177,7 +177,7 @@ To download the maize "small" motif mapping file and coordinates of the "small" 
 wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed
 wget https://zenodo.org/record/7974527/files/zma_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
 ```
-Then, change the parameters on the command line:
+Then (using the "small" definition as example), change the parameters on the command line:
 
 ```
 nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed --Promoter_file data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
