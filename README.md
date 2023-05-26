@@ -43,10 +43,10 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 * Motif mapping files. They need to be downloaded by executing the following commands on the **top-level directory of the repository**:
 
   ```
-  wget https://zenodo.org/record/7836392/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath/ath_genome_wide_motif_mappings.bed
-  wget https://zenodo.org/record/7836392/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
-  wget https://zenodo.org/record/7836392/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma/zma_genome_wide_motif_mappings.bed
-  wget https://zenodo.org/record/7836392/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed
+  wget https://zenodo.org/record/7974527/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath/ath_genome_wide_motif_mappings.bed
+  wget https://zenodo.org/record/7974527/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
+  wget https://zenodo.org/record/7974527/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma/zma_genome_wide_motif_mappings.bed
+  wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed
   ```
  
 NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10.6, Singularity version 3.8.7-1.el7 and in a Sun Grid Engine (SGE) computer cluster.
