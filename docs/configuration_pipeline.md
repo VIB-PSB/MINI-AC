@@ -162,30 +162,33 @@ There are mainly two cases in which the user might want to alter the internal MI
 
 ### Modification of the motif mapping file for the locus-based mode
 
-By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, first they need to be downloaded, and then, the corresponding parameter should be modified either on the command line or in the configuration file.
+By default, the locus-based mode runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the **locus-based mode of maize**, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, first they need to be downloaded, and then, the corresponding parameters of the motif mapping file (```MotMapsFile_lb```) and the non-coding genomic space coordinates file (```Promoter_file```) should be modified either on the command line or in the configuration file.
 
-To download the "large" motif mapping file:
-
-```
-wget https://zenodo.org/record/7837202/files/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_15kbup_2.5kbdown.bed
-```
-
-To download the "small" motif mapping file:
+To download the maize "large" motif mapping file and coordinates of the "large" non-coding genomic space:
 
 ```
-wget https://zenodo.org/record/7837202/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_1kbup_1kbdown.bed
+wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed
+wget https://zenodo.org/record/7974527/files/zma_promoter_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma/zma_promoter_15kbup_2.5kbdown_sorted.bed
 ```
-Then, change the parameter on the command line:
+
+To download the maize "small" motif mapping file and coordinates of the "small" non-coding genomic space:
 
 ```
-nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed
+wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed
+wget https://zenodo.org/record/7974527/files/zma_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
 ```
-or add it to the configuration file, along with the other parameters:
+Then, change the parameters on the command line:
+
+```
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed --Promoter_file data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
+```
+or add them to the configuration file, along with the other parameters:
 
 ```nextflow
 params {
     /// [Other parameters...]
-    MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_5kbup_1kbdown.bed"
+    MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed"
+    Promoter_file = "$projectDir/data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
     /// [Other parameters...]
 }
 ```
