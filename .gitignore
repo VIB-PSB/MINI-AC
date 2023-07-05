@@ -140,3 +140,4 @@ mini_ac.sh
 *.img
 *motif_mappings*.bed
 mini_ac_example.config
+.gitignore
