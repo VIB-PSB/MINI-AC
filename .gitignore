@@ -132,6 +132,7 @@ dmypy.json
 .nextflow*
 singularity_cache/
 .nextflow/
+mini_ac.sh
 *.sh.e*
 *.sh.o*
 *.sh.pe*
@@ -139,4 +140,3 @@ singularity_cache/
 *.img
 *motif_mappings*.bed
 mini_ac_example.config
-test_miniac.sh
