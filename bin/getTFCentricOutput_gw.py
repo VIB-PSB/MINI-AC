@@ -193,10 +193,11 @@ if net_dict:
         for tf in net_dict:
             tgs = net_dict[tf].intersection(DE_genes)
             perc = len(tgs) / len(net_dict[tf])
-            net_dict_de_tgs_perc.setdefault(tf, [len(net_dict[tf]), len(tgs), round(perc, 2)])
+            perc_de_tgs = len(tgs) / len(DE_genes)
+            net_dict_de_tgs_perc.setdefault(tf, [len(net_dict[tf]), len(tgs), round(perc, 2), round(perc_de_tgs, 2)])
 
         df_tgs_info = pd.DataFrame().from_dict(net_dict_de_tgs_perc).T.reset_index()
-        df_tgs_info.columns = ['gene_id', 'total TGs', 'DE TGs', '% DE TGs']
+        df_tgs_info.columns = ['gene_id', 'total TGs', 'DE TGs', '% DE TGs', '% total DE genes that are TGs']
         df_tgs_info = df_tgs_info.astype({'DE TGs':'int'})
 
     elif not DE_table_file:
