@@ -54,7 +54,7 @@ NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10
 ## Usage
 
 
-* Define the paths with the input files and the desired parameters setting in the [configuration file](docs/configuration_pipeline.md), and run it executing the following Nextflow command:
+Define the paths with the input files and the desired parameters setting in the [configuration file](docs/configuration_pipeline.md), and run it executing the following Nextflow command:
 
 ```shell
 nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize
