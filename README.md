@@ -73,3 +73,6 @@ When publishing results generated using MINI-AC, please cite:
 
 Manosalva Pérez, Nicolás, Camilla Ferrari, Julia Engelhorn, Thomas Depuydt, Hilde Nelissen, Thomas Hartwig, and Klaas Vandepoele. “MINI-AC: Inference of Plant Gene Regulatory Networks Using Bulk or Single-Cell Accessible Chromatin Profiles.” bioRxiv, May 26, 2023. https://doi.org/10.1101/2023.05.26.542269.
 
+## Contact
+
+If you have any questions, encounter issues, or want to contribute to this project, please feel free to reach out to Klaas Vandepoele (klaas.vandepoele@psb.vib-ugent.be).
