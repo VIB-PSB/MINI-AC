@@ -188,7 +188,7 @@ or add them to the configuration file, along with the other parameters:
 params {
     /// [Other parameters...]
     MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed"
-    Promoter_file = "$projectDir/data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
+    Promoter_file = "$projectDir/data/zma/zma_promoter_1kbup_1kbdown_sorted.bed"
     /// [Other parameters...]
 }
 ```
