@@ -1,4 +1,3 @@
-
 ###MINI_Ath_2021.1_motifMappings
 #gff3: Araport11 (obtained from Plaza Dicots 4.5). Filtered for protein coding genes and longest splicing variant.
 #genome version: Araport11  (obtained from Plaza Dicots 4.5).
