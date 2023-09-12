@@ -51,12 +51,25 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
  
 NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10.6, Singularity version 3.8.7-1.el7 and in a Sun Grid Engine (SGE) computer cluster.
 
-## How to run it
+## Usage
+
 
 * Define the paths with the input files and the desired parameters setting in the [configuration file](docs/configuration_pipeline.md), and run it executing the following Nextflow command:
 
 ```shell
 nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize
 ```
+ 
+Having problems running MINI-AC? Check the [FAQ](docs/FAQ.md).
 
+
+## Support
+
+Should you encounter a bug or have any questions or suggestions, please [open an issue](https://github.com/VIB-PSB/MINI-AC/issues).
+
+## Citation
+
+When publishing results generated using MINI-AC, please cite:
+
+Manosalva Pérez, Nicolás, Camilla Ferrari, Julia Engelhorn, Thomas Depuydt, Hilde Nelissen, Thomas Hartwig, and Klaas Vandepoele. “MINI-AC: Inference of Plant Gene Regulatory Networks Using Bulk or Single-Cell Accessible Chromatin Profiles.” bioRxiv, May 26, 2023. https://doi.org/10.1101/2023.05.26.542269.
 
