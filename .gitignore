@@ -1,3 +1,9 @@
 # ignore Nextflow cache and logs
 .nextflow/
 .nextflow.log*
+
+# ignore Singularity cache
+singularity_cache/
+
+# ignore large motif mapping files
+*motif_mappings*.bed
