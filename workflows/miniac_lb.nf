@@ -283,6 +283,9 @@ workflow locus_based_miniac {
     Genes_metadata
 
     main:
+
+    if (!file(MotMapsFile_lb).exists()) { error "Please make sure that you downloaded the motif mapping files as described in the documentation." }
+
     ACR_files = Channel.fromPath("${ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${ACR_dir}" }
     
     get_ACR_shufflings(ACR_files, Faix_file, Promoter_file)    
@@ -292,7 +295,7 @@ workflow locus_based_miniac {
     parsed_acr = get_ACR_shufflings.out.acr_input
                                         .map {n -> [n.baseName.split("_")[0..-2].join("_"), n]}
 
-    motmaps_ch = Channel.fromPath(MotMapsFile_lb).ifEmpty { error "There was an error downloading the motif mapping files ${MotMapsFile_lb}" }
+    motmaps_ch = Channel.fromPath(MotMapsFile_lb)
 
     input_stats = acr_shufflings_ch.combine(motmaps_ch)
 
