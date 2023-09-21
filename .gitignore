@@ -7,3 +7,6 @@ singularity_cache/
 
 # ignore large motif mapping files
 *motif_mappings*.bed
+
+# ignore bin folder
+bin/
