@@ -273,7 +273,7 @@ workflow locus_based_miniac {
     One_DE_set
     P_val
     Bps_intersect
-    MotMapsFile_lb
+    MotMapsFile
     Promoter_file
     Faix_file
     Motif_tf_file
@@ -292,7 +292,7 @@ workflow locus_based_miniac {
     parsed_acr = get_ACR_shufflings.out.acr_input
                                         .map {n -> [n.baseName.split("_")[0..-2].join("_"), n]}
 
-    motmaps_ch = Channel.fromPath(MotMapsFile_lb).ifEmpty { error "There was an error downloading the motif mapping files ${MotMapsFile_lb}" }
+    motmaps_ch = Channel.fromPath(MotMapsFile).ifEmpty { error "There was an error downloading the motif mapping files ${MotMapsFile}" }
 
     input_stats = acr_shufflings_ch.combine(motmaps_ch)
 
