@@ -8,14 +8,17 @@ workflow MINIAC {
     params.OBO_file = "$projectDir/data/ontologies/go.obo"
 
     // define species id used for data subfolder and data file prefix
-    def species = "ath"
-    if(params.species == "maize_v4") {
-        species = "zma_v4"
-    } else if(params.species == "maize_v5") {
-        species = "zma_v5"
-    } else {
-        exit 1, "MINI-AC can only be run for the species 'arabidopsis', 'maize_v4' and 'maize_v5'. Instead it got '${params.species}'."
-    } 
+    def species
+    switch(params.species) {
+        case "arabidopsis":
+            species = "ath"
+        case "maize_v4":
+            species = "zma_v4"
+        case "maize_v5":
+            species = "zma_v5"
+        default:
+            exit 1, "MINI-AC can only be run for the species 'arabidopsis', 'maize_v4' and 'maize_v5'. Instead it got '${params.species}'."
+    }
 
     // set input data parameters shared between genome-wide and locus-based modes
     params.Faix_file = "$projectDir/data/${species}/${species}.fasta.fai"
