@@ -1,0 +1,3 @@
+# ignore Nextflow cache and logs
+.nextflow/
+.nextflow.log*
