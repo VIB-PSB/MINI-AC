@@ -12,10 +12,13 @@ workflow MINIAC {
     switch(params.species) {
         case "arabidopsis":
             species = "ath"
+            break
         case "maize_v4":
             species = "zma_v4"
+            break
         case "maize_v5":
             species = "zma_v5"
+            break
         default:
             exit 1, "MINI-AC can only be run for the species 'arabidopsis', 'maize_v4' and 'maize_v5'. Instead it got '${params.species}'."
     }
