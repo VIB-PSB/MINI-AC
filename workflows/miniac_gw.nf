@@ -42,6 +42,7 @@ process getStats {
    path get_stats_script
    path mot_tf
    val outDir
+   val shuffle_count
 
    output:
    path "${shuffled_real_acr.baseName}_motif_int_data.txt", emit: raw_stats
@@ -60,7 +61,7 @@ process getStats {
 
    num_peaks=\$(grep -c "real_ints" $shuffled_real_acr)
 
-   OMP_NUM_THREADS=1 python3 $get_stats_script ${shuffled_real_acr.baseName}_motif_int_data.txt \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt
+   OMP_NUM_THREADS=1 python3 $get_stats_script ${shuffled_real_acr.baseName}_motif_int_data.txt \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt $shuffle_count
 
    """
 
@@ -75,6 +76,7 @@ process getStats_bps {
    path get_stats_script_bps
    path mot_tf
    val outDir
+   val shuffle_count
 
    output:
    path "${shuffled_real_acr.baseName}_int_bps_data.bed", emit: raw_stats
@@ -93,7 +95,7 @@ process getStats_bps {
 
    num_peaks=\$(grep -c "real_ints" $shuffled_real_acr)
 
-   OMP_NUM_THREADS=1 python3 $get_stats_script_bps ${shuffled_real_acr.baseName}_int_bps_data.bed \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt
+   OMP_NUM_THREADS=1 python3 $get_stats_script_bps ${shuffled_real_acr.baseName}_int_bps_data.bed \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt $shuffle_count
    """
 
 }
@@ -302,7 +304,7 @@ workflow genome_wide_miniac {
 
         script_proc_stats = "${projectDir}/bin/processStats_gw.py"
 
-        getStats(input_stats, script_proc_stats, Motif_tf_file, OutDir)
+        getStats(input_stats, script_proc_stats, Motif_tf_file, OutDir, Shuffle_count)
 
         stats_ch = getStats.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
@@ -313,7 +315,7 @@ workflow genome_wide_miniac {
         
         script_proc_stats_bps = "${projectDir}/bin/processStats_bps_gw.py"
 
-        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, OutDir)
+        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, OutDir, Shuffle_count)
 
         stats_ch = getStats_bps.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}

@@ -45,6 +45,7 @@ process getStats {
    path mot_tf
    path promoter_file
    val outDir
+   val shuffle_count
 
    output:
    path "${shuffled_real_acr.baseName}_motif_int_data.txt", emit: raw_stats
@@ -63,7 +64,7 @@ process getStats {
 
    peaks_in_prom=\$(grep "real_ints" $shuffled_real_acr | bedops -e - $promoter_file | wc -l)
 
-   OMP_NUM_THREADS=1 python3 $get_stats_script ${shuffled_real_acr.baseName}_motif_int_data.txt \$num_peaks \$peaks_in_prom $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt
+   OMP_NUM_THREADS=1 python3 $get_stats_script ${shuffled_real_acr.baseName}_motif_int_data.txt \$num_peaks \$peaks_in_prom $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt $shuffle_count
 
    """
 
@@ -79,6 +80,7 @@ process getStats_bps {
    path mot_tf
    path promoter_file
    val outDir
+   val shuffle_count
 
    output:
    path "${shuffled_real_acr.baseName}_int_bps_data.bed", emit: raw_stats
@@ -97,7 +99,7 @@ process getStats_bps {
 
    peaks_in_prom=\$(grep "real_ints" $shuffled_real_acr | bedops -e - $promoter_file | wc -l)
 
-   OMP_NUM_THREADS=1 python3 $get_stats_script_bps ${shuffled_real_acr.baseName}_int_bps_data.bed \$num_peaks \$peaks_in_prom $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt
+   OMP_NUM_THREADS=1 python3 $get_stats_script_bps ${shuffled_real_acr.baseName}_int_bps_data.bed \$num_peaks \$peaks_in_prom $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt $shuffle_count
 
    """
 
@@ -300,7 +302,7 @@ workflow locus_based_miniac {
 
         script_proc_stats = "${projectDir}/bin/processStats_lb.py"
 
-        getStats(input_stats, script_proc_stats, Motif_tf_file, Promoter_file, OutDir)
+        getStats(input_stats, script_proc_stats, Motif_tf_file, Promoter_file, OutDir, Shuffle_count)
 
         stats_ch = getStats.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
@@ -310,7 +312,7 @@ workflow locus_based_miniac {
         
         script_proc_stats_bps = "${projectDir}/bin/processStats_bps_lb.py"
 
-        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, Promoter_file, OutDir)
+        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, Promoter_file, OutDir, Shuffle_count)
 
         stats_ch = getStats_bps.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
