@@ -14,8 +14,11 @@ nextflow_workflow {
                 //// Species
                 species = "maize_v4"
 
-                //// Low shuffle count to reduce test runtime
+                //// Lower shuffle count to reduce test runtime
                 Shuffle_count = 100
+
+                //// Fix shuffle seed for reproducible test results
+                Shuffle_seed = 42
 
                 //// Hard code data paths
                 MotMapsFile_gw = "${baseDir}/data/zma_v4/zma_v4_genome_wide_motif_mappings.bed"

@@ -7,7 +7,8 @@ process get_ACR_shufflings{
     path acr_input_file
     path faix
     path prom_coords
-    val shuffle_count
+    val count
+    val seed
 
     output:
     tuple path("${acr_input_file.baseName}_allshuff_sorted.bed"), path("${acr_input_file.baseName}_3col.bed"), emit: shufflings
@@ -15,6 +16,11 @@ process get_ACR_shufflings{
     
 
     script:
+
+    seed_arg = ''
+    if (seed) {
+        seed_arg = "-seed $seed"
+    }
 
     """
     cut -f1,2,3 ${acr_input_file} | sort-bed - | bedops -m - > ${acr_input_file.baseName}_3col.bed
@@ -25,9 +31,9 @@ process get_ACR_shufflings{
 
     sed "s/\$/\treal_ints/" ${acr_input_file.baseName}_peaks_in_prom.bed > ${acr_input_file.baseName}_allshuff.bed
 
-    for i in {1..$shuffle_count};
+    for i in {1..$count};
     do
-       bedtools shuffle -i ${acr_input_file.baseName}_peaks_in_prom.bed -g $faix -incl shuffling_space.bed | sed "s/\$/\t\$i/" >> ${acr_input_file.baseName}_allshuff.bed
+       bedtools shuffle $seed_arg -i ${acr_input_file.baseName}_peaks_in_prom.bed -g $faix -incl shuffling_space.bed | sed "s/\$/\t\$i/" >> ${acr_input_file.baseName}_allshuff.bed
     done
    
     sort-bed --max-mem 2G ${acr_input_file.baseName}_allshuff.bed > ${acr_input_file.baseName}_allshuff_sorted.bed
@@ -280,6 +286,7 @@ workflow locus_based_miniac {
     TF_fam_file
     Genes_metadata
     Shuffle_count
+    Shuffle_seed
 
     main:
 
@@ -287,7 +294,7 @@ workflow locus_based_miniac {
 
     ACR_files = Channel.fromPath("${ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${ACR_dir}" }
     
-    get_ACR_shufflings(ACR_files, Faix_file, Promoter_file, Shuffle_count)    
+    get_ACR_shufflings(ACR_files, Faix_file, Promoter_file, Shuffle_count, Shuffle_seed)    
 
     acr_shufflings_ch = get_ACR_shufflings.out.shufflings
 
