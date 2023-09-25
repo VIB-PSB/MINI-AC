@@ -8,6 +8,9 @@ singularity_cache/
 # ignore large motif mapping files
 *motif_mappings*.bed
 
+# ignore nf-test executable
+nf-test
+
 # ignore test cache
 .nf-test/
 

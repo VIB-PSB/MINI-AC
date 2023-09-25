@@ -20,5 +20,10 @@ if [ ! -f "$zma_v4_locus_based_motif_mapping" ]; then
   curl -k -o $zma_v4_locus_based_motif_mapping https://floppy.psb.ugent.be/index.php/s/r2wQmFjPy79qSp7/download/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed
 fi
 
+# install nf-test locally (if not already present)
+if [ ! -f "nf-test" ]; then
+  wget -qO- https://code.askimed.com/install/nf-test | bash
+fi
+
 # run MINI-AC test pipeline
-~/nf-test test
+./nf-test test
