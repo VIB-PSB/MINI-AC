@@ -22,7 +22,7 @@ nextflow_workflow {
 
                 //// Hard code data paths
                 MotMapsFile_gw = "${baseDir}/tests/data/zma_v4/zma_v4_genome_wide_motif_mappings_chr1.bed"
-                Non_cod_genome = "${baseDir}/data/zma_v4/zma_v4_noncod_merged.bed"
+                Non_cod_genome = "${baseDir}/tests/data/zma_v4/zma_v4_noncod_merged_chr1.bed"
                 Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
                 Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
                 Genes_coords = "${baseDir}/data/zma_v4/zma_v4_genes_coords_sorted.bed"
