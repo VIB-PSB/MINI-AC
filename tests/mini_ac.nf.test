@@ -1,0 +1,75 @@
+nextflow_workflow {
+
+    name "Test Workflow MINIAC: maize_v4 genome-wide"
+    script "mini_ac.nf"
+    workflow "MINIAC"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                //// Mode
+                mode = "genome_wide"
+
+                //// Species
+                species = "maize_v4"
+
+                //// Low shuffle count to reduce test runtime
+                Shuffle_count = 100
+
+                //// Hard code data paths
+                MotMapsFile_gw = "${baseDir}/data/zma_v4/zma_v4_genome_wide_motif_mappings.bed"
+                Non_cod_genome = "${baseDir}/data/zma_v4/zma_v4_noncod_merged.bed"
+                Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
+                Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
+                Genes_coords = "${baseDir}/data/zma_v4/zma_v4_genes_coords_sorted.bed"
+                Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
+                TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/maize_v4_gene_metadata_file.txt"
+                OBO_file = "${baseDir}/data/ontologies/go.obo"
+
+                //// Output folder
+                OutDir = "${baseDir}/tests/outputs"
+
+                //// Required input
+                ACR_dir = "${baseDir}/example/inputs/acr_files/"
+
+                //// Optional input
+                // Differential expression data
+                DE_genes = true
+                DE_genes_dir = "${baseDir}/example/inputs/de_files"
+                One_DE_set = true
+                // Expression data
+                Filter_set_genes = true
+                Set_genes_dir = "${baseDir}/example/inputs/exp_genes_files"
+                One_filtering_set = true
+
+                //// Prediction parameters
+                Bps_intersect = false
+
+                //// Prediction parameters only genome-wide
+                Second_gene_annot = false
+                Second_gene_dist = 500
+            }
+            workflow {
+                """
+                // define inputs of the workflow here. Example:
+                // input[0] = file("test-file.txt")
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                workflow,
+                path("${params.OutDir}/enrichment_stats").list(),
+                path("${params.OutDir}/GO_enrichment").list(),
+                path("${params.OutDir}/integrative_outputs").list(),
+                path("${params.OutDir}/networks").list(),
+            ).match()
+        }
+
+    }
+
+}
