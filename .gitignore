@@ -1,0 +1,12 @@
+# ignore Nextflow cache and logs
+.nextflow/
+.nextflow.log*
+
+# ignore test cache
+.nf-test/
+
+# ignore Singularity cache
+singularity_cache/
+
+# ignore large motif mapping files
+data/**/*motif_mappings*.bed
