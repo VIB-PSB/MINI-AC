@@ -13,3 +13,7 @@ singularity_cache/
 
 # ignore test outputs
 tests/outputs/
+
+# ignore SLURM output and error files
+slurm.*.out
+slurm.*.err
