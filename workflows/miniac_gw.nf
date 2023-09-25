@@ -7,6 +7,7 @@ process get_ACR_shufflings{
     path acr_input_file
     path faix
     path non_cod_genome
+    val shuffle_count
 
     output:
     path "${acr_input_file.baseName}_allshuff_sorted.bed", emit: shufflings
@@ -22,11 +23,9 @@ process get_ACR_shufflings{
 
     bedtools subtract -a $non_cod_genome -b ${acr_input_file.baseName}_3col.bed > shuffling_space.bed
 
-    for i in {1..1000};
+    for i in {1..$shuffle_count};
     do
-      
        bedtools shuffle -i ${acr_input_file.baseName}_3col.bed -g $faix -incl shuffling_space.bed | sed "s/\$/\t\$i/" >> ${acr_input_file.baseName}_allshuff.bed
-
     done
    
     sort-bed --max-mem 2G ${acr_input_file.baseName}_allshuff.bed > ${acr_input_file.baseName}_allshuff_sorted.bed
@@ -191,14 +190,11 @@ process GOenrichment{
 
         grep -v '#' ${acr_file_name}_GO_enrichment_rawOut.txt > ${acr_file_name}_GO_enrichment_noheader.txt
 
-        mkdir ontologies
-        mv $obo_file ontologies
-
-        python $add_go_names ${acr_file_name}_GO_enrichment_noheader.txt | sort -g -k4,4 > ${acr_file_name}_GO_enrichment_go_names.txt
+        python $add_go_names ${acr_file_name}_GO_enrichment_noheader.txt $obo_file | sort -g -k4,4 > ${acr_file_name}_GO_enrichment_go_names.txt
 
         awk 'BEGIN {FS="\t"; OFS="\t"}; {print \$2, \$1}' ${acr_file_name}_GO_enrichment_go_names.txt > go_gene.txt
 
-         python $reduce_go go_gene.txt > go_gene_reduced.txt
+         python $reduce_go go_gene.txt $obo_file > go_gene_reduced.txt
 
         python3 $filter_reduced_script go_gene_reduced.txt ${acr_file_name}_GO_enrichment_go_names.txt ${acr_file_name}_GO_enrichment_reduced.txt
 
@@ -283,6 +279,7 @@ workflow genome_wide_miniac {
     OBO_file
     TF_fam_file
     Genes_metadata
+    Shuffle_count
 
     main:
     
@@ -290,7 +287,7 @@ workflow genome_wide_miniac {
     
     ACR_files = Channel.fromPath("${ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${ACR_dir}" }
     
-    get_ACR_shufflings(ACR_files, Faix_file, Non_cod_genome)    
+    get_ACR_shufflings(ACR_files, Faix_file, Non_cod_genome, Shuffle_count)    
 
     acr_shufflings_ch = get_ACR_shufflings.out.shufflings
 

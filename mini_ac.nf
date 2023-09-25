@@ -6,6 +6,7 @@ include { locus_based_miniac } from './workflows/miniac_lb'
 workflow MINIAC {
 
     params.OBO_file = "$projectDir/data/ontologies/go.obo"
+    params.Shuffle_count = 1000
 
     if (params.mode == "genome_wide" && params.species == "maize_v4") {
 
@@ -19,7 +20,11 @@ workflow MINIAC {
         params.Genes_metadata = "$projectDir/data/zma_v4/maize_v4_gene_metadata_file.txt"
         params.P_val = 0.1
         
-        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile_gw, params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile_gw,
+            params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file,
+            params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count)
     }
 
     else if (params.mode == "genome_wide" && params.species == "maize_v5") {
@@ -34,7 +39,11 @@ workflow MINIAC {
         params.Genes_metadata = "$projectDir/data/zma_v5/maize_v5_gene_metadata_file.txt"
         params.P_val = 0.1
         
-        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile_gw, params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile_gw,
+            params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file,
+            params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count)
     }
 
     else if (params.mode == "genome_wide" && params.species == "arabidopsis") {
@@ -49,7 +58,11 @@ workflow MINIAC {
         params.Genes_metadata = "$projectDir/data/ath/arabidopsis_gene_metadata_file.txt"
         params.P_val = 0.1
 
-        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile_gw, params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile_gw,
+            params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file,
+            params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count)
 
     }
 
@@ -64,7 +77,10 @@ workflow MINIAC {
         params.Genes_metadata = "$projectDir/data/zma_v4/maize_v4_gene_metadata_file.txt"
         params.P_val = 0.01
         
-        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.MotMapsFile_lb, params.Promoter_file, params.Faix_file, params.Motif_tf_file, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.MotMapsFile_lb, params.Promoter_file, params.Faix_file, params.Motif_tf_file,
+            params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count)
 
     }
 
@@ -79,7 +95,10 @@ workflow MINIAC {
         params.Genes_metadata = "$projectDir/data/zma_v5/maize_v5_gene_metadata_file.txt"
         params.P_val = 0.01
         
-        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.MotMapsFile_lb, params.Promoter_file, params.Faix_file, params.Motif_tf_file, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.MotMapsFile_lb, params.Promoter_file, params.Faix_file, params.Motif_tf_file,
+            params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count)
 
     }
 
@@ -94,7 +113,10 @@ workflow MINIAC {
         params.Genes_metadata = "$projectDir/data/ath/arabidopsis_gene_metadata_file.txt"
         params.P_val = 0.01
 
-        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.MotMapsFile_lb, params.Promoter_file, params.Faix_file, params.Motif_tf_file, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.MotMapsFile_lb, params.Promoter_file, params.Faix_file, params.Motif_tf_file,
+            params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count)
     }
 
     else {
