@@ -125,11 +125,11 @@ enr_stats = enr_stats.merge(tf_fam, how = 'left', on = 'gene_id').drop('motif_id
 if expressed_genes_file:
     enr_stats['Any expressed gene'] = enr_stats.gene_id.isin(exp_genes)
 
-    enr_stats = enr_stats.groupby(['dataset', 'motif', 'real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(list(set(x))), 'Any expressed gene': any}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
+    enr_stats = enr_stats.groupby(['dataset', 'motif', 'real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(sorted(set(x))), 'Any expressed gene': any}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
     
 if not expressed_genes_file:
 
-    enr_stats = enr_stats.groupby(['dataset', 'motif', 'real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(list(set(x)))}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
+    enr_stats = enr_stats.groupby(['dataset', 'motif', 'real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(sorted(set(x)))}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
 
 enr_stats = enr_stats.merge(mot_tf, how = 'right', left_on = 'motif', right_on = 'motif_id').drop('motif_id', axis = 1)
 
