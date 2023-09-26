@@ -1,0 +1,55 @@
+{
+    "maize_v4 genome_wide": {
+        "content": [
+            {
+                "stderr": [
+                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
+                ],
+                "errorReport": null,
+                "exitStatus": 0,
+                "out": {
+                    
+                },
+                "failed": false,
+                "stdout": [
+                    
+                ],
+                "errorMessage": null,
+                "trace": {
+                    "tasksFailed": 0,
+                    "tasksCount": 12,
+                    "tasksSucceeded": 12
+                },
+                "name": "workflow",
+                "success": true
+            },
+            [
+                "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,1e9f5e9dd74a7d87f70d457560ef5582",
+                "mesophyll_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,c0b46c8893eb2de41023235157e7b545"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.txt:md5,147f8825d5cc12c28d506b30ec4c754a",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.txt:md5,3b4e2bdcbe2b8a902a22bee40f7efc50"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.csv:md5,b7c00d0029349a07d24b9c8e09b487d0",
+                "bundle_sheath_marand_top10k_chr1_TF_centric.csv:md5,3b5e27cb8137427fb0a3064ee8e8f3bc",
+                "bundle_sheath_marand_top10k_chr1_functional_network.txt:md5,4bb035ce16e2cc08de102e5f1a1e50f0",
+                "bundle_sheath_marand_top10k_chr1_motif_centric.csv:md5,e243ebc905669c6bc370017f570a1226",
+                "bundle_sheath_marand_top10k_chr1_node_attributes.txt:md5,9a8695f13204877ef3ba00f3dcde0d49",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.csv:md5,e0df3df69365e1c9aeec86655ae56320",
+                "mesophyll_marand_top10k_chr1_TF_centric.csv:md5,8c9ff0fa88ae3df64cab220ae2ce1d84",
+                "mesophyll_marand_top10k_chr1_functional_network.txt:md5,bbd0e70667415779799281749cf5dbc6",
+                "mesophyll_marand_top10k_chr1_motif_centric.csv:md5,33f411d3d31c1ff9e266740911f50e49",
+                "mesophyll_marand_top10k_chr1_node_attributes.txt:md5,ab4edb60d8ae6dfad60ce592d98e9fb8"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_network.txt:md5,216ceb10b36d17b10e68f9bf5256d8eb",
+                "bundle_sheath_marand_top10k_chr1_network_filtered.txt:md5,abf45ebb46c870e023cf8cde900e914e",
+                "mesophyll_marand_top10k_chr1_network.txt:md5,eda5ca6e1146b60b5df56adc11e33781",
+                "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,2f46652db211543d395bfb8662ec1f31"
+            ]
+        ],
+        "timestamp": "2023-09-26T10:05:01+0000"
+    }
+}
