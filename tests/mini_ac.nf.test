@@ -95,8 +95,8 @@ nextflow_workflow {
                 Shuffle_seed = 42
 
                 //// Hard code data paths
-                MotMapsFile_lb = "${baseDir}/tests/data/zma_v4/zma_v4_locus_based_motif_mappings_5kbup_1kbdown.bed"
-                Promoter_file = "${baseDir}/tests/data/zma_v4/zma_v4_promoter_5kbup_1kbdown_sorted.bed"
+                MotMapsFile_lb = "${baseDir}/tests/data/zma_v4/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed"
+                Promoter_file = "${baseDir}/tests/data/zma_v4/zma_v4_promoter_5kbup_1kbdown_sorted_chr1.bed"
                 Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
                 Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
                 Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
