@@ -53,10 +53,6 @@ def parseArgs():
                         default = None, help = '',
                         metavar = 'List of genes expressed in biological context of experiment')
 
-    parser.add_argument('-out', '--output_type', nargs = 1, type = str,
-                        default = 'excel', help = '',
-                        metavar = 'output type (excel or csv, defaults to excel)')
-
     args = parser.parse_args()
 
     return args
@@ -75,7 +71,6 @@ pval = args.p_val
 output_file = args.output_file[0]
 DE_table_file = args.de_table_file
 expressed_genes_file = args.expressed_genes_file
-output_type = args.output_type
 
 info_df = pd.read_csv(info_file)
 mot_tf = pd.read_csv(mot_tf_file)
@@ -266,7 +261,7 @@ enr_stats = enr_stats.rename(columns = {'dataset': 'Dataset name', 'gene_id': 'G
 
 ### Writing output file ###
 
-if (output_type == 'csv'):
+if (output_file.endswith('.csv')):
     enr_stats.to_csv(output_file, index = False)
 else:
     with pd.ExcelWriter(output_file) as writer:
