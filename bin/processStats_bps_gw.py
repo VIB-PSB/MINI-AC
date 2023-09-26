@@ -112,5 +112,5 @@ data_df = data_df[['dataset', 'input_total_peaks', 'motif', 'real_int', 'shuffle
 FDR = multipletests(data_df['p_val'], method = 'fdr_bh', alpha = 0.05)
 data_df.insert(6, 'adj_pval', FDR[1])
 
-data_df.to_csv(out_file, sep = "\t", index = None, na_rep = "nan")
+data_df.sort_values(by = 'motif').to_csv(out_file, sep = "\t", index = None, na_rep = "nan")
 
