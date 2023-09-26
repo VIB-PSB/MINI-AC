@@ -241,9 +241,9 @@ process getIntegrativeOutputs {
    
 
    output:
-   path "${acr_file_name}_TF_centric.(xlsx|csv)"
-   path "${acr_file_name}_motif_centric.(xlsx|csv)"
-   path "${acr_file_name}_GO_enrichment.(xlsx|csv)"
+   path "${acr_file_name}_TF_centric.*"
+   path "${acr_file_name}_motif_centric.*"
+   path "${acr_file_name}_GO_enrichment.*"
    path "${acr_file_name}_functional_network.txt"
    path "${acr_file_name}_node_attributes.txt"
 
