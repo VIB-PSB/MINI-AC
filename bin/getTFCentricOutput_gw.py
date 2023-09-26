@@ -133,8 +133,11 @@ enr_stats = enr_stats.merge(tf_fam, how = 'left', on = 'gene_id').merge(info_df,
 
 if enr_stats.empty:
     empty_table = pd.DataFrame(["### This dataset did not yield any motif enrichment"])
-    with pd.ExcelWriter(output_file) as writer:
-        empty_table.to_excel(writer, index = False, header = False)
+    if(output_file.endswith('.csv')):
+        empty_table.to_csv(output_file, index = False, header = False)
+    else:
+        with pd.ExcelWriter(output_file) as writer:
+            empty_table.to_excel(writer, index = False, header = False)
     sys.exit()
 
 ### Reading and processing GO enrichment data ###

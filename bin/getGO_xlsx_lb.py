@@ -94,8 +94,11 @@ with open(go_enrichment_file, 'r') as f:
             
 if not GO_info:
     empty_table = pd.DataFrame(["### This dataset did not yield any GO enrichment"])
-    with pd.ExcelWriter(output_file) as writer:
-        empty_table.to_excel(writer, index = False, header = False)
+    if(output_file.endswith('.csv')):
+        empty_table.to_csv(output_file, index = False, header = False)
+    else:
+        with pd.ExcelWriter(output_file) as writer:
+            empty_table.to_excel(writer, index = False, header = False)
     sys.exit()
     
 ### Integrating data ###
