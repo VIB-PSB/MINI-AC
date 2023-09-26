@@ -50,7 +50,7 @@
                 "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,2f46652db211543d395bfb8662ec1f31"
             ]
         ],
-        "timestamp": "2023-09-26T12:08:32+0000"
+        "timestamp": "2023-09-26T13:43:46+0000"
     },
     "maize_v4 locus_based": {
         "content": [
@@ -78,32 +78,32 @@
                 "success": true
             },
             [
-                "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,7aa2082ed1c20b992719cdd109aa2954",
-                "mesophyll_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,a62e24f384f5226637fe3350f2d32f42"
+                "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,40c1c0cd068e3f6836ba99a205798474",
+                "mesophyll_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,05064a20e72e805d74a3ac1cae3cf16a"
             ],
             [
-                "bundle_sheath_marand_top10k_chr1_GO_enrichment.txt:md5,147f8825d5cc12c28d506b30ec4c754a",
-                "mesophyll_marand_top10k_chr1_GO_enrichment.txt:md5,147f8825d5cc12c28d506b30ec4c754a"
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.txt:md5,7a32ac19926b234b4e77cf74330f90e2",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.txt:md5,9753846fba7d622132987846d5d01ea4"
             ],
             [
-                "bundle_sheath_marand_top10k_chr1_GO_enrichment.csv:md5,b7c00d0029349a07d24b9c8e09b487d0",
-                "bundle_sheath_marand_top10k_chr1_TF_centric.csv:md5,9347808e34327e0a9bc76db493c4826e",
-                "bundle_sheath_marand_top10k_chr1_functional_network.txt:md5,172afe26d92d2f828788ae97ac8937e6",
-                "bundle_sheath_marand_top10k_chr1_motif_centric.csv:md5,9347808e34327e0a9bc76db493c4826e",
-                "bundle_sheath_marand_top10k_chr1_node_attributes.txt:md5,172afe26d92d2f828788ae97ac8937e6",
-                "mesophyll_marand_top10k_chr1_GO_enrichment.csv:md5,b7c00d0029349a07d24b9c8e09b487d0",
-                "mesophyll_marand_top10k_chr1_TF_centric.csv:md5,9347808e34327e0a9bc76db493c4826e",
-                "mesophyll_marand_top10k_chr1_functional_network.txt:md5,172afe26d92d2f828788ae97ac8937e6",
-                "mesophyll_marand_top10k_chr1_motif_centric.csv:md5,9347808e34327e0a9bc76db493c4826e",
-                "mesophyll_marand_top10k_chr1_node_attributes.txt:md5,172afe26d92d2f828788ae97ac8937e6"
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.csv:md5,9dd2a3396e25369c9397ae880d33a48a",
+                "bundle_sheath_marand_top10k_chr1_TF_centric.csv:md5,f7da179b6ae7d55e937d56d7d4ac0b10",
+                "bundle_sheath_marand_top10k_chr1_functional_network.txt:md5,70c128571c2464e548cba3f2158e4bb7",
+                "bundle_sheath_marand_top10k_chr1_motif_centric.csv:md5,34ab01a07500a025e634af7712d774c0",
+                "bundle_sheath_marand_top10k_chr1_node_attributes.txt:md5,7024004cce3df6e3f6561d1df56645c6",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.csv:md5,375aecbcff1ee247656f491e469d1f1d",
+                "mesophyll_marand_top10k_chr1_TF_centric.csv:md5,1a8b570331c12f9cfdd98c85b0c18924",
+                "mesophyll_marand_top10k_chr1_functional_network.txt:md5,c472a7f87e4a4e422c6165152c970697",
+                "mesophyll_marand_top10k_chr1_motif_centric.csv:md5,181403d96fb7d5c98dfcb98a0605dbe0",
+                "mesophyll_marand_top10k_chr1_node_attributes.txt:md5,fbc3be7043c82dc203b3f1f98ddeee9e"
             ],
             [
-                "bundle_sheath_marand_top10k_chr1_network.txt:md5,e749240d444c1ad9bc2f59a1454c99f6",
-                "bundle_sheath_marand_top10k_chr1_network_filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "mesophyll_marand_top10k_chr1_network.txt:md5,e749240d444c1ad9bc2f59a1454c99f6",
-                "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "bundle_sheath_marand_top10k_chr1_network.txt:md5,e849be990f7af97a93dc2e247b639f27",
+                "bundle_sheath_marand_top10k_chr1_network_filtered.txt:md5,0bac5df397663df023c84df1dd1f9a38",
+                "mesophyll_marand_top10k_chr1_network.txt:md5,a377daa145c199bf4221664b0a721aa9",
+                "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,60bea8aab77abd281b2b8e040f2938ff"
             ]
         ],
-        "timestamp": "2023-09-26T12:08:32+0000"
+        "timestamp": "2023-09-26T13:43:46+0000"
     }
 }
