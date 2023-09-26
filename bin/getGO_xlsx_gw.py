@@ -34,6 +34,9 @@ def parseArgs():
     parser.add_argument('-ex', '--expressed_genes_file', nargs = 1, type = str,
                         default = None, help = '',
                         metavar = 'List of genes expressed in biological context of experiment')
+    
+    parser.add_argument('-csv', action=argparse.BooleanOptionalAction,
+                        metavar = 'Output CSV files instead of Excel files')
 
     args = parser.parse_args()
 
@@ -49,6 +52,7 @@ info_file = args.info_file[0]
 output_file = args.output_file[0]
 DE_table_file = args.de_table_file
 expressed_genes_file = args.expressed_genes_file
+csv_output = args.csv
 
 info_df = pd.read_csv(info_file)
 tf_fam = pd.read_csv(tf_fam_file)
@@ -130,5 +134,8 @@ go_df = go_df.rename(columns = {'gene_name': 'Gene name', 'description': 'Gene d
 
 ### Writing output file ###
 
-with pd.ExcelWriter(output_file) as writer:
-    go_df.to_excel(writer, index = False)
+if (csv_output):
+    go_df.to_csv(output_file, index = False)
+else:
+    with pd.ExcelWriter(output_file) as writer:
+        go_df.to_excel(writer, index = False)

@@ -8,6 +8,7 @@ workflow MINIAC {
     params.OBO_file = "$projectDir/data/ontologies/go.obo"
     params.Shuffle_count = 1000
     params.Shuffle_seed = null
+    params.Csv_output = false
 
     if (params.mode == "genome_wide" && params.species == "maize_v4") {
 

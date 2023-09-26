@@ -237,6 +237,7 @@ process getIntegrativeOutputs {
    path script_go
    path script_net
    val outDir
+   val csvOutput            // set to true for CSV instead of Excel output
 
 
    output:
@@ -250,13 +251,14 @@ process getIntegrativeOutputs {
    script:
    de_genes_table = de_genes_bool == true ? "-de $de_genes" : ''
    exp_genes_table = exp_genes_bool == true ? "-ex $exp_genes" : ''
+   csv_output_flag = csvOutput ? '-csv' : ''
 
    """
-   OMP_NUM_THREADS=1 python3 $script_tfs $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_TF_centric.xlsx $de_genes_table $exp_genes_table
+   OMP_NUM_THREADS=1 python3 $script_tfs $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_TF_centric.xlsx $de_genes_table $exp_genes_table $csv_output_flag
 
-   OMP_NUM_THREADS=1 python3 $script_motifs $enr_stats $mot_tf $tf_fam $info_file $pval ${acr_file_name}_motif_centric.xlsx $de_genes_table $exp_genes_table
+   OMP_NUM_THREADS=1 python3 $script_motifs $enr_stats $mot_tf $tf_fam $info_file $pval ${acr_file_name}_motif_centric.xlsx $de_genes_table $exp_genes_table $csv_output_flag
 
-   OMP_NUM_THREADS=1 python3 $script_go $go_enr $tf_fam $info_file ${acr_file_name}_GO_enrichment.xlsx $de_genes_table $exp_genes_table
+   OMP_NUM_THREADS=1 python3 $script_go $go_enr $tf_fam $info_file ${acr_file_name}_GO_enrichment.xlsx $de_genes_table $exp_genes_table $csv_output_flag
 
    OMP_NUM_THREADS=1 python3 $script_net $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_functional_network.txt ${acr_file_name}_node_attributes.txt $de_genes_table $exp_genes_table
 
@@ -289,6 +291,7 @@ workflow genome_wide_miniac {
     Genes_metadata
     Shuffle_count
     Shuffle_seed
+    Csv_output
 
     main:
     
@@ -432,6 +435,7 @@ workflow genome_wide_miniac {
     script_go_file = "${projectDir}/bin/getGO_xlsx_gw.py"
     script_net_files = "${projectDir}/bin/getNetVisualizationOutput_gw.py"
 
-    getIntegrativeOutputs(int_input, Motif_tf_file, TF_fam_file, Genes_metadata, P_val, Filter_set_genes, DE_genes, script_tf_file, script_motif_file, script_go_file, script_net_files, OutDir)
+    getIntegrativeOutputs(int_input, Motif_tf_file, TF_fam_file, Genes_metadata, P_val, Filter_set_genes, DE_genes,
+                          script_tf_file, script_motif_file, script_go_file, script_net_files, OutDir, Csv_output)
 
         }

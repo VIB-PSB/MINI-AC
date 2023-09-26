@@ -34,6 +34,9 @@ nextflow_workflow {
                 //// Output folder
                 OutDir = "${baseDir}/tests/outputs/zma_v4/genome_wide"
 
+                //// Output CSV instead of Excel for automated output comparison
+                Csv_output = true
+
                 //// Required input
                 ACR_dir = "${baseDir}/tests/inputs/zma_v4/acr_files"
 
