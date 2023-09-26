@@ -52,9 +52,8 @@ def parseArgs():
     parser.add_argument('-ex', '--expressed_genes_file', nargs = 1, type = str,
                         default = None, help = '',
                         metavar = 'List of genes expressed in biological context of experiment')
-    
-    parser.add_argument('-csv', action=argparse.BooleanOptionalAction,
-                        metavar = 'Output CSV files instead of Excel files')
+
+    parser.add_argument('-csv', action="store_true", metavar = 'Output CSV files instead of Excel files')
 
     args = parser.parse_args()
 

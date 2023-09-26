@@ -35,8 +35,7 @@ def parseArgs():
                         default = None, help = '',
                         metavar = 'List of genes expressed in biological context of experiment')
     
-    parser.add_argument('-csv', action=argparse.BooleanOptionalAction,
-                        metavar = 'Output CSV files instead of Excel files')
+    parser.add_argument('-csv', action="store_true", metavar = 'Output CSV files instead of Excel files')
 
     args = parser.parse_args()
 
