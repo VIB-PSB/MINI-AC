@@ -251,7 +251,7 @@ process getIntegrativeOutputs {
    script:
    de_genes_table = de_genes_bool == true ? "-de $de_genes" : ''
    exp_genes_table = exp_genes_bool == true ? "-ex $exp_genes" : ''
-   csv_output_flag = csvOutput ? '-out csv' : ''
+   csv_output_flag = csvOutput ? '-csv' : ''
 
    """
    OMP_NUM_THREADS=1 python3 $script_tfs $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_TF_centric.xlsx $de_genes_table $exp_genes_table $csv_output_flag
