@@ -36,4 +36,5 @@ jobs:
       run: cat .github/workflows/test.config | sed "s/%TMP%/${{ env.RUNNER_TEMP }}/g" > tests/nextflow.config
 
     - name: Run nf-test
+      shell: bash
       run: ./nf-test test
