@@ -13,7 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
+    - name: Setup Java
+      uses: Fleshgrinder/setup-java@1.0.0
+
+    - name: Check Java version
+      run: java -version
+
     - name: Setup Nextflow
       uses: nf-core/setup-nextflow@v1.3.0
 
