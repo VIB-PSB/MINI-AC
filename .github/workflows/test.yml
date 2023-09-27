@@ -14,6 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Prepare nf-test config file
+      run: cat .github/workflows/test.config | sed "s/%TMP%/$RUNNER_TEMP/g" > tests/nextflow.config
+
     - uses: actions/setup-java@v3
       with:
         distribution: oracle
@@ -40,18 +43,6 @@ jobs:
         curl -k -o tests/data/ath/ath_genome_wide_motif_mappings.bed https://floppy.psb.ugent.be/index.php/s/iaZPwdrRGe3YDdK/download/ath_genome_wide_motif_mappings.bed
         curl -k -o tests/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://floppy.psb.ugent.be/index.php/s/qcQ7KndzHaSpd9e/download/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 
-    - name: Prepare nf-test config file
-      run: cat .github/workflows/test.config | sed "s/%TMP%/${{ env.RUNNER_TEMP }}/g" > tests/nextflow.config
-
     - name: Run nf-test
       shell: bash
-      continue-on-error: true
       run: ./nf-test test
-
-    - name: Setup upterm session
-      uses: lhotari/action-upterm@v1
-      with:
-        ## limits ssh access and adds the ssh public key for the user which triggered the workflow
-        limit-access-to-actor: true
-        ## limits ssh access and adds the ssh public keys of the listed GitHub users
-        limit-access-to-users: hdbeukel
