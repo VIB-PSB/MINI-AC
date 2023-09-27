@@ -69,7 +69,9 @@ nextflow_workflow {
         then {
             assert workflow.success
             assert snapshot(
-                workflow,
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
                 path("${params.OutDir}/enrichment_stats").list(),
                 path("${params.OutDir}/GO_enrichment").list(),
                 path("${params.OutDir}/integrative_outputs").list(),
@@ -135,7 +137,9 @@ nextflow_workflow {
         then {
             assert workflow.success
             assert snapshot(
-                workflow,
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
                 path("${params.OutDir}/enrichment_stats").list(),
                 path("${params.OutDir}/GO_enrichment").list(),
                 path("${params.OutDir}/integrative_outputs").list(),
@@ -193,6 +197,7 @@ nextflow_workflow {
 
                 //// Prediction parameters only genome-wide
                 Second_gene_annot = false
+                Second_gene_dist = 0
             }
             workflow {
                 """
@@ -205,7 +210,9 @@ nextflow_workflow {
         then {
             assert workflow.success
             assert snapshot(
-                workflow,
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
                 path("${params.OutDir}/enrichment_stats").list(),
                 path("${params.OutDir}/GO_enrichment").list(),
                 path("${params.OutDir}/integrative_outputs").list(),
@@ -269,7 +276,9 @@ nextflow_workflow {
         then {
             assert workflow.success
             assert snapshot(
-                workflow,
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
                 path("${params.OutDir}/enrichment_stats").list(),
                 path("${params.OutDir}/GO_enrichment").list(),
                 path("${params.OutDir}/integrative_outputs").list(),

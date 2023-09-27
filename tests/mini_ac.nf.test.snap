@@ -1,0 +1,215 @@
+{
+    "arabidopsis locus_based": {
+        "content": [
+            {
+                "stderr": [
+                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
+                ],
+                "errorReport": null,
+                "exitStatus": 0,
+                "out": {
+                    
+                },
+                "failed": false,
+                "stdout": [
+                    "WARN: Access to undefined parameter `Set_genes_dir` -- Initialise it to a default value eg. `params.Set_genes_dir = some_value`",
+                    "WARN: Access to undefined parameter `One_filtering_set` -- Initialise it to a default value eg. `params.One_filtering_set = some_value`",
+                    "WARN: Access to undefined parameter `DE_genes_dir` -- Initialise it to a default value eg. `params.DE_genes_dir = some_value`",
+                    "WARN: Access to undefined parameter `One_DE_set` -- Initialise it to a default value eg. `params.One_DE_set = some_value`"
+                ],
+                "errorMessage": null,
+                "trace": {
+                    "tasksFailed": 0,
+                    "tasksCount": 10,
+                    "tasksSucceeded": 10
+                },
+                "name": "workflow",
+                "success": true
+            },
+            [
+                "DAR_Ep_iACR_allshuff_sorted_miniac_stats.txt:md5,47eeca81592256da13ee3d5273f3d3b9",
+                "DAR_Va_iACR_allshuff_sorted_miniac_stats.txt:md5,d1507c07e24faa36033a03e67a0a9fb9"
+            ],
+            [
+                "DAR_Ep_iACR_GO_enrichment.txt:md5,97ee472e2a22682ceeb30dc0bacbbe2e",
+                "DAR_Va_iACR_GO_enrichment.txt:md5,f98a371b2d4b8df9222a14c3f7d375e4"
+            ],
+            [
+                "DAR_Ep_iACR_GO_enrichment.csv:md5,fff2885bce4c5dd772019254bb7ac5ae",
+                "DAR_Ep_iACR_TF_centric.csv:md5,dc4853fbef030d47cae8ad2948f8cb73",
+                "DAR_Ep_iACR_functional_network.txt:md5,088b18dbc34ec3a9d4e44211f69e35ab",
+                "DAR_Ep_iACR_motif_centric.csv:md5,3c5f44bacfdc61a476461471a4495d40",
+                "DAR_Ep_iACR_node_attributes.txt:md5,bef3d414967062662852fc6e9bfce269",
+                "DAR_Va_iACR_GO_enrichment.csv:md5,c710c97bfd5a1187a2623ec066f78ce4",
+                "DAR_Va_iACR_TF_centric.csv:md5,aa5e99f06936593a8f2573119ab945dc",
+                "DAR_Va_iACR_functional_network.txt:md5,b74cf12a59a05c34bc27e3d7e5010ff4",
+                "DAR_Va_iACR_motif_centric.csv:md5,8fcc580f6e74d4b748f7b0ebe467fb94",
+                "DAR_Va_iACR_node_attributes.txt:md5,d646f1d61c3644c6d724768030e791ca"
+            ],
+            [
+                "DAR_Ep_iACR_network.txt:md5,6f2554a3103f566f43e1c8055c309650",
+                "DAR_Va_iACR_network.txt:md5,6ba8ff61691d2d63926032264792ac9d"
+            ]
+        ],
+        "timestamp": "2023-09-27T08:24:13+0000"
+    },
+    "arabidopsis genome_wide": {
+        "content": [
+            {
+                "stderr": [
+                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
+                ],
+                "errorReport": null,
+                "exitStatus": 0,
+                "out": {
+                    
+                },
+                "failed": false,
+                "stdout": [
+                    "WARN: Access to undefined parameter `Set_genes_dir` -- Initialise it to a default value eg. `params.Set_genes_dir = some_value`",
+                    "WARN: Access to undefined parameter `One_filtering_set` -- Initialise it to a default value eg. `params.One_filtering_set = some_value`"
+                ],
+                "errorMessage": null,
+                "trace": {
+                    "tasksFailed": 0,
+                    "tasksCount": 10,
+                    "tasksSucceeded": 10
+                },
+                "name": "workflow",
+                "success": true
+            },
+            [
+                "DAR_Ep_iACR_allshuff_sorted_miniac_stats.txt:md5,80adf252c9802b3fbe999d657895ee21",
+                "DAR_Va_iACR_allshuff_sorted_miniac_stats.txt:md5,22569f773122eb29e64ff19f503e024a"
+            ],
+            [
+                "DAR_Ep_iACR_GO_enrichment.txt:md5,9e12b4f4a49cc99b5f0afdd9582536b2",
+                "DAR_Va_iACR_GO_enrichment.txt:md5,5f24d76758e6beea6a9b1cfa8b855e13"
+            ],
+            [
+                "DAR_Ep_iACR_GO_enrichment.csv:md5,9ad54a6e869d550f91a5b3be5a27856a",
+                "DAR_Ep_iACR_TF_centric.csv:md5,92086d7392a20f8044cc0ead47a25904",
+                "DAR_Ep_iACR_functional_network.txt:md5,40324c23b4620df8d45b8ba4aa983883",
+                "DAR_Ep_iACR_motif_centric.csv:md5,a6f20927d298f1375ec02f0f0de2d8c6",
+                "DAR_Ep_iACR_node_attributes.txt:md5,cc494f2b5bc988ffc65ce7f08a82a3ed",
+                "DAR_Va_iACR_GO_enrichment.csv:md5,ed565209194cd8de852031b58dd47681",
+                "DAR_Va_iACR_TF_centric.csv:md5,964ff38b14ac4725aaf011fa37bc9381",
+                "DAR_Va_iACR_functional_network.txt:md5,a7eb6a3f8efff3178c4f0a302ce941cc",
+                "DAR_Va_iACR_motif_centric.csv:md5,0cbfb8bde3bc658c985273ede39b2129",
+                "DAR_Va_iACR_node_attributes.txt:md5,30fdff78fb3a506123dcdb1a66f9801c"
+            ],
+            [
+                "DAR_Ep_iACR_network.txt:md5,e0338019453484b8b3350b573eb9de80",
+                "DAR_Va_iACR_network.txt:md5,f2417a83aaa23ea090fa698222dd82c1"
+            ]
+        ],
+        "timestamp": "2023-09-27T08:24:13+0000"
+    },
+    "maize_v4 genome_wide": {
+        "content": [
+            {
+                "stderr": [
+                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
+                ],
+                "errorReport": null,
+                "exitStatus": 0,
+                "out": {
+                    
+                },
+                "failed": false,
+                "stdout": [
+                    
+                ],
+                "errorMessage": null,
+                "trace": {
+                    "tasksFailed": 0,
+                    "tasksCount": 12,
+                    "tasksSucceeded": 12
+                },
+                "name": "workflow",
+                "success": true
+            },
+            [
+                "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,1e9f5e9dd74a7d87f70d457560ef5582",
+                "mesophyll_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,c0b46c8893eb2de41023235157e7b545"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.txt:md5,de92b29c1b106a184dfc6fe328454d48",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.txt:md5,d770761d0cbcd3c993c5458589b73b3d"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.csv:md5,7f762c74acac55b704ecef4cde853821",
+                "bundle_sheath_marand_top10k_chr1_TF_centric.csv:md5,a8f572ca87cc077bca2b3912858331dc",
+                "bundle_sheath_marand_top10k_chr1_functional_network.txt:md5,377044be135a9cd382d5969fad94ed26",
+                "bundle_sheath_marand_top10k_chr1_motif_centric.csv:md5,3a8395ac2eef34cf73f6be805be92f03",
+                "bundle_sheath_marand_top10k_chr1_node_attributes.txt:md5,4ca2880d305652e3a5c540085f16f638",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.csv:md5,ba6b86632b727960b596e6e9a2804d3c",
+                "mesophyll_marand_top10k_chr1_TF_centric.csv:md5,40ef60201fc6b751f793c2bb86a05202",
+                "mesophyll_marand_top10k_chr1_functional_network.txt:md5,fa2a344f846163e183579c568dc580fc",
+                "mesophyll_marand_top10k_chr1_motif_centric.csv:md5,391e440c829285fc7a096ee34eff1278",
+                "mesophyll_marand_top10k_chr1_node_attributes.txt:md5,eba2317cf6c1b54c3342297d40123e9d"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_network.txt:md5,235ad145870e1988282a7843d98a0ccd",
+                "bundle_sheath_marand_top10k_chr1_network_filtered.txt:md5,094b8d1bf59122abc0484289ccdeee11",
+                "mesophyll_marand_top10k_chr1_network.txt:md5,ebbccad71e0241ec5d111975cb251032",
+                "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,d522a2fa715bb9d36bf49d43115d554e"
+            ]
+        ],
+        "timestamp": "2023-09-27T08:24:13+0000"
+    },
+    "maize_v4 locus_based": {
+        "content": [
+            {
+                "stderr": [
+                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
+                ],
+                "errorReport": null,
+                "exitStatus": 0,
+                "out": {
+                    
+                },
+                "failed": false,
+                "stdout": [
+                    "WARN: Access to undefined parameter `DE_genes_dir` -- Initialise it to a default value eg. `params.DE_genes_dir = some_value`",
+                    "WARN: Access to undefined parameter `One_DE_set` -- Initialise it to a default value eg. `params.One_DE_set = some_value`"
+                ],
+                "errorMessage": null,
+                "trace": {
+                    "tasksFailed": 0,
+                    "tasksCount": 12,
+                    "tasksSucceeded": 12
+                },
+                "name": "workflow",
+                "success": true
+            },
+            [
+                "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,75c1500b4ded4137aea3fa9e010e361d",
+                "mesophyll_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,2e11beb90956e25d85f30d055f3ee859"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.txt:md5,7a32ac19926b234b4e77cf74330f90e2",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.txt:md5,9753846fba7d622132987846d5d01ea4"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_GO_enrichment.csv:md5,9dd2a3396e25369c9397ae880d33a48a",
+                "bundle_sheath_marand_top10k_chr1_TF_centric.csv:md5,78a0a8bd5f44c6fe40178e52357edf93",
+                "bundle_sheath_marand_top10k_chr1_functional_network.txt:md5,70c128571c2464e548cba3f2158e4bb7",
+                "bundle_sheath_marand_top10k_chr1_motif_centric.csv:md5,cd9e76ea7740daea817fb0bddd12208c",
+                "bundle_sheath_marand_top10k_chr1_node_attributes.txt:md5,f66e9f6c5b7a93c8eaad612ddc91857f",
+                "mesophyll_marand_top10k_chr1_GO_enrichment.csv:md5,375aecbcff1ee247656f491e469d1f1d",
+                "mesophyll_marand_top10k_chr1_TF_centric.csv:md5,d4e4dddd68e92187b4544edda7b9fb0b",
+                "mesophyll_marand_top10k_chr1_functional_network.txt:md5,c472a7f87e4a4e422c6165152c970697",
+                "mesophyll_marand_top10k_chr1_motif_centric.csv:md5,f8b6ba7b8141a194e676d1841078224f",
+                "mesophyll_marand_top10k_chr1_node_attributes.txt:md5,e511f169639c38c965fd38b530566e57"
+            ],
+            [
+                "bundle_sheath_marand_top10k_chr1_network.txt:md5,e849be990f7af97a93dc2e247b639f27",
+                "bundle_sheath_marand_top10k_chr1_network_filtered.txt:md5,0bac5df397663df023c84df1dd1f9a38",
+                "mesophyll_marand_top10k_chr1_network.txt:md5,a377daa145c199bf4221664b0a721aa9",
+                "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,60bea8aab77abd281b2b8e040f2938ff"
+            ]
+        ],
+        "timestamp": "2023-09-27T08:24:13+0000"
+    }
+}
