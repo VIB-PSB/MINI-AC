@@ -33,7 +33,7 @@ jobs:
         curl -k -o tests/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://floppy.psb.ugent.be/index.php/s/qcQ7KndzHaSpd9e/download/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 
     - name: Prepare nf-test config file
-      run: mv .github/workflows/test.config tests/nextflow.config
+      run: cat .github/workflows/test.config | sed "s/%TMP%/${{ env.RUNNER_TEMP }}/g" > tests/nextflow.config
 
     - name: Run nf-test
       run: ./nf-test test
