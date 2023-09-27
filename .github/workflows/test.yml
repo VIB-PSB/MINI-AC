@@ -37,4 +37,6 @@ jobs:
 
     - name: Run nf-test
       shell: bash
-      run: ./nf-test test
+      run: |
+        ln -s $(which bash) /bin/bash
+        ./nf-test test
