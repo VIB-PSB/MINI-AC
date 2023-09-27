@@ -9,7 +9,7 @@ on:
 jobs:
   nf-test:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -37,6 +37,4 @@ jobs:
 
     - name: Run nf-test
       shell: bash
-      run: |
-        ln -s $(which bash) /bin/bash
-        ./nf-test test
+      run: ./nf-test test
