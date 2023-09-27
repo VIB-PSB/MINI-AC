@@ -1,82 +1,12 @@
 {
-    "arabidopsis locus_based": {
-        "content": [
-            {
-                "stderr": [
-                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
-                ],
-                "errorReport": null,
-                "exitStatus": 0,
-                "out": {
-                    
-                },
-                "failed": false,
-                "stdout": [
-                    "WARN: Access to undefined parameter `Set_genes_dir` -- Initialise it to a default value eg. `params.Set_genes_dir = some_value`",
-                    "WARN: Access to undefined parameter `One_filtering_set` -- Initialise it to a default value eg. `params.One_filtering_set = some_value`",
-                    "WARN: Access to undefined parameter `DE_genes_dir` -- Initialise it to a default value eg. `params.DE_genes_dir = some_value`",
-                    "WARN: Access to undefined parameter `One_DE_set` -- Initialise it to a default value eg. `params.One_DE_set = some_value`"
-                ],
-                "errorMessage": null,
-                "trace": {
-                    "tasksFailed": 0,
-                    "tasksCount": 10,
-                    "tasksSucceeded": 10
-                },
-                "name": "workflow",
-                "success": true
-            },
-            [
-                "DAR_Ep_iACR_allshuff_sorted_miniac_stats.txt:md5,47eeca81592256da13ee3d5273f3d3b9",
-                "DAR_Va_iACR_allshuff_sorted_miniac_stats.txt:md5,d1507c07e24faa36033a03e67a0a9fb9"
-            ],
-            [
-                "DAR_Ep_iACR_GO_enrichment.txt:md5,97ee472e2a22682ceeb30dc0bacbbe2e",
-                "DAR_Va_iACR_GO_enrichment.txt:md5,f98a371b2d4b8df9222a14c3f7d375e4"
-            ],
-            [
-                "DAR_Ep_iACR_GO_enrichment.csv:md5,fff2885bce4c5dd772019254bb7ac5ae",
-                "DAR_Ep_iACR_TF_centric.csv:md5,dc4853fbef030d47cae8ad2948f8cb73",
-                "DAR_Ep_iACR_functional_network.txt:md5,088b18dbc34ec3a9d4e44211f69e35ab",
-                "DAR_Ep_iACR_motif_centric.csv:md5,3c5f44bacfdc61a476461471a4495d40",
-                "DAR_Ep_iACR_node_attributes.txt:md5,bef3d414967062662852fc6e9bfce269",
-                "DAR_Va_iACR_GO_enrichment.csv:md5,c710c97bfd5a1187a2623ec066f78ce4",
-                "DAR_Va_iACR_TF_centric.csv:md5,aa5e99f06936593a8f2573119ab945dc",
-                "DAR_Va_iACR_functional_network.txt:md5,b74cf12a59a05c34bc27e3d7e5010ff4",
-                "DAR_Va_iACR_motif_centric.csv:md5,8fcc580f6e74d4b748f7b0ebe467fb94",
-                "DAR_Va_iACR_node_attributes.txt:md5,d646f1d61c3644c6d724768030e791ca"
-            ],
-            [
-                "DAR_Ep_iACR_network.txt:md5,6f2554a3103f566f43e1c8055c309650",
-                "DAR_Va_iACR_network.txt:md5,6ba8ff61691d2d63926032264792ac9d"
-            ]
-        ],
-        "timestamp": "2023-09-27T08:24:13+0000"
-    },
     "arabidopsis genome_wide": {
         "content": [
+            null,
+            0,
             {
-                "stderr": [
-                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
-                ],
-                "errorReport": null,
-                "exitStatus": 0,
-                "out": {
-                    
-                },
-                "failed": false,
-                "stdout": [
-                    "WARN: Access to undefined parameter `Set_genes_dir` -- Initialise it to a default value eg. `params.Set_genes_dir = some_value`",
-                    "WARN: Access to undefined parameter `One_filtering_set` -- Initialise it to a default value eg. `params.One_filtering_set = some_value`"
-                ],
-                "errorMessage": null,
-                "trace": {
-                    "tasksFailed": 0,
-                    "tasksCount": 10,
-                    "tasksSucceeded": 10
-                },
-                "name": "workflow",
-                "success": true
+                "tasksFailed": 0,
+                "tasksCount": 10,
+                "tasksSucceeded": 10
             },
             [
                 "DAR_Ep_iACR_allshuff_sorted_miniac_stats.txt:md5,80adf252c9802b3fbe999d657895ee21",
@@ -103,31 +33,52 @@
                 "DAR_Va_iACR_network.txt:md5,f2417a83aaa23ea090fa698222dd82c1"
             ]
         ],
-        "timestamp": "2023-09-27T08:24:13+0000"
+        "timestamp": "2023-09-27T09:07:18+0000"
+    },
+    "arabidopsis locus_based": {
+        "content": [
+            null,
+            0,
+            {
+                "tasksFailed": 0,
+                "tasksCount": 10,
+                "tasksSucceeded": 10
+            },
+            [
+                "DAR_Ep_iACR_allshuff_sorted_miniac_stats.txt:md5,47eeca81592256da13ee3d5273f3d3b9",
+                "DAR_Va_iACR_allshuff_sorted_miniac_stats.txt:md5,d1507c07e24faa36033a03e67a0a9fb9"
+            ],
+            [
+                "DAR_Ep_iACR_GO_enrichment.txt:md5,97ee472e2a22682ceeb30dc0bacbbe2e",
+                "DAR_Va_iACR_GO_enrichment.txt:md5,f98a371b2d4b8df9222a14c3f7d375e4"
+            ],
+            [
+                "DAR_Ep_iACR_GO_enrichment.csv:md5,fff2885bce4c5dd772019254bb7ac5ae",
+                "DAR_Ep_iACR_TF_centric.csv:md5,dc4853fbef030d47cae8ad2948f8cb73",
+                "DAR_Ep_iACR_functional_network.txt:md5,088b18dbc34ec3a9d4e44211f69e35ab",
+                "DAR_Ep_iACR_motif_centric.csv:md5,3c5f44bacfdc61a476461471a4495d40",
+                "DAR_Ep_iACR_node_attributes.txt:md5,bef3d414967062662852fc6e9bfce269",
+                "DAR_Va_iACR_GO_enrichment.csv:md5,c710c97bfd5a1187a2623ec066f78ce4",
+                "DAR_Va_iACR_TF_centric.csv:md5,aa5e99f06936593a8f2573119ab945dc",
+                "DAR_Va_iACR_functional_network.txt:md5,b74cf12a59a05c34bc27e3d7e5010ff4",
+                "DAR_Va_iACR_motif_centric.csv:md5,8fcc580f6e74d4b748f7b0ebe467fb94",
+                "DAR_Va_iACR_node_attributes.txt:md5,d646f1d61c3644c6d724768030e791ca"
+            ],
+            [
+                "DAR_Ep_iACR_network.txt:md5,6f2554a3103f566f43e1c8055c309650",
+                "DAR_Va_iACR_network.txt:md5,6ba8ff61691d2d63926032264792ac9d"
+            ]
+        ],
+        "timestamp": "2023-09-27T09:07:18+0000"
     },
     "maize_v4 genome_wide": {
         "content": [
+            null,
+            0,
             {
-                "stderr": [
-                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
-                ],
-                "errorReport": null,
-                "exitStatus": 0,
-                "out": {
-                    
-                },
-                "failed": false,
-                "stdout": [
-                    
-                ],
-                "errorMessage": null,
-                "trace": {
-                    "tasksFailed": 0,
-                    "tasksCount": 12,
-                    "tasksSucceeded": 12
-                },
-                "name": "workflow",
-                "success": true
+                "tasksFailed": 0,
+                "tasksCount": 12,
+                "tasksSucceeded": 12
             },
             [
                 "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,1e9f5e9dd74a7d87f70d457560ef5582",
@@ -156,32 +107,16 @@
                 "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,d522a2fa715bb9d36bf49d43115d554e"
             ]
         ],
-        "timestamp": "2023-09-27T08:24:13+0000"
+        "timestamp": "2023-09-27T09:07:18+0000"
     },
     "maize_v4 locus_based": {
         "content": [
+            null,
+            0,
             {
-                "stderr": [
-                    "Picked up JAVA_TOOL_OPTIONS: -XX:ParallelGCThreads=1"
-                ],
-                "errorReport": null,
-                "exitStatus": 0,
-                "out": {
-                    
-                },
-                "failed": false,
-                "stdout": [
-                    "WARN: Access to undefined parameter `DE_genes_dir` -- Initialise it to a default value eg. `params.DE_genes_dir = some_value`",
-                    "WARN: Access to undefined parameter `One_DE_set` -- Initialise it to a default value eg. `params.One_DE_set = some_value`"
-                ],
-                "errorMessage": null,
-                "trace": {
-                    "tasksFailed": 0,
-                    "tasksCount": 12,
-                    "tasksSucceeded": 12
-                },
-                "name": "workflow",
-                "success": true
+                "tasksFailed": 0,
+                "tasksCount": 12,
+                "tasksSucceeded": 12
             },
             [
                 "bundle_sheath_marand_top10k_chr1_allshuff_sorted_miniac_stats.txt:md5,75c1500b4ded4137aea3fa9e010e361d",
@@ -210,6 +145,6 @@
                 "mesophyll_marand_top10k_chr1_network_filtered.txt:md5,60bea8aab77abd281b2b8e040f2938ff"
             ]
         ],
-        "timestamp": "2023-09-27T08:24:13+0000"
+        "timestamp": "2023-09-27T09:07:18+0000"
     }
 }
