@@ -118,7 +118,7 @@ process getNetwork {
    path "${acr_file_name}_network.txt"
 
    script:
-   ann_second_gene = second_gene_dist == true ? "--second_gene_dist ${second_gene_dist}" : ''
+   ann_second_gene = second_gene_annot == true ? "--second_gene_dist ${second_gene_dist}" : ''
    num_genes_annot = second_gene_annot == true ? "2" : '1'
 
    """
