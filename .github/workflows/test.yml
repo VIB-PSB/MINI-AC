@@ -29,8 +29,8 @@ jobs:
       run: |
         curl -k -o tests/data/zma_v4/zma_v4_genome_wide_motif_mappings_chr1.bed https://floppy.psb.ugent.be/index.php/s/NekMYztyxEnsQiY/download/zma_v4_genome_wide_motif_mappings_chr1.bed
         curl -k -o tests/data/zma_v4/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed https://floppy.psb.ugent.be/index.php/s/r2wQmFjPy79qSp7/download/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed
-        curl -k -o tests/data/ath/ath_genome_wide_motif_mappings.bed https://zenodo.org/record/7974527/files/ath_genome_wide_motif_mappings.bed?download=1
-        curl -k -o tests/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://zenodo.org/record/7974527/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1
+        curl -k -o tests/data/ath/ath_genome_wide_motif_mappings.bed https://floppy.psb.ugent.be/index.php/s/iaZPwdrRGe3YDdK/download/ath_genome_wide_motif_mappings.bed
+        curl -k -o tests/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://floppy.psb.ugent.be/index.php/s/qcQ7KndzHaSpd9e/download/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 
     - name: Prepare nf-test config file
       run: mv .github/workflows/test.config tests/nextflow.config

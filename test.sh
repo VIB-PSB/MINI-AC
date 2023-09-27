@@ -23,11 +23,11 @@ if [ ! -f "$zma_v4_locus_based_motif_mapping" ]; then
 fi
 
 if [ ! -f "$ath_genome_wide_motif_mapping" ]; then
-  curl -k -o $ath_genome_wide_motif_mapping https://zenodo.org/record/7974527/files/ath_genome_wide_motif_mappings.bed?download=1
+  curl -k -o $ath_genome_wide_motif_mapping https://floppy.psb.ugent.be/index.php/s/iaZPwdrRGe3YDdK/download/ath_genome_wide_motif_mappings.bed
 fi
 
 if [ ! -f "$ath_locus_based_motif_mapping" ]; then
-  curl -k -o $ath_locus_based_motif_mapping https://zenodo.org/record/7974527/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1
+  curl -k -o $ath_locus_based_motif_mapping https://floppy.psb.ugent.be/index.php/s/qcQ7KndzHaSpd9e/download/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 fi
 
 # install nf-test locally (if not already present)
