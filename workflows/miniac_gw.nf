@@ -18,7 +18,7 @@ process get_ACR_shufflings{
     script:
 
     seed_arg = ''
-    if (seed) {
+    if (seed != -1) {
         seed_arg = "-seed $seed"
     }
 
