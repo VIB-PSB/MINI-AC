@@ -11,6 +11,8 @@ module load nextflow
 # fetch zma_v4 test motif mappings (if not already present)
 zma_v4_genome_wide_motif_mapping=tests/data/zma_v4/zma_v4_genome_wide_motif_mappings_chr1.bed
 zma_v4_locus_based_motif_mapping=tests/data/zma_v4/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed
+ath_genome_wide_motif_mapping=tests/data/ath/ath_genome_wide_motif_mappings.bed
+ath_locus_based_motif_mapping=tests/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 
 if [ ! -f "$zma_v4_genome_wide_motif_mapping" ]; then
   curl -k -o $zma_v4_genome_wide_motif_mapping https://floppy.psb.ugent.be/index.php/s/NekMYztyxEnsQiY/download/zma_v4_genome_wide_motif_mappings_chr1.bed
@@ -20,10 +22,18 @@ if [ ! -f "$zma_v4_locus_based_motif_mapping" ]; then
   curl -k -o $zma_v4_locus_based_motif_mapping https://floppy.psb.ugent.be/index.php/s/r2wQmFjPy79qSp7/download/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed
 fi
 
+if [ ! -f "$ath_genome_wide_motif_mapping" ]; then
+  curl -k -o $ath_genome_wide_motif_mapping https://zenodo.org/record/7974527/files/ath_genome_wide_motif_mappings.bed?download=1
+fi
+
+if [ ! -f "$ath_locus_based_motif_mapping" ]; then
+  curl -k -o $ath_locus_based_motif_mapping https://zenodo.org/record/7974527/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1
+fi
+
 # install nf-test locally (if not already present)
 if [ ! -f "nf-test" ]; then
   wget -qO- https://code.askimed.com/install/nf-test | bash
 fi
 
 # run MINI-AC test pipeline
-./nf-test test
+./nf-test test $1
