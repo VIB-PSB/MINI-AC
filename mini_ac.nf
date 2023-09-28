@@ -29,7 +29,6 @@ workflow MINIAC {
     // set input data parameters shared between genome-wide and locus-based modes
     params.Faix_file = "$projectDir/data/${species}/${species}.fasta.fai"
     params.Motif_tf_file = "$projectDir/data/${species}/${species}_motif_TF_file.txt"
-    params.Genes_coords = "$projectDir/data/${species}/${species}_genes_coords_sorted.bed"
     params.Feature_file = "$projectDir/data/${species}/${species}_go_gene_file.txt"
     params.TF_fam_file = "$projectDir/data/${species}/${species}_TF_family_file.txt"
     params.Genes_metadata = "$projectDir/data/${species}/${species}_gene_metadata_file.txt"
@@ -38,6 +37,7 @@ workflow MINIAC {
         
         params.MotMapsFile = "$projectDir/data/${species}/${species}_genome_wide_motif_mappings.bed"
         params.Non_cod_genome = "$projectDir/data/${species}/${species}_noncod_merged.bed"
+        params.Genes_coords = "$projectDir/data/${species}/${species}_genes_coords_sorted.bed"
 
         params.P_val = 0.1
 
