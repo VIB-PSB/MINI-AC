@@ -52,7 +52,7 @@ def parseArgs():
     parser.add_argument('-ex', '--expressed_genes_file', nargs = 1, type = str,
                         default = None, help = '',
                         metavar = 'List of genes expressed in biological context of experiment')
-
+    
     args = parser.parse_args()
 
     return args
@@ -133,8 +133,11 @@ enr_stats = enr_stats.merge(tf_fam, how = 'left', on = 'gene_id').merge(info_df,
 
 if enr_stats.empty:
     empty_table = pd.DataFrame(["### This dataset did not yield any motif enrichment"])
-    with pd.ExcelWriter(output_file) as writer:
-        empty_table.to_excel(writer, index = False, header = False)
+    if(output_file.endswith('.csv')):
+        empty_table.to_csv(output_file, index = False, header = False)
+    else:
+        with pd.ExcelWriter(output_file) as writer:
+            empty_table.to_excel(writer, index = False, header = False)
     sys.exit()
 
 ### Reading and processing GO enrichment data ###
@@ -261,5 +264,8 @@ enr_stats = enr_stats.rename(columns = {'dataset': 'Dataset name', 'input_total_
 
 ### Writing output file ###
 
-with pd.ExcelWriter(output_file) as writer:
-    enr_stats.to_excel(writer, index = False)
+if (output_file.endswith('.csv')):
+    enr_stats.to_csv(output_file, index = False)
+else:
+    with pd.ExcelWriter(output_file) as writer:
+        enr_stats.to_excel(writer, index = False)

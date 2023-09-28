@@ -8,5 +8,15 @@ singularity_cache/
 # ignore large motif mapping files
 *motif_mappings*.bed
 
-# ignore bin folder
-bin/
+# ignore nf-test executable
+nf-test
+
+# ignore test cache
+.nf-test/
+
+# ignore test outputs
+tests/outputs/
+
+# ignore SLURM output and error files
+slurm.*.out
+slurm.*.err

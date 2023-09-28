@@ -6,6 +6,9 @@ include { locus_based_miniac } from './workflows/miniac_lb'
 workflow MINIAC {
 
     params.OBO_file = "$projectDir/data/ontologies/go.obo"
+    params.Shuffle_count = 1000
+    params.Shuffle_seed = -1
+    params.Csv_output = false
 
     // define species id used for data subfolder and data file prefix
     def species
@@ -39,20 +42,28 @@ workflow MINIAC {
         params.MotMapsFile = "$projectDir/data/${species}/${species}_genome_wide_motif_mappings.bed"
         params.Non_cod_genome = "$projectDir/data/${species}/${species}_noncod_merged.bed"
 
-        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile, params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.Second_gene_annot, params.Second_gene_dist, params.MotMapsFile,
+            params.Non_cod_genome, params.Faix_file, params.Motif_tf_file, params.Genes_coords, params.Feature_file,
+            params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count, params.Shuffle_seed,
+            params.Csv_output)
     
     } else if (params.mode == "locus_based") {
 
         params.MotMapsFile = "$projectDir/data/${species}/${species}_locus_based_motif_mappings_5kbup_1kbdown.bed"
         params.Promoter_file = "$projectDir/data/${species}/${species}_promoter_5kbup_1kbdown_sorted.bed"
         
-        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir, params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val, params.Bps_intersect, params.MotMapsFile, params.Promoter_file, params.Faix_file, params.Motif_tf_file, params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata)
+        locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
+            params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
+            params.Bps_intersect, params.MotMapsFile, params.Promoter_file, params.Faix_file, params.Motif_tf_file,
+            params.Feature_file, params.OBO_file, params.TF_fam_file, params.Genes_metadata, params.Shuffle_count,
+            params.Shuffle_seed, params.Csv_output)
     
     } else {
         exit 1, "MINI-AC can only be run using the modes 'genome_wide' or 'locus_based'. Instead it got '${params.mode}'."
     }
 }
-
 
 workflow {
     MINIAC()

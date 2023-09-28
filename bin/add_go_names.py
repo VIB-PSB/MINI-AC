@@ -4,7 +4,8 @@ from os import path
 import go_manipulations
 
 gene_go_file = argv[1]
+ontology_file = argv[2]
 
-go_tree = go_manipulations.GOtree(path.join(path.dirname(path.dirname(argv[0])), "ontologies", "go.obo"))
+go_tree = go_manipulations.GOtree(ontology_file)
 
 go_tree.add_descriptions(gene_go_file)
