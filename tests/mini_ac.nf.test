@@ -29,7 +29,7 @@ nextflow_workflow {
                 Genes_coords = "${baseDir}/data/zma_v4/zma_v4_genes_coords_sorted.bed"
                 Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/zma_v4/maize_v4_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/zma_v4_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
@@ -103,7 +103,7 @@ nextflow_workflow {
                 Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
                 Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/zma_v4/maize_v4_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/zma_v4_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
@@ -172,7 +172,7 @@ nextflow_workflow {
                 Genes_coords = "${baseDir}/data/ath/ath_genes_coords_sorted.bed"
                 Feature_file = "${baseDir}/data/ath/ath_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/ath/ath_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/ath/arabidopsis_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/ath/ath_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
@@ -244,7 +244,7 @@ nextflow_workflow {
                 Motif_tf_file = "${baseDir}/data/ath/ath_motif_TF_file.txt"
                 Feature_file = "${baseDir}/data/ath/ath_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/ath/ath_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/ath/arabidopsis_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/ath/ath_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
