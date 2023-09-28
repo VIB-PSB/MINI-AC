@@ -56,7 +56,7 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
   For maize RefGen_v5
   ```
   wget https://zenodo.org/record/8386283/files/zma_v5_genome_wide_motif_mappings.bed?download=1 -O data/zma_v5/zma_v5_genome_wide_motif_mappings.bed
-  wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 data/zma_v5/zma_v5_locus_based_motif_mappings_5kbup_1kbdown.bed
+  wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 data/zma_v5/ -O zma_v5_locus_based_motif_mappings_5kbup_1kbdown.bed
   ```
  
 NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10.6, Singularity version 3.8.7-1.el7 and in a Sun Grid Engine (SGE) computer cluster.
