@@ -16,7 +16,7 @@ Currently, two species are supported by MINI-AC: *Arabidopsis thaliana* and two 
 * **locus-based**: strategy where the neighboring sequences within a pre-defined window of each locus, and introns are considered for motif mapping. It only captures the proximal ACRs of the input dataset within the pre-defined window, which can lead to missing distal ACRs in species with long intergenic regions and distal regulatory elements. However, it has the advantage of having a higher density of TFBS, which are mostly located close to the genes. The locus-based mode uses a "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, for maize (but not for Arabidopsis; see publication), we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, check  the instructions [here](docs/configuration_pipeline.md).
 
 
-A detailed overview of the necessary input files and expected output files can be found [here](example).
+A detailed overview of the necessary input files and expected output files can be found in this [example](example), done on **maize V4 with the genome-wide mode**, and using as input a single-cell-derived ACR dataset of mesophyll and bundle sheath.
 
 
 ## **Inputs**
@@ -41,12 +41,20 @@ The pipeline will run in parallel for multiple ACR BED input files. The two opti
 * [Singularity](https://sylabs.io/guides/3.0/user-guide/index.html)
 * [wget](https://www.gnu.org/software/wget/)
 * Motif mapping files. They need to be downloaded by executing the following commands on the **top-level directory of the repository**:
+  
+  For Arabidopsis
 
   ```
   wget https://zenodo.org/record/7974527/files/ath_genome_wide_motif_mappings.bed?download=1 -O data/ath/ath_genome_wide_motif_mappings.bed
   wget https://zenodo.org/record/7974527/files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
+  ```
+  For maize RefGen_v4
+  ```
   wget https://zenodo.org/record/7974527/files/zma_genome_wide_motif_mappings.bed?download=1 -O data/zma_v4/zma_v4_genome_wide_motif_mappings.bed
   wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 -O data/zma_v4/zma_v4_locus_based_motif_mappings_5kbup_1kbdown.bed
+  ```
+  For maize RefGen_v5
+  ```
   wget https://zenodo.org/record/8386283/files/zma_v5_genome_wide_motif_mappings.bed?download=1 -O data/zma_v5/zma_v5_genome_wide_motif_mappings.bed
   wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_5kbup_1kbdown.bed?download=1 data/zma_v5/zma_v5_locus_based_motif_mappings_5kbup_1kbdown.bed
   ```
@@ -59,7 +67,7 @@ NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10
 Define the paths with the input files and the desired parameters setting in the [configuration file](docs/configuration_pipeline.md), and run it executing the following Nextflow command:
 
 ```shell
-nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize_v4
+nextflow -C mini_ac.config run mini_ac.nf --mode <genome_wide|locus_based> --species <arabidopsis|maize_v4|maize_v5>
 ```
  
 Having problems running MINI-AC? Check the [FAQ](docs/FAQ.md).

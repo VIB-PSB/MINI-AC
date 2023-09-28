@@ -166,18 +166,26 @@ By default, the maize MINI-AC locus-based mode (for both genome versions) runs o
 
 To download the maize "large" motif mapping file and coordinates of the "large" non-coding genomic space:
 
+  For maize RefGen_v4 large locus-based mode files
 ```
 wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed?download=1 -O data/zma_v4/zma_v4_locus_based_motif_mappings_15kbup_2.5kbdown.bed
 wget https://zenodo.org/record/7974527/files/zma_promoter_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma_v4/zma_v4_promoter_15kbup_2.5kbdown_sorted.bed
+```
+  For maize RefGen_v5 large locus-based mode files
+```
 wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_promoter_15kbup_2.5kbdown_sorted.bed
 wget https://zenodo.org/record/8386283/files/zma_v5_promoter_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_promoter_15kbup_2.5kbdown_sorted.bed
 ```
 
 To download the maize "small" motif mapping file and coordinates of the "small" non-coding genomic space:
 
+  For maize RefGen_v4 small locus-based mode files
 ```
 wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed
 wget https://zenodo.org/record/7974527/files/zma_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed
+```
+  For maize RefGen_v5 small locus-based mode files
+```
 wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_1kbup_1kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_locus_based_motif_mappings_1kbup_1kbdown.bed
 wget https://zenodo.org/record/8386283/files/zma_v5_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_promoter_1kbup_1kbdown_sorted.bed
 ```
