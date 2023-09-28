@@ -34,13 +34,12 @@ workflow MINIAC {
     params.TF_fam_file = "$projectDir/data/${species}/${species}_TF_family_file.txt"
     params.Genes_metadata = "$projectDir/data/${species}/${species}_gene_metadata_file.txt"
 
-    // set defaut p-value
-    params.P_val = 0.1
-
     if (params.mode == "genome_wide") {
         
         params.MotMapsFile = "$projectDir/data/${species}/${species}_genome_wide_motif_mappings.bed"
         params.Non_cod_genome = "$projectDir/data/${species}/${species}_noncod_merged.bed"
+
+        params.P_val = 0.1
 
         genome_wide_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
             params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
@@ -53,6 +52,8 @@ workflow MINIAC {
 
         params.MotMapsFile = "$projectDir/data/${species}/${species}_locus_based_motif_mappings_5kbup_1kbdown.bed"
         params.Promoter_file = "$projectDir/data/${species}/${species}_promoter_5kbup_1kbdown_sorted.bed"
+
+        params.P_val = 0.01
         
         locus_based_miniac(params.OutDir, params.ACR_dir, params.Filter_set_genes, params.Set_genes_dir,
             params.One_filtering_set, params.DE_genes, params.DE_genes_dir, params.One_DE_set, params.P_val,
