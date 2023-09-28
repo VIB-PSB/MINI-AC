@@ -17,7 +17,7 @@ MINI-AC has several optional parameters that affect the output and some aspects 
 
 ### DEGs and Expressed genes files parameters
 
-* **Species**: ```--species arabidopsis``` (command line) or ```species = "arabidopsis"``` (configuration file) for Arabidopsis, ```--species maize_v4``` (command line) or ```species = "maize_4"``` (configuration file) for maize genome version 4, and ```--species maize_v5``` (command line) or ```species = "maize_5"``` (configuration file) for maize genome version 5.
+* **Species**: ```--species arabidopsis``` (command line) or ```species = "arabidopsis"``` (configuration file) for Arabidopsis, ```--species maize_v4``` (command line) or ```species = "maize_v4"``` (configuration file) for maize genome version 4, and ```--species maize_v5``` (command line) or ```species = "maize_v5"``` (configuration file) for maize genome version 5.
 
 * **MINI-AC mode**: ```--mode genome_wide``` (command line) or ```mode = "genome_wide"``` (configuration file) for the genome-wide mode, and ```--mode locus_based``` (command line) or ```mode = "locus_based"``` (configuration file) for the locus-based mode.
 
