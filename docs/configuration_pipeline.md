@@ -17,7 +17,7 @@ MINI-AC has several optional parameters that affect the output and some aspects 
 
 ### DEGs and Expressed genes files parameters
 
-* **Species**: ```--species arabidopsis``` (command line) or ```species = "arabidopsis"``` (configuration file) for Arabidopsis, and ```--species maize``` (command line) or ```species = "maize"``` (configuration file) for maize.
+* **Species**: ```--species arabidopsis``` (command line) or ```species = "arabidopsis"``` (configuration file) for Arabidopsis, ```--species maize_v4``` (command line) or ```species = "maize_v4"``` (configuration file) for maize genome version 4, and ```--species maize_v5``` (command line) or ```species = "maize_v5"``` (configuration file) for maize genome version 5.
 
 * **MINI-AC mode**: ```--mode genome_wide``` (command line) or ```mode = "genome_wide"``` (configuration file) for the genome-wide mode, and ```--mode locus_based``` (command line) or ```mode = "locus_based"``` (configuration file) for the locus-based mode.
 
@@ -28,7 +28,7 @@ MINI-AC has several optional parameters that affect the output and some aspects 
 
 ### GRN inference parameters
 
-* **Motif enrichment p-value cut-off**: This is the p-value cut-off that determines which motifs are enriched and used for GRN building. We do not recommend changing this parameter. It has been internally pre-defined for each MINI-AC mode based on the p-value cut-offs with a false discovery rate of 0 (see publication). If wished, however, this p-value can be overwritten in the configuration file by setting the parameter ```P_val``` to whatever value (see below) or in the command line options. For example: ```nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize --P_val 0.05```
+* **Motif enrichment p-value cut-off**: This is the p-value cut-off that determines which motifs are enriched and used for GRN building. We do not recommend changing this parameter. It has been internally pre-defined for each MINI-AC mode based on the p-value cut-offs with a false discovery rate of 0 (see [publication](https://doi.org/10.1111/tpj.16483)). If wished, however, this p-value can be overwritten in the configuration file by setting the parameter ```P_val``` to whatever value (see below) or in the command line options. For example: ```nextflow -C mini_ac.config run mini_ac.nf --mode genome_wide --species maize_v4 --P_val 0.05```
 
 * **Overlap criteria parameter**: By default, MINI-AC computes motif enrichment counting the motif matches within ACRs. This, however, is difficult if the ACRs are shorter than or of similar size to the motifs, which is the case of footprints. In this case, we observed that counting the absolute base-pair overlap is useful. Therefore, in case of using footprints or short ACRs (high resolution), we recommend setting the parameter ```Bps_intersect = true```. Otherwise it should be kept ```Bps_intersect = false```.
 
@@ -162,43 +162,55 @@ There are mainly two cases in which the user might want to alter the internal MI
 
 ### Modification of the motif mapping file for the locus-based mode of maize
 
-By default, the maize MINI-AC locus-based mode runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode of maize, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. For Arabidopsis only the "medium" non-coding genomic space motif mapping file was generated because it already covers 73.5% of the whole non-coding genomic psace (see publication). To use these files, first they need to be downloaded, and then, the corresponding parameters of the motif mapping file (```MotMapsFile_lb```) and the non-coding genomic space coordinates file (```Promoter_file```) should be modified either on the command line or in the configuration file.
+By default, the maize MINI-AC locus-based mode (for both genome versions) runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode of maize, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. For Arabidopsis only the "medium" non-coding genomic space motif mapping file was generated because it already covers 73.5% of the whole non-coding genomic psace (see publication). To use these files, first they need to be downloaded, and then, the corresponding parameters of the motif mapping file (```MotMapsFile_lb```) and the non-coding genomic space coordinates file (```Promoter_file```) should be modified either on the command line or in the configuration file.
 
 To download the maize "large" motif mapping file and coordinates of the "large" non-coding genomic space:
 
+  For maize RefGen_v4 large locus-based mode files
 ```
-wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed
-wget https://zenodo.org/record/7974527/files/zma_promoter_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma/zma_promoter_15kbup_2.5kbdown_sorted.bed
+wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_15kbup_2.5kbdown.bed?download=1 -O data/zma_v4/zma_v4_locus_based_motif_mappings_15kbup_2.5kbdown.bed
+wget https://zenodo.org/record/7974527/files/zma_promoter_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma_v4/zma_v4_promoter_15kbup_2.5kbdown_sorted.bed
+```
+  For maize RefGen_v5 large locus-based mode files
+```
+wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_promoter_15kbup_2.5kbdown_sorted.bed
+wget https://zenodo.org/record/8386283/files/zma_v5_promoter_15kbup_2.5kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_promoter_15kbup_2.5kbdown_sorted.bed
 ```
 
 To download the maize "small" motif mapping file and coordinates of the "small" non-coding genomic space:
 
+  For maize RefGen_v4 small locus-based mode files
 ```
-wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed
-wget https://zenodo.org/record/7974527/files/zma_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
+wget https://zenodo.org/record/7974527/files/zma_locus_based_motif_mappings_1kbup_1kbdown.bed?download=1 -O data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed
+wget https://zenodo.org/record/7974527/files/zma_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed
+```
+  For maize RefGen_v5 small locus-based mode files
+```
+wget https://zenodo.org/record/8386283/files/zma_v5_locus_based_motif_mappings_1kbup_1kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_locus_based_motif_mappings_1kbup_1kbdown.bed
+wget https://zenodo.org/record/8386283/files/zma_v5_promoter_1kbup_1kbdown_sorted.bed?download=1 -O data/zma_v5/zma_v5_promoter_1kbup_1kbdown_sorted.bed
 ```
 Then (using the "small" definition as example), change the parameters on the command line:
 
 ```
-nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --MotMapsFile_lb data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed --Promoter_file data/zma/zma_promoter_1kbup_1kbdown_sorted.bed
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize_v4 --MotMapsFile_lb data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed --Promoter_file data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed
 ```
 or add them to the configuration file, along with the other parameters:
 
 ```nextflow
 params {
     /// [Other parameters...]
-    MotMapsFile_lb = "$projectDir/data/zma/zma_locus_based_motif_mappings_1kbup_1kbdown.bed"
-    Promoter_file = "$projectDir/data/zma/zma_promoter_1kbup_1kbdown_sorted.bed"
+    MotMapsFile_lb = "$projectDir/data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed"
+    Promoter_file = "$projectDir/data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed"
     /// [Other parameters...]
 }
 ```
 
 ### Providing custom gene ontology (GO)-gene annotation file
 
-To perform the functional network analysis, an internal gene-GO annotation file is used for each species. They were obtained as described in [here](../data/ath/README_MINI_ath_2021.1_motif_mappings.txt) for Arabidopsis and in [here](../data/zma/README_MINI_zma_2021.1_motifsMapping.txt) for maize. However, if the user wants to use a custom GO-gene file, the following parameters should be medified either on the command line or in the configuration file.
+To perform the functional network analysis, an internal gene-GO annotation file is used for each species. They were obtained as described in [here](../data/ath/README_MINI_ath_2021.1_motif_mappings.txt) for Arabidopsis and in [here](../data/zma_v4/README_MINI_zma_v4_2021.1_motifsMapping.txt) and [here](../data/zma_v5/README_MINI_zma_v5_2023.1_motifsMapping.txt) for maize. However, if the user wants to use a custom GO-gene file, the following parameters should be medified either on the command line or in the configuration file.
 
 ```
-nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize --Feature_file custom_go_gene.txt
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize_v4 --Feature_file custom_go_gene.txt
 ```
 
 ```nextflow
@@ -208,6 +220,6 @@ params {
     /// [Other parameters...]
 }
 ```
-It is important, however, to make sure that the format is correct. The GO terms should be extended for parental terms, and this file should contain two tab-separated columns (no header),  where the first column is the GO ID, and the second column is the gene ID, as shown [here](../data/zma/zma_go_gene_file.txt). It is vital that the gene IDs are either on Araport11 or AGPv4.
+It is important, however, to make sure that the format is correct. The GO terms should be extended for parental terms, and this file should contain two tab-separated columns (no header),  where the first column is the GO ID, and the second column is the gene ID, as shown [here](../data/zma_v4/zma_v4_go_gene_file.txt). It is vital that the gene IDs are either on Araport11 or AGPv4/NAM5.0.
 
 This same principle can also be applied to other parameters that the user wants to change.
