@@ -58,12 +58,6 @@ nextflow_workflow {
                 Second_gene_annot = true
                 Second_gene_dist = 500
             }
-            workflow {
-                """
-                // define inputs of the workflow here. Example:
-                // input[0] = file("test-file.txt")
-                """
-            }
         }
 
         then {
@@ -125,12 +119,6 @@ nextflow_workflow {
 
                 //// Prediction parameters
                 Bps_intersect = true
-            }
-            workflow {
-                """
-                // define inputs of the workflow here. Example:
-                // input[0] = file("test-file.txt")
-                """
             }
         }
 
@@ -199,12 +187,6 @@ nextflow_workflow {
                 Second_gene_annot = false
                 Second_gene_dist = 0
             }
-            workflow {
-                """
-                // define inputs of the workflow here. Example:
-                // input[0] = file("test-file.txt")
-                """
-            }
         }
 
         then {
@@ -264,12 +246,6 @@ nextflow_workflow {
 
                 //// Prediction parameters
                 Bps_intersect = false
-            }
-            workflow {
-                """
-                // define inputs of the workflow here. Example:
-                // input[0] = file("test-file.txt")
-                """
             }
         }
 
