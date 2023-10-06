@@ -34,7 +34,7 @@ def parseArgs():
     parser.add_argument('-ex', '--expressed_genes_file', nargs = 1, type = str,
                         default = None, help = '',
                         metavar = 'List of genes expressed in biological context of experiment')
-
+    
     args = parser.parse_args()
 
     return args
@@ -94,8 +94,11 @@ with open(go_enrichment_file, 'r') as f:
             
 if not GO_info:
     empty_table = pd.DataFrame(["### This dataset did not yield any GO enrichment"])
-    with pd.ExcelWriter(output_file) as writer:
-        empty_table.to_excel(writer, index = False, header = False)
+    if(output_file.endswith('.csv')):
+        empty_table.to_csv(output_file, index = False, header = False)
+    else:
+        with pd.ExcelWriter(output_file) as writer:
+            empty_table.to_excel(writer, index = False, header = False)
     sys.exit()
     
 ### Integrating data ###
@@ -130,5 +133,8 @@ go_df = go_df.rename(columns = {'gene_name': 'Gene name', 'description': 'Gene d
 
 ### Writing output file ###
 
-with pd.ExcelWriter(output_file) as writer:
-    go_df.to_excel(writer, index = False)
+if (output_file.endswith('.csv')):
+    go_df.to_csv(output_file, index = False)
+else:
+    with pd.ExcelWriter(output_file) as writer:
+        go_df.to_excel(writer, index = False)

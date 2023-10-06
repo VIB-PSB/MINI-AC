@@ -104,8 +104,11 @@ enr_stats = enr_stats[enr_stats.adj_pval <= pval]
 
 if enr_stats.empty:
     empty_table = pd.DataFrame(["### This dataset did not yield any motif enrichment"])
-    with pd.ExcelWriter(output_file) as writer:
-        empty_table.to_excel(writer, index = False, header = False)
+    if(output_file.endswith('.csv')):
+        empty_table.to_csv(output_file, index = False, header = False)
+    else:
+        with pd.ExcelWriter(output_file) as writer:
+            empty_table.to_excel(writer, index = False, header = False)
     sys.exit()
 
 for col in enr_stats.select_dtypes(include = ['float']).columns:
@@ -122,11 +125,11 @@ enr_stats = enr_stats.merge(tf_fam, how = 'left', on = 'gene_id').drop('motif_id
 if expressed_genes_file:
     enr_stats['Any expressed gene'] = enr_stats.gene_id.isin(exp_genes)
 
-    enr_stats = enr_stats.groupby(['dataset', 'input_total_peaks', 'peaks_in_promoter', 'motif','real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(list(set(x))), 'Any expressed gene': any}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
+    enr_stats = enr_stats.groupby(['dataset', 'input_total_peaks', 'peaks_in_promoter', 'motif','real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(sorted(set(x))), 'Any expressed gene': any}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
     
 if not expressed_genes_file:
 
-    enr_stats = enr_stats.groupby(['dataset', 'input_total_peaks', 'peaks_in_promoter', 'motif', 'real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(list(set(x)))}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
+    enr_stats = enr_stats.groupby(['dataset', 'input_total_peaks', 'peaks_in_promoter', 'motif', 'real_int', 'shuffled_int', 'p_val', 'enr_fold', 'adj_pval', 'pi_value', 'rank_pi_val']).agg({'gene_id': ','.join, 'family': lambda x: ','.join(sorted(set(x)))}).reset_index().sort_values(by = 'rank_pi_val').drop('gene_id', axis = 1)
 
 enr_stats = enr_stats.merge(mot_tf, how = 'right', left_on = 'motif', right_on = 'motif_id').drop('motif_id', axis = 1)
 
@@ -146,5 +149,8 @@ enr_stats = enr_stats.rename(columns = {'dataset': 'Dataset name', 'input_total_
 
 ### Writing output file ###
 
-with pd.ExcelWriter(output_file) as writer:
-    enr_stats.to_excel(writer, index = False)
+if (output_file.endswith('.csv')):
+    enr_stats.to_csv(output_file, index = False)
+else:
+    with pd.ExcelWriter(output_file) as writer:
+        enr_stats.to_excel(writer, index = False)

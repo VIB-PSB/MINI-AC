@@ -7,6 +7,8 @@ process get_ACR_shufflings{
     path acr_input_file
     path faix
     path non_cod_genome
+    val count
+    val seed
 
     output:
     path "${acr_input_file.baseName}_allshuff_sorted.bed", emit: shufflings
@@ -15,6 +17,11 @@ process get_ACR_shufflings{
 
     script:
 
+    seed_arg = ''
+    if (seed != -1) {
+        seed_arg = "-seed $seed"
+    }
+
     """
     cut -f1,2,3 ${acr_input_file} | sort-bed - | bedops -m - > ${acr_input_file.baseName}_3col.bed
     
@@ -22,11 +29,9 @@ process get_ACR_shufflings{
 
     bedtools subtract -a $non_cod_genome -b ${acr_input_file.baseName}_3col.bed > shuffling_space.bed
 
-    for i in {1..1000};
+    for i in {1..$count};
     do
-      
-       bedtools shuffle -i ${acr_input_file.baseName}_3col.bed -g $faix -incl shuffling_space.bed | sed "s/\$/\t\$i/" >> ${acr_input_file.baseName}_allshuff.bed
-
+       bedtools shuffle $seed_arg -i ${acr_input_file.baseName}_3col.bed -g $faix -incl shuffling_space.bed | sed "s/\$/\t\$i/" >> ${acr_input_file.baseName}_allshuff.bed
     done
    
     sort-bed --max-mem 2G ${acr_input_file.baseName}_allshuff.bed > ${acr_input_file.baseName}_allshuff_sorted.bed
@@ -43,6 +48,7 @@ process getStats {
    path get_stats_script
    path mot_tf
    val outDir
+   val shuffle_count
 
    output:
    path "${shuffled_real_acr.baseName}_motif_int_data.txt", emit: raw_stats
@@ -61,7 +67,7 @@ process getStats {
 
    num_peaks=\$(grep -c "real_ints" $shuffled_real_acr)
 
-   OMP_NUM_THREADS=1 python3 $get_stats_script ${shuffled_real_acr.baseName}_motif_int_data.txt \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt
+   OMP_NUM_THREADS=1 python3 $get_stats_script ${shuffled_real_acr.baseName}_motif_int_data.txt \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt $shuffle_count
 
    """
 
@@ -76,6 +82,7 @@ process getStats_bps {
    path get_stats_script_bps
    path mot_tf
    val outDir
+   val shuffle_count
 
    output:
    path "${shuffled_real_acr.baseName}_int_bps_data.bed", emit: raw_stats
@@ -94,7 +101,7 @@ process getStats_bps {
 
    num_peaks=\$(grep -c "real_ints" $shuffled_real_acr)
 
-   OMP_NUM_THREADS=1 python3 $get_stats_script_bps ${shuffled_real_acr.baseName}_int_bps_data.bed \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt
+   OMP_NUM_THREADS=1 python3 $get_stats_script_bps ${shuffled_real_acr.baseName}_int_bps_data.bed \$num_peaks $mot_tf ${shuffled_real_acr.baseName}_miniac_stats.txt $shuffle_count
    """
 
 }
@@ -191,14 +198,11 @@ process GOenrichment{
 
         grep -v '#' ${acr_file_name}_GO_enrichment_rawOut.txt > ${acr_file_name}_GO_enrichment_noheader.txt
 
-        mkdir ontologies
-        mv $obo_file ontologies
-
-        python $add_go_names ${acr_file_name}_GO_enrichment_noheader.txt | sort -g -k4,4 > ${acr_file_name}_GO_enrichment_go_names.txt
+        python $add_go_names ${acr_file_name}_GO_enrichment_noheader.txt $obo_file | sort -g -k4,4 > ${acr_file_name}_GO_enrichment_go_names.txt
 
         awk 'BEGIN {FS="\t"; OFS="\t"}; {print \$2, \$1}' ${acr_file_name}_GO_enrichment_go_names.txt > go_gene.txt
 
-         python $reduce_go go_gene.txt > go_gene_reduced.txt
+         python $reduce_go go_gene.txt $obo_file > go_gene_reduced.txt
 
         python3 $filter_reduced_script go_gene_reduced.txt ${acr_file_name}_GO_enrichment_go_names.txt ${acr_file_name}_GO_enrichment_reduced.txt
 
@@ -233,12 +237,13 @@ process getIntegrativeOutputs {
    path script_go
    path script_net
    val outDir
+   val csvOutput            // set to true for CSV instead of Excel output
 
 
    output:
-   path "${acr_file_name}_TF_centric.xlsx"
-   path "${acr_file_name}_motif_centric.xlsx"
-   path "${acr_file_name}_GO_enrichment.xlsx"
+   path "${acr_file_name}_TF_centric.*"
+   path "${acr_file_name}_motif_centric.*"
+   path "${acr_file_name}_GO_enrichment.*"
    path "${acr_file_name}_functional_network.txt"
    path "${acr_file_name}_node_attributes.txt"
 
@@ -246,13 +251,14 @@ process getIntegrativeOutputs {
    script:
    de_genes_table = de_genes_bool == true ? "-de $de_genes" : ''
    exp_genes_table = exp_genes_bool == true ? "-ex $exp_genes" : ''
+   output_extension = csvOutput ? 'csv' : 'xlsx'
 
    """
-   OMP_NUM_THREADS=1 python3 $script_tfs $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_TF_centric.xlsx $de_genes_table $exp_genes_table
+   OMP_NUM_THREADS=1 python3 $script_tfs $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_TF_centric.${output_extension} $de_genes_table $exp_genes_table
 
-   OMP_NUM_THREADS=1 python3 $script_motifs $enr_stats $mot_tf $tf_fam $info_file $pval ${acr_file_name}_motif_centric.xlsx $de_genes_table $exp_genes_table
+   OMP_NUM_THREADS=1 python3 $script_motifs $enr_stats $mot_tf $tf_fam $info_file $pval ${acr_file_name}_motif_centric.${output_extension} $de_genes_table $exp_genes_table
 
-   OMP_NUM_THREADS=1 python3 $script_go $go_enr $tf_fam $info_file ${acr_file_name}_GO_enrichment.xlsx $de_genes_table $exp_genes_table
+   OMP_NUM_THREADS=1 python3 $script_go $go_enr $tf_fam $info_file ${acr_file_name}_GO_enrichment.${output_extension} $de_genes_table $exp_genes_table
 
    OMP_NUM_THREADS=1 python3 $script_net $enr_stats $network $go_enr $mot_tf $tf_fam $info_file $pval ${acr_file_name}_functional_network.txt ${acr_file_name}_node_attributes.txt $de_genes_table $exp_genes_table
 
@@ -283,6 +289,9 @@ workflow genome_wide_miniac {
     OBO_file
     TF_fam_file
     Genes_metadata
+    Shuffle_count
+    Shuffle_seed
+    Csv_output
 
     main:
     
@@ -290,7 +299,7 @@ workflow genome_wide_miniac {
     
     ACR_files = Channel.fromPath("${ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${ACR_dir}" }
     
-    get_ACR_shufflings(ACR_files, Faix_file, Non_cod_genome)    
+    get_ACR_shufflings(ACR_files, Faix_file, Non_cod_genome, Shuffle_count, Shuffle_seed)    
 
     acr_shufflings_ch = get_ACR_shufflings.out.shufflings
 
@@ -305,7 +314,7 @@ workflow genome_wide_miniac {
 
         script_proc_stats = "${projectDir}/bin/processStats_gw.py"
 
-        getStats(input_stats, script_proc_stats, Motif_tf_file, OutDir)
+        getStats(input_stats, script_proc_stats, Motif_tf_file, OutDir, Shuffle_count)
 
         stats_ch = getStats.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
@@ -316,7 +325,7 @@ workflow genome_wide_miniac {
         
         script_proc_stats_bps = "${projectDir}/bin/processStats_bps_gw.py"
 
-        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, OutDir)
+        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, OutDir, Shuffle_count)
 
         stats_ch = getStats_bps.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
@@ -426,6 +435,7 @@ workflow genome_wide_miniac {
     script_go_file = "${projectDir}/bin/getGO_xlsx_gw.py"
     script_net_files = "${projectDir}/bin/getNetVisualizationOutput_gw.py"
 
-    getIntegrativeOutputs(int_input, Motif_tf_file, TF_fam_file, Genes_metadata, P_val, Filter_set_genes, DE_genes, script_tf_file, script_motif_file, script_go_file, script_net_files, OutDir)
+    getIntegrativeOutputs(int_input, Motif_tf_file, TF_fam_file, Genes_metadata, P_val, Filter_set_genes, DE_genes,
+                          script_tf_file, script_motif_file, script_go_file, script_net_files, OutDir, Csv_output)
 
         }
