@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Prepare nf-test config file
-      run: cat .github/workflows/test.config | sed "s@%TMP%@${RUNNER_TEMP}@g" > tests/nextflow.config
+      run: sed -i -e "s@%TMP%@${RUNNER_TEMP}@g" tests/nextflow.config
 
     - uses: actions/setup-java@v3
       with:
@@ -38,10 +38,10 @@ jobs:
 
     - name: Fetch motif mapping files
       run: |
-        curl -k -o tests/data/zma_v4/zma_v4_genome_wide_motif_mappings_chr1.bed https://floppy.psb.ugent.be/index.php/s/NekMYztyxEnsQiY/download/zma_v4_genome_wide_motif_mappings_chr1.bed
-        curl -k -o tests/data/zma_v4/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed https://floppy.psb.ugent.be/index.php/s/r2wQmFjPy79qSp7/download/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed
-        curl -k -o tests/data/ath/ath_genome_wide_motif_mappings.bed https://floppy.psb.ugent.be/index.php/s/iaZPwdrRGe3YDdK/download/ath_genome_wide_motif_mappings.bed
-        curl -k -o tests/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://floppy.psb.ugent.be/index.php/s/qcQ7KndzHaSpd9e/download/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
+        curl -k -o tests/data/zma_v4_chr1/zma_v4_genome_wide_motif_mappings_chr1.bed https://floppy.psb.ugent.be/index.php/s/NekMYztyxEnsQiY/download/zma_v4_genome_wide_motif_mappings_chr1.bed
+        curl -k -o tests/data/zma_v4_chr1/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed https://floppy.psb.ugent.be/index.php/s/r2wQmFjPy79qSp7/download/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed
+        curl -k -o data/ath/ath_genome_wide_motif_mappings.bed https://floppy.psb.ugent.be/index.php/s/iaZPwdrRGe3YDdK/download/ath_genome_wide_motif_mappings.bed
+        curl -k -o data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://floppy.psb.ugent.be/index.php/s/qcQ7KndzHaSpd9e/download/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 
     - name: Run nf-test
       shell: bash
