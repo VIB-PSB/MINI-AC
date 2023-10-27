@@ -22,14 +22,14 @@ nextflow_workflow {
                 Shuffle_seed = 42
 
                 //// Hard code data paths
-                MotMapsFile_gw = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_genome_wide_motif_mappings_chr1.bed"
+                MotMapsFile = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_genome_wide_motif_mappings_chr1.bed"
                 Non_cod_genome = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_noncod_merged_chr1.bed"
                 Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
                 Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
                 Genes_coords = "${baseDir}/data/zma_v4/zma_v4_genes_coords_sorted.bed"
                 Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/zma_v4/maize_v4_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/zma_v4_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
@@ -91,13 +91,13 @@ nextflow_workflow {
                 Shuffle_seed = 42
 
                 //// Hard code data paths
-                MotMapsFile_lb = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed"
+                MotMapsFile = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed"
                 Promoter_file = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_promoter_5kbup_1kbdown_sorted_chr1.bed"
                 Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
                 Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
                 Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/zma_v4/maize_v4_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/zma_v4_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
@@ -153,14 +153,14 @@ nextflow_workflow {
                 Shuffle_seed = 42
 
                 //// Hard code data paths
-                MotMapsFile_gw = "${baseDir}/data/ath/ath_genome_wide_motif_mappings.bed"
+                MotMapsFile = "${baseDir}/data/ath/ath_genome_wide_motif_mappings.bed"
                 Non_cod_genome = "${baseDir}/data/ath/ath_noncod_merged.bed"
                 Faix_file = "${baseDir}/data/ath/ath.fasta.fai"
                 Motif_tf_file = "${baseDir}/data/ath/ath_motif_TF_file.txt"
                 Genes_coords = "${baseDir}/data/ath/ath_genes_coords_sorted.bed"
                 Feature_file = "${baseDir}/data/ath/ath_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/ath/ath_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/ath/arabidopsis_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/ath/ath_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
@@ -220,13 +220,13 @@ nextflow_workflow {
                 Shuffle_seed = 42
 
                 //// Hard code data paths
-                MotMapsFile_lb = "${baseDir}/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed"
+                MotMapsFile = "${baseDir}/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed"
                 Promoter_file = "${baseDir}/data/ath/ath_promoter_5kbup_1kbdown_sorted.bed"
                 Faix_file = "${baseDir}/data/ath/ath.fasta.fai"
                 Motif_tf_file = "${baseDir}/data/ath/ath_motif_TF_file.txt"
                 Feature_file = "${baseDir}/data/ath/ath_go_gene_file.txt"
                 TF_fam_file = "${baseDir}/data/ath/ath_TF_family_file.txt"
-                Genes_metadata = "${baseDir}/data/ath/arabidopsis_gene_metadata_file.txt"
+                Genes_metadata = "${baseDir}/data/ath/ath_gene_metadata_file.txt"
                 OBO_file = "${baseDir}/data/ontologies/go.obo"
 
                 //// Output folder
