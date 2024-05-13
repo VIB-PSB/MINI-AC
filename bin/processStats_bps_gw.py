@@ -26,6 +26,10 @@ def parseArgs():
     parser.add_argument('output', nargs = 1, type = str,
                     help = '',
                     metavar = 'output_file')
+    
+    parser.add_argument('shuffle_count', nargs = 1, type = int,
+                        help = '',
+                        metavar = 'Number of ACR shuffles that were performed for background generation')
 
     args = parser.parse_args()
 
@@ -37,6 +41,7 @@ raw_file = args.stats_input_file[0]
 out_file = args.output[0]
 cns_list_file = args.cns_sets_list[0]
 total_peaks = args.num_peaks[0]
+shuffle_count = args.shuffle_count[0]
 
 file_name = "_".join(raw_file.split("/")[-1].split("_")[0:-5])
 
@@ -77,26 +82,28 @@ for cns_set in cns_list:
     try:
         shuff_overlap = np.array(shuff_dict[cns_set])
     except KeyError:
-        shuff_overlap = np.zeros(1000, dtype = int)
+        shuff_overlap = np.zeros(shuffle_count, dtype = int)
     try:
         real_overlap = real_dict[cns_set]
     except KeyError:
         real_overlap = 0
-    if len(shuff_overlap) < 1000:
-        zero_pad = np.zeros(1000 - len(shuff_overlap), dtype = int)
+    if len(shuff_overlap) < shuffle_count:
+        zero_pad = np.zeros(shuffle_count - len(shuff_overlap), dtype = int)
         shuff_overlap = np.concatenate([shuff_overlap, zero_pad])
     else:
         pass
-    p_val_1000 = len(shuff_overlap[shuff_overlap >= real_overlap])
-    if p_val_1000 == 0:
-        p_val_1000 = 0.9
+    times_above_real_overlap = len(shuff_overlap[shuff_overlap >= real_overlap])
+    if times_above_real_overlap == 0:
+        times_above_real_overlap = 0.9
     median = np.median(shuff_overlap)
     if real_overlap == 0 or median == 0:
         enrichment_fold = 0
     else:
         enrichment_fold = real_overlap / median
+
+    p_val = times_above_real_overlap/shuffle_count
     
-    stats[(file_name, cns_set)] = [int(total_peaks), real_overlap, median, (p_val_1000/1000), enrichment_fold]
+    stats[(file_name, cns_set)] = [int(total_peaks), real_overlap, median, p_val, enrichment_fold]
 
 data_df = pd.DataFrame.from_dict(stats).T
 data_df = data_df.reset_index()
@@ -105,5 +112,5 @@ data_df = data_df[['dataset', 'input_total_peaks', 'motif', 'real_int', 'shuffle
 FDR = multipletests(data_df['p_val'], method = 'fdr_bh', alpha = 0.05)
 data_df.insert(6, 'adj_pval', FDR[1])
 
-data_df.to_csv(out_file, sep = "\t", index = None, na_rep = "nan")
+data_df.sort_values(by = 'motif').to_csv(out_file, sep = "\t", index = None, na_rep = "nan")
 
