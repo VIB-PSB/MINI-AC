@@ -263,12 +263,11 @@ process getIntegrativeOutputs {
 workflow genome_wide_miniac {
     take:
     params
+    ACR_files
 
     main:
     
     if (!file(params.MotMapsFile).exists()) { error "Please make sure that you downloaded the motif mapping files as described in the documentation." }
-    
-    ACR_files = Channel.fromPath("${params.ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${params.ACR_dir}" }
     
     get_ACR_shufflings(ACR_files, params.Faix_file, params.Non_cod_genome, params.Shuffle_count, params.Shuffle_seed)    
 
