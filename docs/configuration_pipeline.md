@@ -162,7 +162,7 @@ There are mainly two cases in which the user might want to alter the internal MI
 
 ### Modification of the motif mapping file for the locus-based mode of maize
 
-By default, the maize MINI-AC locus-based mode (for both genome versions) runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode of maize, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. For Arabidopsis only the "medium" non-coding genomic space motif mapping file was generated because it already covers 73.5% of the whole non-coding genomic psace (see publication). To use these files, first they need to be downloaded, and then, the corresponding parameters of the motif mapping file (```MotMapsFile_lb```) and the non-coding genomic space coordinates file (```Promoter_file```) should be modified either on the command line or in the configuration file.
+By default, the maize MINI-AC locus-based mode (for both genome versions) runs on the "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, we generated two additional motif mapping files for the locus-based mode of maize, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. For Arabidopsis only the "medium" non-coding genomic space motif mapping file was generated because it already covers 73.5% of the whole non-coding genomic psace (see publication). To use these files, first they need to be downloaded, and then, the corresponding parameters of the motif mapping file (```MotMapsFile```) and the non-coding genomic space coordinates file (```Promoter_file```) should be modified either on the command line or in the configuration file.
 
 To download the maize "large" motif mapping file and coordinates of the "large" non-coding genomic space:
 
@@ -192,14 +192,14 @@ wget https://zenodo.org/record/8386283/files/zma_v5_promoter_1kbup_1kbdown_sorte
 Then (using the "small" definition as example), change the parameters on the command line:
 
 ```
-nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize_v4 --MotMapsFile_lb data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed --Promoter_file data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed
+nextflow -C mini_ac.config run mini_ac.nf --mode locus_based --species maize_v4 --MotMapsFile data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed --Promoter_file data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed
 ```
 or add them to the configuration file, along with the other parameters:
 
 ```nextflow
 params {
     /// [Other parameters...]
-    MotMapsFile_lb = "$projectDir/data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed"
+    MotMapsFile = "$projectDir/data/zma_v4/zma_v4_locus_based_motif_mappings_1kbup_1kbdown.bed"
     Promoter_file = "$projectDir/data/zma_v4/zma_v4_promoter_1kbup_1kbdown_sorted.bed"
     /// [Other parameters...]
 }
