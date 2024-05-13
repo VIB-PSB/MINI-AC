@@ -18,8 +18,8 @@ nf-test
 tests/outputs/
 
 # ignore SLURM output and error files
-slurm.*.out
-slurm.*.err
+slurm*.out
+slurm*.err
 
 # ignore jupyter notebook checkpoints
 .ipynb_checkpoints/
