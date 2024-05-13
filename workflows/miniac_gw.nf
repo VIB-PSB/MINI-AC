@@ -57,12 +57,6 @@ process getStats {
    script:
 
    """
-   #bedmap --delim '\t' --fraction-ref 0.5 --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
-
-   #bedmap --delim '\t' --fraction-either 0.5 --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
-
-   #bedmap --delim '\t' --bp-ovr 5 --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
-
    bedmap --delim '\t' --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
 
    num_peaks=\$(grep -c "real_ints" $shuffled_real_acr)
