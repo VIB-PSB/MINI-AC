@@ -57,12 +57,6 @@ process getStats {
    script:
 
    """
-   #bedmap --delim '\t' --fraction-ref 0.5 --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
-
-   #bedmap --delim '\t' --fraction-either 0.5 --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
-
-   #bedmap --delim '\t' --bp-ovr 5 --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
-
    bedmap --delim '\t' --echo --echo-map-id --skip-unmapped $gw_motmaps $shuffled_real_acr | awk '{n=split(\$0,a,";"); split(a[1],b,"\t"); print b[4], b[5]} n>1 {for (i=2;i<=n;i++) print b[4], a[i]}' | sort | uniq -c > ${shuffled_real_acr.baseName}_motif_int_data.txt
 
    num_peaks=\$(grep -c "real_ints" $shuffled_real_acr)
@@ -268,53 +262,30 @@ process getIntegrativeOutputs {
 
 workflow genome_wide_miniac {
     take:
-    OutDir
-    ACR_dir
-    Filter_set_genes
-    Set_genes_dir
-    One_filtering_set
-    DE_genes
-    DE_genes_dir
-    One_DE_set
-    P_val
-    Bps_intersect
-    Second_gene_annot
-    Second_gene_dist
-    MotMapsFile_gw
-    Non_cod_genome
-    Faix_file
-    Motif_tf_file
-    Genes_coords
-    Feature_file
-    OBO_file
-    TF_fam_file
-    Genes_metadata
-    Shuffle_count
-    Shuffle_seed
-    Csv_output
+    params
 
     main:
     
-    if (!file(MotMapsFile_gw).exists()) { error "Please make sure that you downloaded the motif mapping files as described in the documentation." }
+    if (!file(params.MotMapsFile).exists()) { error "Please make sure that you downloaded the motif mapping files as described in the documentation." }
     
-    ACR_files = Channel.fromPath("${ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${ACR_dir}" }
+    ACR_files = Channel.fromPath("${params.ACR_dir}/*.bed").ifEmpty { error "No *.bed files could be found in the specified ACR directory ${params.ACR_dir}" }
     
-    get_ACR_shufflings(ACR_files, Faix_file, Non_cod_genome, Shuffle_count, Shuffle_seed)    
+    get_ACR_shufflings(ACR_files, params.Faix_file, params.Non_cod_genome, params.Shuffle_count, params.Shuffle_seed)    
 
     acr_shufflings_ch = get_ACR_shufflings.out.shufflings
 
     parsed_acr = get_ACR_shufflings.out.acr_input
                                         .map {n -> [n.baseName.split("_")[0..-2].join("_"), n]}
 
-    motmaps_ch = Channel.fromPath(MotMapsFile_gw)
+    motmaps_ch = Channel.fromPath(params.MotMapsFile)
 
     input_stats = acr_shufflings_ch.combine(motmaps_ch)
 
-    if (Bps_intersect == false) {
+    if (params.Bps_intersect == false) {
 
         script_proc_stats = "${projectDir}/bin/processStats_gw.py"
 
-        getStats(input_stats, script_proc_stats, Motif_tf_file, OutDir, Shuffle_count)
+        getStats(input_stats, script_proc_stats, params.Motif_tf_file, params.OutDir, params.Shuffle_count)
 
         stats_ch = getStats.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
@@ -325,7 +296,7 @@ workflow genome_wide_miniac {
         
         script_proc_stats_bps = "${projectDir}/bin/processStats_bps_gw.py"
 
-        getStats_bps(input_stats, script_proc_stats_bps, Motif_tf_file, OutDir, Shuffle_count)
+        getStats_bps(input_stats, script_proc_stats_bps, params.Motif_tf_file, params.OutDir, params.Shuffle_count)
 
         stats_ch = getStats_bps.out.proc_stats
                     .map { n -> [n.BaseName.split("_")[0..-5].join("_"), n]}
@@ -337,18 +308,19 @@ workflow genome_wide_miniac {
 
     script_getnetwork = "${projectDir}/bin/getNetwork_gw.py"
 
-    getNetwork(stats_acr_motmaps_ch, Genes_coords, script_getnetwork, Motif_tf_file, Second_gene_dist, Second_gene_annot, P_val, OutDir)
+    getNetwork(stats_acr_motmaps_ch, params.Genes_coords, script_getnetwork, params.Motif_tf_file,
+               params.Second_gene_dist, params.Second_gene_annot, params.P_val, params.OutDir)
 
     networks = getNetwork.out
 
-    if (Filter_set_genes == true) {
+    if (params.Filter_set_genes == true) {
 
         filteringScript = "${projectDir}/bin/filterNetwork_gw.py"
 
-        filt_set_files = Channel.fromPath("${Set_genes_dir}/*.txt")
-                .ifEmpty { error "Cannot find any directory: ${Set_genes_dir}" }
+        filt_set_files = Channel.fromPath("${params.Set_genes_dir}/*.txt")
+                .ifEmpty { error "Cannot find any directory: ${params.Set_genes_dir}" }
 
-        if (One_filtering_set == true) {
+        if (params.One_filtering_set == true) {
 
             networks_gene_set = networks.combine(filt_set_files)
 
@@ -373,7 +345,7 @@ workflow genome_wide_miniac {
 
                                             }
 
-        filterSetOfGenes(filteringScript, networks_gene_set, OutDir)
+        filterSetOfGenes(filteringScript, networks_gene_set, params.OutDir)
 
         net_tuple = filterSetOfGenes.out
                     .map { n -> [n.BaseName.split("_")[0..-3].join("_"), n]}
@@ -395,21 +367,20 @@ workflow genome_wide_miniac {
     script_add_go_names = "${projectDir}/bin/add_go_names.py"
     script_filter_reduced = "${projectDir}/bin/FilterReduceGO.py"
 
-    GOenrichment(net_tuple, Feature_file,
-                script_enricher, script_reduce_go,
-                script_add_go_names, OBO_file, script_filter_reduced, OutDir)
+    GOenrichment(net_tuple, params.Feature_file, script_enricher, script_reduce_go,
+                script_add_go_names, params.OBO_file, script_filter_reduced, params.OutDir)
 
     go_tuple = GOenrichment.out
             .map { n -> [n.BaseName.split("_")[0..-3].join("_"), n]}
 
     int_input = int_input.join(go_tuple)
 
-    if (DE_genes == true) {
+    if (params.DE_genes == true) {
 
-        de_files = Channel.fromPath("${DE_genes_dir}/*.txt")
-                                .ifEmpty { error "Cannot find any directory: ${Set_genes_dir}" }
+        de_files = Channel.fromPath("${params.DE_genes_dir}/*.txt")
+                                .ifEmpty { error "Cannot find any directory: ${params.Set_genes_dir}" }
 
-        if (One_DE_set == true) {
+        if (params.One_DE_set == true) {
 
             int_input = int_input.combine(de_files)
 
@@ -435,7 +406,8 @@ workflow genome_wide_miniac {
     script_go_file = "${projectDir}/bin/getGO_xlsx_gw.py"
     script_net_files = "${projectDir}/bin/getNetVisualizationOutput_gw.py"
 
-    getIntegrativeOutputs(int_input, Motif_tf_file, TF_fam_file, Genes_metadata, P_val, Filter_set_genes, DE_genes,
-                          script_tf_file, script_motif_file, script_go_file, script_net_files, OutDir, Csv_output)
+    getIntegrativeOutputs(int_input, params.Motif_tf_file, params.TF_fam_file, params.Genes_metadata, params.P_val,
+                          params.Filter_set_genes, params.DE_genes, script_tf_file, script_motif_file, script_go_file,
+                          script_net_files, params.OutDir, params.Csv_output)
 
         }
