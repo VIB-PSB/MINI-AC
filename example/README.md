@@ -168,7 +168,7 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 
 ## iCREs-based MINI-AC
 
-The outputs of the iCREs-based MINI-AC runs are identical to the default MINI-AC, as it can be seen in the folder [outputs_icres](outputs_icres). However, two input parameters change:
+The outputs of the iCREs-based MINI-AC runs are identical to the default MINI-AC, as it can be seen in the folder [outputs_icres](outputs_icres) (not available until publication). However, two input parameters change:
 
 * Instead of providing an input BED file with genomic coordinates, the input should be a list of gene IDs from the version V4 or V5 of the maize genome, as in this [example](./inputs/gene_set_files/UP_gene_set.txt).
 

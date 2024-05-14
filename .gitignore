@@ -12,7 +12,10 @@ singularity_cache/
 *icres*.bed
 
 # ignore iCREs output files (confidentiality until publication)
-outputs_icres
+example/outputs_icres/enrichment_stats
+example/outputs_icres/GO_enrichment
+example/outputs_icres/integrative_outputs
+example/outputs_icres/networks
 
 # ignore nf-test executable
 nf-test
