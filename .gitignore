@@ -8,6 +8,12 @@ singularity_cache/
 # ignore large motif mapping files
 *motif_mappings*.bed
 
+# ignore icres files (too large for repo)
+*icres*.bed
+
+# ignore iCREs output files (confidentiality until publication)
+outputs_icres
+
 # ignore nf-test executable
 nf-test
 
