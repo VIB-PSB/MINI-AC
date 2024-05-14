@@ -13,11 +13,9 @@ MINI-AC uses a dual license to offer the distribution of the software under a pr
 
 Currently, two species are supported by MINI-AC: *Arabidopsis thaliana* and two maize genome versions (B73 RefGen_v4 and B73 RefGen_v5). Additionally, it can be run on two different modes depending on the non-coding genomic space considered for motif mapping:
 * **genome-wide**: strategy where the whole non-coding genome is considered for motif mappings. It captures all the ACRs of the input dataset for the GRN prediction, which is adviced when working with species with long intergenic regions and distal regulatory elements, like maize for example.
-* **locus-based**: strategy where the neighboring sequences within a pre-defined window of each locus, and introns are considered for motif mapping. It only captures the proximal ACRs of the input dataset within the pre-defined window, which can lead to missing distal ACRs in species with long intergenic regions and distal regulatory elements. However, it has the advantage of having a higher density of TFBS, which are mostly located close to the genes. The locus-based mode uses a "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, for maize (but not for Arabidopsis; see publication), we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, check  the instructions [here](docs/configuration_pipeline.md).
-
+* **locus-based**: strategy where the neighboring sequences within a pre-defined window of each locus, and introns are considered for motif mapping. It only captures the proximal ACRs of the input dataset within the pre-defined window, which can lead to missing distal ACRs in species with long intergenic regions and distal regulatory elements. However, it has the advantage of having a higher density of TFBS, which are mostly located close to the genes. The locus-based mode uses a "medium" non-coding genomic space, which corresponds, for each locus in the genome, to the 5kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns. However, for maize (but not for Arabidopsis; see publication), we generated two additional motif mapping files for the locus-based mode, that cover "large" (15kb upstream of the translation start site, the 2.5kb downstream of the translation end site, and the introns), and "small" (1kb upstream of the translation start site, the 1kb downstream of the translation end site, and the introns) non-coding genomic spaces. To use these files, check  the instructions [here](docs/pipeline_configuration.md).
 
 A detailed overview of the necessary input files and expected output files can be found in this [example](example), done on **maize V4 with the genome-wide mode**, and using as input a single-cell-derived ACR dataset of mesophyll and bundle sheath.
-
 
 ## **Inputs**
 * **MINI-AC mode**: genome-wide or locus-based.
@@ -63,8 +61,7 @@ NOTE: MINI-AC was developed using the following versions: Nextflow version 21.10
 
 ## Usage
 
-
-Define the paths with the input files and the desired parameters setting in the [configuration file](docs/configuration_pipeline.md), and run it executing the following Nextflow command:
+Define the paths with the input files and the desired parameters setting in the [configuration file](docs/pipeline_configuration.md), and run it executing the following Nextflow command:
 
 ```shell
 nextflow -C mini_ac.config run mini_ac.nf --mode <genome_wide|locus_based> --species <arabidopsis|maize_v4|maize_v5>
@@ -72,6 +69,24 @@ nextflow -C mini_ac.config run mini_ac.nf --mode <genome_wide|locus_based> --spe
  
 Having problems running MINI-AC? Check the [FAQ](docs/FAQ.md).
 
+## iCREs-based MINI-AC [NOT AVAILABLE UNTIL PUBLICATION]
+
+Given the amount of resources available to profile regulatory DNA in maize, we curated a collection of integrated cis-regulatory elements (iCREs) by combining and comparing different CRE-profiling methods (details to be published).
+
+We implemented a new framework in which it is possible to run MINI-AC given a list of maize genes. It works by retrieving the genomic coordinates of the iCREs associated with genes of interest, and submitting them to motif enrichment and GRN inference using the genome-wide mode of MINI-AC. iCREs-based MINI-AC can only be run for maize, and not for Arabidopsis. In addition, we offer different sets of iCREs that are used in the run: maxF1 (```maxf1```) or all (```all```). For details about their differences check [the input documentation](./example/README.md).
+
+To download the iCREs files, the following commands should be executed on the **top-level directory of the repository**:
+
+```shell
+NOT AVAILABLE UNTIL PUBLICATION
+```
+
+To run iCREs-based MINI-AC, the [configuration file](./mini_ac_icres.config) should be 
+prepared as explained in [here](./docs/pipeline_configuration.md). Only two parameters change in comparison to the regular MINI-AC runs. Instead of providing a BED file with ACR genomic coordinates, a list of gene IDs from the maize genome version V4 or V5 should be provided, as exemplified [here](./example/inputs/gene_set_files/UP_gene_set.txt). In addition, an specific iCREs set should be specified (maxF1 or all). Next, the following Nextflow command should be executed:
+
+```shell
+nextflow -C mini_ac_icres.config run mini_ac_icres.nf --icres_set <all|maxf1> --species <maize_v4|maize_v5>
+```
 
 ## Support
 
@@ -81,7 +96,7 @@ Should you encounter a bug or have any questions or suggestions, please [open an
 
 When publishing results generated using MINI-AC, please cite:
 
-Manosalva Pérez, Nicolás, Camilla Ferrari, Julia Engelhorn, Thomas Depuydt, Hilde Nelissen, Thomas Hartwig, and Klaas Vandepoele. “MINI-AC: Inference of Plant Gene Regulatory Networks Using Bulk or Single-Cell Accessible Chromatin Profiles.” The Plant Journal. https://doi.org/10.1111/tpj.16483.
+Nicolás Manosalva Pérez, Camilla Ferrari, Julia Engelhorn, Thomas Depuydt, Hilde Nelissen, Thomas Hartwig, and Klaas Vandepoele. “MINI-AC: Inference of Plant Gene Regulatory Networks Using Bulk or Single-Cell Accessible Chromatin Profiles.” The Plant Journal 117, no. 1 (2024): 280–301. https://doi.org/10.1111/tpj.16483.
 
 ## Contact
 

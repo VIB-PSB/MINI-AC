@@ -165,3 +165,11 @@ The [OUTPUTS folder](outputs/) contains four sub-folders:
 		- Maize gene name and Arabidopsis ortholog gene name combined.
 		- (Optional; if expressed genes provided)  True if the TF is present in the user-provided list of expressed genes, False otherwise.
 		- (Optional; if DE table provided) Differential expression information. The first column is the gene ID, and the rest of columns depend on the content of the user-provided table in input folder "de_files".
+
+## iCREs-based MINI-AC
+
+The outputs of the iCREs-based MINI-AC runs are identical to the default MINI-AC, as it can be seen in the folder [outputs_icres](outputs_icres). However, two input parameters change:
+
+* Instead of providing an input BED file with genomic coordinates, the input should be a list of gene IDs from the version V4 or V5 of the maize genome, as in this [example](./inputs/gene_set_files/UP_gene_set.txt).
+
+* There is an additional input parameter named ```--icres_set``` that can either be ```all``` or ```maxf1```. The parameter ```all``` uses  a more comprehensive and complete collection of maize putative CREs, while ```maxf1``` uses a set of putative CREs that is smaller but more precise (less false positives).

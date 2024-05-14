@@ -110,7 +110,7 @@ executor {
 }
 ```
 
-MINI-AC was developed in an SGE computer cluster, for which we used the configuration below. This was used to run the genome-wide mode on maize using an input dataset of ~600,000 MOA-seq peaks. For smaller datasets, the memory values can be further reduced. Addionally, for Arabidopsis, a species with a smaller genome, less memory can also be used.
+MINI-AC was developed in an SGE computer cluster, for which we used the configuration below. This was used to run the genome-wide mode on maize using an input dataset of ~600,000 MOA-seq peaks. For smaller datasets, the memory values can be further reduced. Additionally, for Arabidopsis, a species with a smaller genome, less memory can also be used.
 
 ```nextflow
 executor {
@@ -223,3 +223,42 @@ params {
 It is important, however, to make sure that the format is correct. The GO terms should be extended for parental terms, and this file should contain two tab-separated columns (no header),  where the first column is the GO ID, and the second column is the gene ID, as shown [here](../data/zma_v4/zma_v4_go_gene_file.txt). It is vital that the gene IDs are either on Araport11 or AGPv4/NAM5.0.
 
 This same principle can also be applied to other parameters that the user wants to change.
+
+## iCREs-based MINI-AC configuration file
+
+The configuration file of iCREs-based MINI-AC has a similar structure and input parameters as regular MINI-AC (given that it runs genome-wide MINI-AC). The parameter ```ACR_dir``` should be replaced by ```Gene_list_dir```. This parameter should be the path to a directory containing files in a ".txt" format, with each line containing a maize gene ID from the V4 or V5 genome version. One example can be found [here](../example/inputs/gene_set_files/UP_gene_set.txt).  One GRN will be predicted for each input file.
+
+There is an additional input parameter named ```--icres_set```, that can either be ```all``` or ```maxf1```. The parameter ```all``` uses  a more comprehensive and complete collection of maize putative CREs, while ```maxf1``` uses a set of putative CREs that is smaller but more precise (less false positives).
+
+One example of the parameters configuration from the file [mini_ac_icres.config](../mini_ac_icres.config) can be found below:
+
+```nextflow
+params {
+
+    //// Output folder
+    OutDir = "$projectDir/example/outputs_icres"
+
+    //// Required input
+    Gene_list_dir = "$projectDir/example/inputs/gene_set_files"
+
+    //// Optional input
+    // Differential expression data
+    DE_genes = false
+    DE_genes_dir = "$projectDir/example/inputs/de_files"
+    One_DE_set = true
+    // Expression data
+    Filter_set_genes = false
+    Set_genes_dir = "$projectDir/example/inputs/exp_genes_files"
+    One_filtering_set = true
+
+    //// Prediction parameters
+    Bps_intersect = false
+
+
+    //// Prediction parameters only genome-wide
+    Second_gene_annot = false
+    Second_gene_dist = 500
+}
+```
+
+This version of MINI-AC can also be run with ```DE_genes = true``` and ```Filter_set_genes = true```. However, the input files should be named accordingly, with the same name as the input file, followed by ```_icres_``` and ```_degs_table.txt``` and/or ```_expressed_genes.txt```. For example, in the case of the input file [UP_gene_set.txt](../example/inputs/gene_set_files/UP_gene_set.txt), the corresponding DEGs and expressed genes files should be named ```UP_gene_set_icres_degs_table.txt``` and ```UP_gene_set_icres_expressed_genes.txt```, respectively. 
