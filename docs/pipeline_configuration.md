@@ -226,7 +226,7 @@ This same principle can also be applied to other parameters that the user wants 
 
 ## iCREs-based MINI-AC configuration file
 
-The configuration file of iCREs-based MINI-AC has a similar structure and input parameters as regular MINI-AC (given that it runs genome-wide MINI-AC). The parameter ```ACR_dir``` should be replaced by ```Gene_list_dir```. This parameter should be the path to a directory containing files in a ".txt" format, with each line containing a maize gene ID from the V4 or V5 genome version. One example can be found [here](../example/inputs/gene_set_files/UP_gene_set.txt).  One GRN will be predicted for each input file.
+The configuration file of iCREs-based MINI-AC has a similar structure and input parameters as regular MINI-AC (given that it runs genome-wide MINI-AC "under the hood"). The parameter ```ACR_dir``` should be replaced by ```Gene_list_dir```. This parameter should be the path to a directory containing files in a ".txt" format, with each line containing a maize gene ID from the V4 or V5 genome version. One example can be found [here](../example/inputs/gene_set_files/UP_gene_set.txt).  One GRN will be predicted for each input file.
 
 There is an additional input parameter named ```--icres_set```, that can either be ```all``` or ```maxf1```. The parameter ```all``` uses  a more comprehensive and complete collection of maize putative CREs, while ```maxf1``` uses a set of putative CREs that is smaller but more precise (less false positives).
 
