@@ -172,7 +172,7 @@ The outputs of the iCREs-based MINI-AC runs are identical to the default MINI-AC
 
 * Instead of providing an input BED file with genomic coordinates, the input should be a list of gene IDs from the version V4 or V5 of the maize genome, as in this [example](./inputs/gene_set_files/UP_gene_set.txt).
 
-* There is an additional input parameter named ```--icres_set``` that can either be ```all``` or ```maxf1```. The parameter ```all``` uses  a more comprehensive and complete collection of maize putative CREs, while ```maxf1``` uses a set of putative CREs that is smaller but more precise (less false positives). To download the files with the genomic coordinates of these two iCREs sets, the following commands should be executed on the **top-level directory of the repository**:
+* There is an additional input parameter named `--icres_set` that can either be `all` or `maxf1`. The parameter `all` uses  a more comprehensive and complete collection of maize putative CREs, while `maxf1` uses a set of putative CREs that is smaller but more precise (less false positives). To download the files with the genomic coordinates of these two iCREs sets, the following commands should be executed on the **top-level directory of the repository**:
 
 ```shell
 NOT AVAILABLE UNTIL PUBLICATION

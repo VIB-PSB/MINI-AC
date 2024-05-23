@@ -73,15 +73,15 @@ Having problems running MINI-AC? Check the [FAQ](docs/FAQ.md).
 
 Given the amount of resources available to profile regulatory DNA in maize, we curated a collection of integrated cis-regulatory elements (iCREs) by combining and comparing different CRE-profiling methods (details to be published).
 
-We implemented a new framework in which it is possible to run MINI-AC given a list of maize genes. It works by retrieving the genomic coordinates of the iCREs associated with genes of interest, and submitting them to motif enrichment and GRN inference using the genome-wide mode of MINI-AC. iCREs-based MINI-AC can only be run for maize, and not for Arabidopsis. In addition, we offer different sets of iCREs that are used in the run: the "maxF1" (```maxf1```) set or the "all" (```all```) set. The first uses a set of putative CREs that is smaller but more precise (less false positives), while the second uses a more comprehensive and complete collection of maize putative CREs.
+We implemented a new framework in which it is possible to run MINI-AC given a list of maize genes. It works by retrieving the genomic coordinates of the iCREs associated with genes of interest, and submitting them to motif enrichment and GRN inference using the genome-wide mode of MINI-AC. iCREs-based MINI-AC can only be run for maize, and not for Arabidopsis. In addition, we offer different sets of iCREs that are used in the run: the "maxF1" (`maxf1`) set or the "all" (`all`) set. The first uses a set of putative CREs that is smaller but more precise (less false positives), while the second uses a more comprehensive and complete collection of maize putative CREs.
 
-To download fies with the genomic coordinates of the iCREs, the following commands should be executed on the **top-level directory of the repository**:
+To download files with the genomic coordinates of the iCREs, the following commands should be executed on the **top-level directory of the repository**:
 
 ```shell
 NOT AVAILABLE UNTIL PUBLICATION
 ```
 
-To run iCREs-based MINI-AC, the [configuration file](./mini_ac_icres.config) should be prepared as explained [here](./docs/pipeline_configuration.md). Only two parameters change in comparison to the regular MINI-AC runs. Instead of providing a BED file with ACR genomic coordinates, a list of gene IDs from the maize genome version V4 or V5 should be provided, as exemplified [here](./example/inputs/gene_set_files/UP_gene_set.txt). In addition, an iCREs set should be specified (```maxf1``` or ```all```). Next, the following Nextflow command should be executed:
+To run iCREs-based MINI-AC, the [configuration file](./mini_ac_icres.config) should be prepared as explained [here](./docs/pipeline_configuration.md). Only two parameters change in comparison to the regular MINI-AC runs. Instead of providing a BED file with ACR genomic coordinates, a list of gene IDs from the maize genome version V4 or V5 should be provided, as exemplified [here](./example/inputs/gene_set_files/UP_gene_set.txt). In addition, an iCREs set should be specified (`maxf1` or `all`). Next, the following Nextflow command should be executed:
 
 ```shell
 nextflow -C mini_ac_icres.config run mini_ac_icres.nf --icres_set <all|maxf1> --species <maize_v4|maize_v5>
