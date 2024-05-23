@@ -35,7 +35,7 @@ workflow MINIAC_ICRES {
             exit 1, "MINI-AC iCREs can only be run for two sets: all and maxf1. Instead it got '${params.icres_set}'."
     }
 
-    // set input data parameters for the exection of MINI-AC genome-wide mode
+    // set input data parameters for the execution of MINI-AC genome-wide mode
     params.Faix_file = "$projectDir/data/${species}/${species}.fasta.fai"
     params.Motif_tf_file = "$projectDir/data/${species}/${species}_motif_TF_file.txt"
     params.Feature_file = "$projectDir/data/${species}/${species}_go_gene_file.txt"
