@@ -7,17 +7,17 @@ def parseArgs():
                                             'coordinates given a list of genes',
                         conflict_handler='resolve')
 
-    parser.add_argument('annotated_icres', nargs = "?", type = str,
+    parser.add_argument('annotated_icres', type = str,
                         help = '',
                         metavar = 'BED file with 4th column being ' +\
                                     'an annotated gene ID')
     
-    parser.add_argument('gene_list', nargs = "?", type = str,
+    parser.add_argument('gene_list', type = str,
                         help = '',
                         metavar = 'One column file containing gene IDs '+ \
                                 'of interest')
 
-    parser.add_argument('bed_of_genes_icres', nargs = "?", type = str,
+    parser.add_argument('bed_of_genes_icres', type = str,
                         help = '',
                         metavar = 'Output BED file with coordinates '+\
                             'of iCREs associated with genes of interest')
