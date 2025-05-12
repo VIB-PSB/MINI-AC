@@ -29,11 +29,6 @@ jobs:
     - name: Setup Nextflow
       uses: nf-core/setup-nextflow@v1.3.0
 
-    - name: Setup singularity
-      uses: eWaterCycle/setup-singularity@v7
-      with:
-        singularity-version: 3.8.3
-
     - name: Setup nf-test
       run: wget -qO- https://code.askimed.com/install/nf-test | bash
 
