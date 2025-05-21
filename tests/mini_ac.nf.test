@@ -1,0 +1,265 @@
+nextflow_workflow {
+
+    name "Test Workflow MINIAC"
+    script "mini_ac.nf"
+    workflow "MINIAC"
+
+    
+    test("maize_v4 genome_wide") {
+
+        when {
+            params {
+                //// Mode
+                mode = "genome_wide"
+
+                //// Species
+                species = "maize_v4"
+
+                //// Lower shuffle count to reduce test runtime
+                Shuffle_count = 100
+
+                //// Fix shuffle seed for reproducible test results
+                Shuffle_seed = 42
+
+                //// Hard code data paths
+                MotMapsFile = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_genome_wide_motif_mappings_chr1.bed"
+                Non_cod_genome = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_noncod_merged_chr1.bed"
+                Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
+                Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
+                Genes_coords = "${baseDir}/data/zma_v4/zma_v4_genes_coords_sorted.bed"
+                Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
+                TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/zma_v4_gene_metadata_file.txt"
+                OBO_file = "${baseDir}/data/ontologies/go.obo"
+
+                //// Output folder
+                OutDir = "${baseDir}/tests/outputs/zma_v4/genome_wide"
+
+                //// Output CSV instead of Excel for automated output comparison
+                Csv_output = true
+
+                //// Required input
+                ACR_dir = "${baseDir}/tests/inputs/zma_v4/acr_files"
+
+                //// Optional input
+                // Differential expression data
+                DE_genes = true
+                DE_genes_dir = "${baseDir}/tests/inputs/zma_v4/de_files"
+                One_DE_set = true
+                // Expression data
+                Filter_set_genes = true
+                Set_genes_dir = "${baseDir}/tests/inputs/zma_v4/exp_genes_files"
+                One_filtering_set = true
+
+                //// Prediction parameters
+                Bps_intersect = false
+
+                //// Prediction parameters only genome-wide
+                Second_gene_annot = true
+                Second_gene_dist = 500
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
+                path("${params.OutDir}/enrichment_stats").list(),
+                path("${params.OutDir}/GO_enrichment").list(),
+                path("${params.OutDir}/integrative_outputs").list(),
+                path("${params.OutDir}/networks").list(),
+            ).match()
+        }
+    }
+
+    test("maize_v4 locus_based") {
+
+        when {
+            params {
+                //// Mode
+                mode = "locus_based"
+
+                //// Species
+                species = "maize_v4"
+
+                //// Lower shuffle count to reduce test runtime
+                Shuffle_count = 200
+
+                //// Fix shuffle seed for reproducible test results
+                Shuffle_seed = 42
+
+                //// Hard code data paths
+                MotMapsFile = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_locus_based_motif_mappings_5kbup_1kbdown_chr1.bed"
+                Promoter_file = "${baseDir}/tests/data/zma_v4_chr1/zma_v4_promoter_5kbup_1kbdown_sorted_chr1.bed"
+                Faix_file = "${baseDir}/data/zma_v4/zma_v4.fasta.fai"
+                Motif_tf_file = "${baseDir}/data/zma_v4/zma_v4_motif_TF_file.txt"
+                Feature_file = "${baseDir}/data/zma_v4/zma_v4_go_gene_file.txt"
+                TF_fam_file = "${baseDir}/data/zma_v4/zma_v4_TF_family_file.txt"
+                Genes_metadata = "${baseDir}/data/zma_v4/zma_v4_gene_metadata_file.txt"
+                OBO_file = "${baseDir}/data/ontologies/go.obo"
+
+                //// Output folder
+                OutDir = "${baseDir}/tests/outputs/zma_v4/locus_based"
+
+                //// Output CSV instead of Excel for automated output comparison
+                Csv_output = true
+
+                //// Required input
+                ACR_dir = "${baseDir}/tests/inputs/zma_v4/acr_files"
+
+                //// Optional input
+                // Differential expression data
+                DE_genes = false
+                // Expression data
+                Filter_set_genes = true
+                Set_genes_dir = "${baseDir}/tests/inputs/zma_v4/exp_genes_files"
+                One_filtering_set = true
+
+                //// Prediction parameters
+                Bps_intersect = true
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
+                path("${params.OutDir}/enrichment_stats").list(),
+                path("${params.OutDir}/GO_enrichment").list(),
+                path("${params.OutDir}/integrative_outputs").list(),
+                path("${params.OutDir}/networks").list(),
+            ).match()
+        }
+    }
+
+    test("arabidopsis genome_wide") {
+
+        when {
+            params {
+                //// Mode
+                mode = "genome_wide"
+
+                //// Species
+                species = "arabidopsis"
+
+                //// Lower shuffle count to reduce test runtime
+                Shuffle_count = 100
+
+                //// Fix shuffle seed for reproducible test results
+                Shuffle_seed = 42
+
+                //// Hard code data paths
+                MotMapsFile = "${baseDir}/data/ath/ath_genome_wide_motif_mappings.bed"
+                Non_cod_genome = "${baseDir}/data/ath/ath_noncod_merged.bed"
+                Faix_file = "${baseDir}/data/ath/ath.fasta.fai"
+                Motif_tf_file = "${baseDir}/data/ath/ath_motif_TF_file.txt"
+                Genes_coords = "${baseDir}/data/ath/ath_genes_coords_sorted.bed"
+                Feature_file = "${baseDir}/data/ath/ath_go_gene_file.txt"
+                TF_fam_file = "${baseDir}/data/ath/ath_TF_family_file.txt"
+                Genes_metadata = "${baseDir}/data/ath/ath_gene_metadata_file.txt"
+                OBO_file = "${baseDir}/data/ontologies/go.obo"
+
+                //// Output folder
+                OutDir = "${baseDir}/tests/outputs/ath/genome_wide"
+
+                //// Output CSV instead of Excel for automated output comparison
+                Csv_output = true
+
+                //// Required input
+                ACR_dir = "${baseDir}/tests/inputs/ath/acr_files"
+
+                //// Optional input
+                // Differential expression data
+                DE_genes = true
+                DE_genes_dir = "${baseDir}/tests/inputs/ath/de_files"
+                One_DE_set = false
+                // Expression data
+                Filter_set_genes = false
+
+                //// Prediction parameters
+                Bps_intersect = true
+
+                //// Prediction parameters only genome-wide
+                Second_gene_annot = false
+                Second_gene_dist = 0
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
+                path("${params.OutDir}/enrichment_stats").list(),
+                path("${params.OutDir}/GO_enrichment").list(),
+                path("${params.OutDir}/integrative_outputs").list(),
+                path("${params.OutDir}/networks").list(),
+            ).match()
+        }
+    }
+
+    test("arabidopsis locus_based") {
+
+        when {
+            params {
+                //// Mode
+                mode = "locus_based"
+
+                //// Species
+                species = "arabidopsis"
+
+                //// Lower shuffle count to reduce test runtime
+                Shuffle_count = 200
+
+                //// Fix shuffle seed for reproducible test results
+                Shuffle_seed = 42
+
+                //// Hard code data paths
+                MotMapsFile = "${baseDir}/data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed"
+                Promoter_file = "${baseDir}/data/ath/ath_promoter_5kbup_1kbdown_sorted.bed"
+                Faix_file = "${baseDir}/data/ath/ath.fasta.fai"
+                Motif_tf_file = "${baseDir}/data/ath/ath_motif_TF_file.txt"
+                Feature_file = "${baseDir}/data/ath/ath_go_gene_file.txt"
+                TF_fam_file = "${baseDir}/data/ath/ath_TF_family_file.txt"
+                Genes_metadata = "${baseDir}/data/ath/ath_gene_metadata_file.txt"
+                OBO_file = "${baseDir}/data/ontologies/go.obo"
+
+                //// Output folder
+                OutDir = "${baseDir}/tests/outputs/ath/locus_based"
+
+                //// Output CSV instead of Excel for automated output comparison
+                Csv_output = true
+
+                //// Required input
+                ACR_dir = "${baseDir}/tests/inputs/ath/acr_files"
+
+                //// Optional input
+                // Differential expression data
+                DE_genes = false
+                // Expression data
+                Filter_set_genes = false
+
+                //// Prediction parameters
+                Bps_intersect = false
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                workflow.errorReport,
+                workflow.exitStatus,
+                workflow.trace,
+                path("${params.OutDir}/enrichment_stats").list(),
+                path("${params.OutDir}/GO_enrichment").list(),
+                path("${params.OutDir}/integrative_outputs").list(),
+                path("${params.OutDir}/networks").list(),
+            ).match()
+        }
+    }
+}
