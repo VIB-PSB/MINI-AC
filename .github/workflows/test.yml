@@ -38,4 +38,4 @@ jobs:
 
     - name: Run nf-test
       shell: bash
-      run: NEXTFLOW_CONFIG_FILE=mini_ac.config nf-test test --profile gh-ci
+      run: ./nf-test test --config tests/github_ci.config
