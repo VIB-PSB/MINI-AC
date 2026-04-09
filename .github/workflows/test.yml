@@ -27,7 +27,9 @@ jobs:
       run: java -version
 
     - name: Setup Nextflow
-      uses: nf-core/setup-nextflow@v1.3.0
+      uses: nf-core/setup-nextflow@v1
+      with:
+        version: "21.10.6"
 
     - name: Setup nf-test
       run: wget -qO- https://code.askimed.com/install/nf-test | bash
