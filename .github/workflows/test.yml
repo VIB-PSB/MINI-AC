@@ -39,6 +39,9 @@ jobs:
         curl -k -L -o data/ath/ath_genome_wide_motif_mappings.bed https://ftp.psb.ugent.be/pub/software/mini_ac/test_files/ath_genome_wide_motif_mappings.bed
         curl -k -L -o data/ath/ath_locus_based_motif_mappings_5kbup_1kbdown.bed https://ftp.psb.ugent.be/pub/software/mini_ac/test_files/ath_locus_based_motif_mappings_5kbup_1kbdown.bed
 
+    - name: Disable container awareness
+      run: export NXF_OPTS='-XX:-UseContainerSupport'
+
     - name: Run nf-test
       shell: bash
       run: ./nf-test test
