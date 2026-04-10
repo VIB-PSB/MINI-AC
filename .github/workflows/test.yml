@@ -44,7 +44,6 @@ jobs:
     
     - name: Check versions
       run: |
-        java -version
         nextflow info
 
     - name: Run nf-test
