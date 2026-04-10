@@ -43,8 +43,9 @@ jobs:
       run: export NXF_OPTS='-XX:-UseContainerSupport'
     
     - name: Check versions
-      run: java -version
-          nextflow info
+      run: |
+        java -version
+        nextflow info
 
     - name: Run nf-test
       shell: bash
