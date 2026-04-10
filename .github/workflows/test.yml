@@ -28,9 +28,14 @@ jobs:
 
     - name: Setup Nextflow
       uses: nf-core/setup-nextflow@v1
-
-    - name: Setup nf-test
-      run: wget -qO- https://code.askimed.com/install/nf-test | bash
+      with:
+        version: 25.10.4
+    
+    - uses: nf-core/setup-nf-test@v1
+      with:
+        version: 0.9.5
+          #- name: Setup nf-test
+          #run: wget -qO- https://code.askimed.com/install/nf-test | bash
 
     - name: Fetch motif mapping files
       run: |
