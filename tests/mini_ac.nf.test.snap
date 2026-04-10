@@ -4,8 +4,8 @@
             null,
             0,
             {
+		"tasksCount": 10,
                 "tasksFailed": 0,
-                "tasksCount": 10,
                 "tasksSucceeded": 10
             },
             [
@@ -40,8 +40,8 @@
             null,
             0,
             {
-                "tasksFailed": 0,
                 "tasksCount": 10,
+		"tasksFailed": 0,
                 "tasksSucceeded": 10
             },
             [
@@ -76,8 +76,8 @@
             null,
             0,
             {
+		"tasksCount": 12,
                 "tasksFailed": 0,
-                "tasksCount": 12,
                 "tasksSucceeded": 12
             },
             [
@@ -114,8 +114,8 @@
             null,
             0,
             {
+		"tasksCount": 12,
                 "tasksFailed": 0,
-                "tasksCount": 12,
                 "tasksSucceeded": 12
             },
             [
